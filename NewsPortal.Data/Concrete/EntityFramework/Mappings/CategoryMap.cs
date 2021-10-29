@@ -31,6 +31,45 @@ namespace NewsPortal.Data.Concrete.EntityFramework.Mappings
             builder.Property(c => c.Note).HasMaxLength(500);
 
             builder.ToTable("Categories");
+
+            builder.HasData(
+                new Category
+                {
+                    Id = 1,
+                    Name = "Spor",
+                    Description = "Spor Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Spor Kategorisi"
+                }, new Category
+                {
+                    Id = 2,
+                    Name = "Ekonomi",
+                    Description = "Ekonomi Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Ekonomi Kategorisi"
+                }, new Category
+                {
+                    Id = 3,
+                    Name = "Teknoloji",
+                    Description = "Teknoloji Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Teknoloji Kategorisi"
+                });
         }
     }
 }
