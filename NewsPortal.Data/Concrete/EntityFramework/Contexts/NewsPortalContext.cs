@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using NewsPortal.Data.Concrete.EntityFramework.Mappings;
 using NewsPortal.Entities.Concrete;
 
 namespace NewsPortal.Data.Concrete.EntityFramework.Contexts
@@ -20,6 +21,16 @@ namespace NewsPortal.Data.Concrete.EntityFramework.Contexts
         {
             optionsBuilder.UseSqlServer(
                 connectionString: @"Server=LAZRAEL\SQLEXPRESS;Database=NewsPortal;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Config ayarlarını dahil etme.
+            modelBuilder.ApplyConfiguration(new ReportMap());
+            modelBuilder.ApplyConfiguration(new CategoryMap());
+            modelBuilder.ApplyConfiguration(new CommentMap());
+            modelBuilder.ApplyConfiguration(new RoleMap());
+            modelBuilder.ApplyConfiguration(new UserMap());
         }
     }
 }
