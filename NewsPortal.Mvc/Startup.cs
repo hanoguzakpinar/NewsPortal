@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NewsPortal.Services.AutoMapper.Profiles;
 using NewsPortal.Services.Extensions;
 
 namespace NewsPortal.Mvc
@@ -18,7 +19,7 @@ namespace NewsPortal.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();//mvc ve razor runtime package dahil etme.
-            services.AddAutoMapper(typeof(Startup));//automapperi dahil etme.
+            services.AddAutoMapper(typeof(CategoryProfile), typeof(ReportProfile));//automapperi dahil etme.
             services.LoadMyServices();
         }
 

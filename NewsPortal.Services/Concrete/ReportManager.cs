@@ -111,7 +111,9 @@ namespace NewsPortal.Services.Concrete
             report.ModifiedByName = createdByName;
             report.UserId = 1;
 
-            await _unitOfWork.Reports.AddAsync(report).ContinueWith(t => _unitOfWork.SaveAsync());
+            await _unitOfWork.Reports.AddAsync(report);
+            await _unitOfWork.SaveAsync();
+
             return new Result(ResultStatus.Success,
                 $"{reportAddDto.Title} başlıklı haber eklenmiştir.");
         }
@@ -121,7 +123,9 @@ namespace NewsPortal.Services.Concrete
             var report = _mapper.Map<Report>(reportUpdateDto);
             report.ModifiedByName = modifiedByName;
 
-            await _unitOfWork.Reports.UpdateAsync(report).ContinueWith(t => _unitOfWork.SaveAsync());
+            await _unitOfWork.Reports.UpdateAsync(report);
+            await _unitOfWork.SaveAsync();
+
             return new Result(ResultStatus.Success,
                 $"{reportUpdateDto.Title} başlıklı haber güncellenmiştir.");
         }
@@ -136,7 +140,9 @@ namespace NewsPortal.Services.Concrete
                 report.ModifiedByName = modifiedByName;
                 report.ModifiedDate = DateTime.Now;
 
-                await _unitOfWork.Reports.UpdateAsync(report).ContinueWith(t => _unitOfWork.SaveAsync());
+                await _unitOfWork.Reports.UpdateAsync(report);
+                await _unitOfWork.SaveAsync();
+
                 return new Result(ResultStatus.Success,
                     $"{report.Title} başlıklı haber silinmiştir.");
             }
@@ -151,7 +157,9 @@ namespace NewsPortal.Services.Concrete
             {
                 var report = await _unitOfWork.Reports.GetAsync(r => r.Id == reportId);
 
-                await _unitOfWork.Reports.DeleteAsync(report).ContinueWith(t => _unitOfWork.SaveAsync());
+                await _unitOfWork.Reports.DeleteAsync(report);
+                await _unitOfWork.SaveAsync();
+
                 return new Result(ResultStatus.Success,
                     $"{report.Title} başlıklı haber veritabanından silinmiştir.");
             }
