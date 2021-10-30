@@ -50,7 +50,12 @@ namespace NewsPortal.Services.Concrete
                 });
 
             return new DataResult<CategoryListDto>(ResultStatus.Error, "Kategoriler bulunamadı.",
-                null);
+                new CategoryListDto
+                {
+                    Categories = null,
+                    ResultStatus = ResultStatus.Error,
+                    Message = "Kategoriler bulunamadı."
+                });
         }
 
         public async Task<IDataResult<CategoryListDto>> GetAllNonDeleted()
