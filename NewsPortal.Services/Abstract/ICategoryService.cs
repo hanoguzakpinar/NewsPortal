@@ -14,8 +14,8 @@ namespace NewsPortal.Services.Abstract
         Task<IDataResult<CategoryListDto>> GetAll();
         Task<IDataResult<CategoryListDto>> GetAllNonDeleted();
         Task<IDataResult<CategoryListDto>> GetAllNonDeletedAndActive();
-        Task<IResult> Add(CategoryAddDto categoryAddDto, string createdByName);
-        Task<IResult> Update(CategoryUpdateDto categoryUpdateDto, string modifiedByName);
+        Task<IDataResult<CategoryDto>> Add(CategoryAddDto categoryAddDto, string createdByName);
+        Task<IDataResult<CategoryDto>> Update(CategoryUpdateDto categoryUpdateDto, string modifiedByName);
         Task<IResult> Delete(int categoryId, string modifiedByName);
         Task<IResult> HardDelete(int categoryId);
     }
