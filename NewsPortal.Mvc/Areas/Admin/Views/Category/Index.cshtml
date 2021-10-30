@@ -2,11 +2,11 @@
 @model NewsPortal.Entities.Dtos.CategoryListDto
 @{
     Layout = "_Layout";
-    ViewBag.Title = "Kategori Index";
+    ViewBag.Title = "Kategoriler Index";
 }
-
 @if (Model.ResultStatus == ResultStatus.Success)
 {
+    <div id="modalPlaceHolder" aria-hidden="true"></div>
     <div class="card mb-4 mt-2">
         <div class="card-header">
             <i class="fas fa-table mr-1"></i>
@@ -17,30 +17,30 @@
                 <table class="table table-bordered" id="categoriesTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Id</th>
+                            <th>ID</th>
                             <th>Adı</th>
-                            <th>Açıklama</th>
+                            <th>Açıklaması</th>
                             <th>Aktif Mi?</th>
                             <th>Silinmiş Mi?</th>
                             <th>Not</th>
                             <th>Oluşturulma Tarihi</th>
-                            <th>Oluşturan Kullanıcı</th>
+                            <th>Oluşturan Kullanıcı Adı</th>
                             <th>Son Düzenlenme Tarihi</th>
-                            <th>Son Düzenleyen Kullanıcı</th>
+                            <th>Son Düzenleyen Kullanıcı Adı</th>
                         </tr>
                     </thead>
                     <tfoot>
                         <tr>
-                            <th>Id</th>
+                            <th>ID</th>
                             <th>Adı</th>
-                            <th>Açıklama</th>
+                            <th>Açıklaması</th>
                             <th>Aktif Mi?</th>
                             <th>Silinmiş Mi?</th>
                             <th>Not</th>
                             <th>Oluşturulma Tarihi</th>
-                            <th>Oluşturan Kullanıcı</th>
+                            <th>Oluşturan Kullanıcı Adı</th>
                             <th>Son Düzenlenme Tarihi</th>
-                            <th>Son Düzenleyen Kullanıcı</th>
+                            <th>Son Düzenleyen Kullanıcı Adı</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -69,31 +69,33 @@
 {
     <div class="alert alert-danger mt-3">
         @Model.Message <br />
-        Dashboard sayfasına geri dönmek için
-        <a class="alert-link" asp-area="Admin" asp-controller="Home" asp-action="Index">tıklayınız.</a>
+        Dashboard sayfasına geri dönmek için lütfen <a class="alert-link" asp-area="Admin" asp-controller="Home" asp-action="Index">tıklayınız.</a>
     </div>
 }
 @section Scripts
 {
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#categoriesTable').DataTable({
                 dom:
                     "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
-                    "<'row'<'col-sm-12'tr>>" +
-                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+                        "<'row'<'col-sm-12'tr>>" +
+                        "<'row'<'col-sm-5'i><'col-sm-7'p>>",
                 buttons: [
                     {
                         text: 'Ekle',
+                        attr: {
+                            id: "btnAdd",
+                        },
                         className: 'btn btn-success',
-                        action: function (e, dt, node, config) {
-                            alert('Ekle butonuna basıldı.');
+                        action: function(e, dt, node, config) {
+
                         }
                     },
                     {
                         text: 'Yenile',
                         className: 'btn btn-warning',
-                        action: function (e, dt, node, config) {
+                        action: function(e, dt, node, config) {
                             alert('Yenile butonuna basıldı.');
                         }
                     }
@@ -129,6 +131,17 @@
                         }
                     }
                 }
+            });
+            @* DataTables ends here *@
+            $(function() {
+                const url = '@Url.Action("Add", "Category")';
+                const placeHolderDiv = $('#modalPlaceHolder');
+                $('#btnAdd').click(function() {
+                    $.get(url).done(function(data) {
+                        placeHolderDiv.html(data);
+                        placeHolderDiv.find(".modal").modal('show');
+                    });
+                });
             });
         });
     </script>
