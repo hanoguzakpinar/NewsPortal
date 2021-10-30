@@ -4,4 +4,14 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NewsPortal.Data\NewsPortal.Data.csproj" />
+    <ProjectReference Include="..\NewsPortal.Entities\NewsPortal.Entities.csproj" />
+    <ProjectReference Include="..\NewsPortal.Shared\NewsPortal.Shared.csproj" />
+  </ItemGroup>
+
 </Project>
