@@ -17,6 +17,8 @@ namespace NewsPortal.Mvc
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllersWithViews().AddRazorRuntimeCompilation();//mvc ve razor runtime package dahil etme.
+            services.AddAutoMapper(typeof(Startup));//automapperi dahil etme.
             services.LoadMyServices();
         }
 
@@ -26,16 +28,21 @@ namespace NewsPortal.Mvc
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseStatusCodePages();//varolmayan viewlere gidildiðinde 404 fýrlatýr.
             }
+
+            app.UseStaticFiles();//wwwroot dosyalarýna eriþim
 
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapAreaControllerRoute(
+                    name: "Admin",
+                    areaName: "Admin",
+                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}"//id nullable
+                );
+                endpoints.MapDefaultControllerRoute();//varsayýlan olarak home-indexe yönlendirir.
             });
         }
     }

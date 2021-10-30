@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using NewsPortal.Data.Abstract;
+using NewsPortal.Data.Concrete;
 using NewsPortal.Data.Concrete.EntityFramework.Contexts;
 using NewsPortal.Services.Abstract;
 using NewsPortal.Services.Concrete;
@@ -16,7 +17,7 @@ namespace NewsPortal.Services.Extensions
         public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddDbContext<NewsPortalContext>();
-            serviceCollection.AddScoped<IUnitOfWork, IUnitOfWork>();
+            serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<ICategoryService, CategoryManager>();
             serviceCollection.AddScoped<IReportService, ReportManager>();
 
