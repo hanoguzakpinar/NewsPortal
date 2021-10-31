@@ -18,7 +18,19 @@ namespace NewsPortal.Services.Extensions
         public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection)
         {
             serviceCollection.AddDbContext<NewsPortalContext>();
-            serviceCollection.AddIdentity<User, Role>().AddEntityFrameworkStores<NewsPortalContext>();
+            serviceCollection.AddIdentity<User, Role>(options =>
+            {
+                //Password Options
+                options.Password.RequireDigit = false;//sayı içermesi zorunlu mu?
+                options.Password.RequiredLength = 5;//en az kaç uzunlukta olmalı?
+                options.Password.RequiredUniqueChars = 0;//özel karakter en az kaç tane olmalı?
+                options.Password.RequireNonAlphanumeric = false;//özel karakter zorunlu mu?
+                options.Password.RequireLowercase = false;//küçük harf zorunlu mu?
+                options.Password.RequireUppercase = false;//büyük harf zorunlu mu?
+                //Username and Email Options
+                options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";//kullanıcı adı hangi özel karakterleri içerebilir?
+                options.User.RequireUniqueEmail = true;//aynı email adresi bir defa mı kullanılsın?
+            }).AddEntityFrameworkStores<NewsPortalContext>();
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<ICategoryService, CategoryManager>();
             serviceCollection.AddScoped<IReportService, ReportManager>();
