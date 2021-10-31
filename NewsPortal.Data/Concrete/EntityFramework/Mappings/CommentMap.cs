@@ -34,50 +34,50 @@ namespace NewsPortal.Data.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Comments");
 
-            builder.HasData(
-               new Comment
-               {
-                   Id = 1,
-                   ReportId = 1,
-                   Text =
-                       "Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir. Eğer bir Lorem Ipsum pasajı kullanacaksanız",
-                   IsActive = true,
-                   IsDeleted = false,
-                   CreatedByName = "Initial Create",
-                   CreatedDate = DateTime.Now,
-                   ModifiedByName = "Initial Create",
-                   ModifiedDate = DateTime.Now,
-                   Note = "Spor Yorumu",
-               },
-               new Comment
-               {
-                   Id = 2,
-                   ReportId = 2,
-                   Text =
-                       "Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir. Eğer bir Lorem Ipsum pasajı kullanacaksanız",
-                   IsActive = true,
-                   IsDeleted = false,
-                   CreatedByName = "Initial Create",
-                   CreatedDate = DateTime.Now,
-                   ModifiedByName = "Initial Create",
-                   ModifiedDate = DateTime.Now,
-                   Note = "Ekonomi Yorumu",
-               },
-               new Comment
-               {
-                   Id = 3,
-                   ReportId = 3,
-                   Text =
-                       "Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir. Eğer bir Lorem Ipsum pasajı kullanacaksanız",
-                   IsActive = true,
-                   IsDeleted = false,
-                   CreatedByName = "Initial Create",
-                   CreatedDate = DateTime.Now,
-                   ModifiedByName = "Initial Create",
-                   ModifiedDate = DateTime.Now,
-                   Note = "Teknoloji Yorumu",
-               }
-           );
+           // builder.HasData(
+           //    new Comment
+           //    {
+           //        Id = 1,
+           //        ReportId = 1,
+           //        Text =
+           //            "Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir. Eğer bir Lorem Ipsum pasajı kullanacaksanız",
+           //        IsActive = true,
+           //        IsDeleted = false,
+           //        CreatedByName = "Initial Create",
+           //        CreatedDate = DateTime.Now,
+           //        ModifiedByName = "Initial Create",
+           //        ModifiedDate = DateTime.Now,
+           //        Note = "Spor Yorumu",
+           //    },
+           //    new Comment
+           //    {
+           //        Id = 2,
+           //        ReportId = 2,
+           //        Text =
+           //            "Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir. Eğer bir Lorem Ipsum pasajı kullanacaksanız",
+           //        IsActive = true,
+           //        IsDeleted = false,
+           //        CreatedByName = "Initial Create",
+           //        CreatedDate = DateTime.Now,
+           //        ModifiedByName = "Initial Create",
+           //        ModifiedDate = DateTime.Now,
+           //        Note = "Ekonomi Yorumu",
+           //    },
+           //    new Comment
+           //    {
+           //        Id = 3,
+           //        ReportId = 3,
+           //        Text =
+           //            "Lorem Ipsum pasajlarının birçok çeşitlemesi vardır. Ancak bunların büyük bir çoğunluğu mizah katılarak veya rastgele sözcükler eklenerek değiştirilmişlerdir. Eğer bir Lorem Ipsum pasajı kullanacaksanız",
+           //        IsActive = true,
+           //        IsDeleted = false,
+           //        CreatedByName = "Initial Create",
+           //        CreatedDate = DateTime.Now,
+           //        ModifiedByName = "Initial Create",
+           //        ModifiedDate = DateTime.Now,
+           //        Note = "Teknoloji Yorumu",
+           //    }
+           //);
         }
     }
 }
