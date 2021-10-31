@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NewsPortal.Entities.Dtos;
+using NewsPortal.Mvc.Areas.Admin.Models;
 using NewsPortal.Services.Abstract;
+using NewsPortal.Shared.Utilities.Extensions;
 using NewsPortal.Shared.Utilities.Results.ComplexTypes;
 
 namespace NewsPortal.Mvc.Areas.Admin.Controllers
@@ -25,9 +29,32 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             return View(result.Data);
         }
 
+        [HttpGet]
         public IActionResult Add()
         {
             return PartialView("_CategoryAddPartial");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Add(CategoryAddDto categoryAddDto)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _categoryService.Add(categoryAddDto, "Oğuzhan Akpınar");
+                if (result.ResultStatus == ResultStatus.Success)
+                {
+                    var categoryAddAjaxModel = JsonSerializer.Serialize(new CategoryAddAjaxViewModel
+                    {
+                        CategoryDto = result.Data,
+                        CategoryAddPartial = await this.RenderViewToStringAsync("_CategoryAddPartial", categoryAddDto)
+                    });
+                    return Json(categoryAddAjaxModel);
+                }
+            }
+            var categoryAddAjaxErrorModel = JsonSerializer.Serialize(new CategoryAddAjaxViewModel
+            {
+                CategoryAddPartial = await this.RenderViewToStringAsync("_CategoryAddPartial", categoryAddDto)
+            });
+            return Json(categoryAddAjaxErrorModel);
         }
     }
 }
