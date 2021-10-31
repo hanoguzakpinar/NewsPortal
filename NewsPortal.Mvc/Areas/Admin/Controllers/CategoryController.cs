@@ -25,7 +25,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var result = await _categoryService.GetAll();
+            var result = await _categoryService.GetAllNonDeleted();
 
             return View(result.Data);
         }
@@ -60,7 +60,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
 
         public async Task<JsonResult> GetAllCategories()
         {
-            var result = await _categoryService.GetAll();
+            var result = await _categoryService.GetAllNonDeleted();
             var categories = JsonSerializer.Serialize(result.Data, new JsonSerializerOptions
             {
                 ReferenceHandler = ReferenceHandler.Preserve
@@ -72,8 +72,8 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
         public async Task<JsonResult> Delete(int categoryId)
         {
             var result = await _categoryService.Delete(categoryId, "Oğuzhan Akpınar");
-            var ajaxResult = JsonSerializer.Serialize(result);
-            return Json(ajaxResult);
+            var deletedeCategory = JsonSerializer.Serialize(result.Data);
+            return Json(deletedeCategory);
         }
     }
 }
