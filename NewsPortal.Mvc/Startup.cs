@@ -25,6 +25,7 @@ namespace NewsPortal.Mvc
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
             });
             //mvc ve razor runtime package dahil etme.
+            services.AddSession();//session yapýsýný ekleme.
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ReportProfile));//automapperi dahil etme.
             services.LoadMyServices();
         }
@@ -32,15 +33,21 @@ namespace NewsPortal.Mvc
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
+            if (env.IsDevelopment())//geliþtirme ayarlarý
             {
                 app.UseDeveloperExceptionPage();
                 app.UseStatusCodePages();//varolmayan viewlere gidildiðinde 404 fýrlatýr.
             }
 
+            app.UseSession();//authen ve authodan önce tanýmlanmalýdýr.
+
             app.UseStaticFiles();//wwwroot dosyalarýna eriþim
 
             app.UseRouting();
+
+            app.UseAuthentication();//kimlik kontrolü
+
+            app.UseAuthorization();//yetki kontrolü
 
             app.UseEndpoints(endpoints =>
             {
