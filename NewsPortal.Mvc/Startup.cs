@@ -31,7 +31,7 @@ namespace NewsPortal.Mvc
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = new PathString("/Admin/User/Login");//giriþ sayfasýný belirtme.
-                options.LogoutPath = new PathString("Admin/User/Logout");//çýkýþ sayfasýný belirtme.
+                options.LogoutPath = new PathString("/Admin/User/Logout");//çýkýþ sayfasýný belirtme.
                 options.Cookie = new CookieBuilder
                 {
                     Name = "NewsPortal",
