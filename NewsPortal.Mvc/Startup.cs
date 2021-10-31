@@ -28,6 +28,24 @@ namespace NewsPortal.Mvc
             services.AddSession();//session yapýsýný ekleme.
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ReportProfile));//automapperi dahil etme.
             services.LoadMyServices();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = new PathString("/Admin/User/Login");//giriþ sayfasýný belirtme.
+                options.LogoutPath = new PathString("Admin/User/Logout");//çýkýþ sayfasýný belirtme.
+                options.Cookie = new CookieBuilder
+                {
+                    Name = "NewsPortal",
+                    HttpOnly = true,//cookie bilgilerini gizleme
+                    SameSite = SameSiteMode.Strict, //csrf saldýrýlarýný önlemek için önemlidir.
+                                                    //Sadece bizim siteden gelen cookileri kabul eder.
+                    SecurePolicy = CookieSecurePolicy.SameAsRequest,//Always olmazsa güvenlik açýðý oluþturur,
+                    //Geliþtirme ortamýnda olduðumuz için SameAsRequestte býraktýk.
+
+                };
+                options.SlidingExpiration = true;//kullanýcý tekrar giriþ yaptýðýnda süresini uzatmak için.
+                options.ExpireTimeSpan = System.TimeSpan.FromDays(7);//giriþ yaptýktan sonra {7} gün boyunca tekrar giriþ yapmasýna gerek kalmaz.
+                options.AccessDeniedPath = new PathString("/Admin/User/AccessDenied");//Yetkisiz giriþ yapýldýðýnda nereye yönlendirilsin.
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
