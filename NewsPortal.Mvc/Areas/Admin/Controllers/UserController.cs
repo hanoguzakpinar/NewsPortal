@@ -139,6 +139,13 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             }
         }
 
+        public async Task<PartialViewResult> Update(int userId)
+        {
+            var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
+            var userUpdateDto = _mapper.Map<UserUpdateDto>(user);
+            return PartialView("_UserUpdatePartial", userUpdateDto);
+        }
+
         public async Task<string> ImageUpload(UserAddDto userAddDto)
         {
             string wwwroot = _env.WebRootPath;
