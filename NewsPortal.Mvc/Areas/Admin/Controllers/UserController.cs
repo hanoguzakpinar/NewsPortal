@@ -80,6 +80,14 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 return View("UserLogin");
             }
         }
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home", new { Area = "" });
+        }
+
         [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<JsonResult> GetAllUsers()
