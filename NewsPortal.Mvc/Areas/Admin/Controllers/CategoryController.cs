@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using NewsPortal.Entities.Dtos;
 using NewsPortal.Mvc.Areas.Admin.Models;
@@ -14,6 +15,7 @@ using NewsPortal.Shared.Utilities.Results.ComplexTypes;
 namespace NewsPortal.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize]
     public class CategoryController : Controller
     {
         private readonly ICategoryService _categoryService;
