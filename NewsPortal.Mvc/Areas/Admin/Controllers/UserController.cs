@@ -35,7 +35,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             _mapper = mapper;
             _signInManager = signInManager;
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var users = await _userManager.Users.ToListAsync();
@@ -80,7 +80,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 return View("UserLogin");
             }
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<JsonResult> GetAllUsers()
         {
@@ -95,14 +95,13 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             });
             return Json(userListDto);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public IActionResult Add()
         {
             return PartialView("_UserAddPartial");
         }
-        [Authorize]
-        [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Add(UserAddDto userAddDto)
         {
             if (ModelState.IsValid)
@@ -147,7 +146,12 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             });
             return Json(userAddAjaxModelStateErrorModel);
         }
-        [Authorize]
+        [HttpGet]
+        public ViewResult AccessDenied()
+        {
+            return View();
+        }
+        [Authorize(Roles = "Admin")]
         public async Task<JsonResult> Delete(int userId)
         {
             var user = await _userManager.FindByIdAsync(userId.ToString());
@@ -179,14 +183,14 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 return Json(deletedUserErrorModel);
             }
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public async Task<PartialViewResult> Update(int userId)
         {
             var user = await _userManager.Users.FirstOrDefaultAsync(u => u.Id == userId);
             var userUpdateDto = _mapper.Map<UserUpdateDto>(user);
             return PartialView("_UserUpdatePartial", userUpdateDto);
         }
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Update(UserUpdateDto userUpdateDto)
         {
@@ -247,7 +251,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 return Json(userUpdateModelStateErrorViewModel);
             }
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Editor")]
         public async Task<string> ImageUpload(string userName, IFormFile pictureFile)
         {
             string wwwroot = _env.WebRootPath;
@@ -262,7 +266,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
 
             return fileName;
         }
-        [Authorize]
+        [Authorize(Roles = "Admin,Editor")]
         public bool ImageDelete(string pictureName)
         {
             string wwwroot = _env.WebRootPath;
