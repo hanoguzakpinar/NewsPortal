@@ -35,7 +35,7 @@
         </ul>
     </nav>
     <div id="layoutSidenav">
-        @await Html.PartialAsync("_LayoutSideBarNavPartial")
+        @await Component.InvokeAsync("AdminMenu")
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid">
