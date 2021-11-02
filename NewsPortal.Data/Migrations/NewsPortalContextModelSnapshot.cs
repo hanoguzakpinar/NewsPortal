@@ -71,12 +71,12 @@ namespace NewsPortal.Data.Migrations
                         {
                             Id = 1,
                             CreatedByName = "Initial Create",
-                            CreatedDate = new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(2404),
+                            CreatedDate = new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(1230),
                             Description = "Spor Haberleri",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Initial Create",
-                            ModifiedDate = new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(2973),
+                            ModifiedDate = new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(1857),
                             Name = "Spor",
                             Note = "Spor Kategorisi"
                         },
@@ -84,12 +84,12 @@ namespace NewsPortal.Data.Migrations
                         {
                             Id = 2,
                             CreatedByName = "Initial Create",
-                            CreatedDate = new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(3519),
+                            CreatedDate = new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2489),
                             Description = "Ekonomi Haberleri",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Initial Create",
-                            ModifiedDate = new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(3521),
+                            ModifiedDate = new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2491),
                             Name = "Ekonomi",
                             Note = "Ekonomi Kategorisi"
                         },
@@ -97,12 +97,12 @@ namespace NewsPortal.Data.Migrations
                         {
                             Id = 3,
                             CreatedByName = "Initial Create",
-                            CreatedDate = new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(3525),
+                            CreatedDate = new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2496),
                             Description = "Teknoloji Haberleri",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Initial Create",
-                            ModifiedDate = new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(3527),
+                            ModifiedDate = new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2497),
                             Name = "Teknoloji",
                             Note = "Teknoloji Kategorisi"
                         });
@@ -270,6 +270,22 @@ namespace NewsPortal.Data.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ConcurrencyStamp = "2f3b7956-5517-4e1b-a96c-b288ec3d7400",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ConcurrencyStamp = "6883b848-62c4-4332-9929-ae07476a6c35",
+                            Name = "Editor",
+                            NormalizedName = "EDITOR"
+                        });
                 });
 
             modelBuilder.Entity("NewsPortal.Entities.Concrete.RoleClaim", b =>
@@ -365,6 +381,44 @@ namespace NewsPortal.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0aff6f65-d7bb-4b98-8413-9c7045ec411d",
+                            Email = "adminuser@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMINUSER@GMAIL.COM",
+                            NormalizedUserName = "ADMINUSER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEO9JpeGgH2P7zDd+N7n2H7l8rgBq5DQS8qmpdrC/CYYDZKOIUpbM9n1ZVzqppfLJ0A==",
+                            PhoneNumber = "+905555555555",
+                            PhoneNumberConfirmed = true,
+                            Picture = "defaultUser.png",
+                            SecurityStamp = "53eaa33e-dd8e-48c9-9c06-65c5d9d22684",
+                            TwoFactorEnabled = false,
+                            UserName = "adminuser"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "2d6f6ef3-f35f-41b8-bf41-05d2726eb469",
+                            Email = "editoruser@gmail.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "EDITORUSER@GMAIL.COM",
+                            NormalizedUserName = "EDITORUSER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHsa7iqa6ALG7WKuRC3SgF7khS3SMZmNu1/hJxcFmh1f2ee9pi5Xk1VezqGlfcEeiQ==",
+                            PhoneNumber = "+905555555555",
+                            PhoneNumberConfirmed = true,
+                            Picture = "defaultUser.png",
+                            SecurityStamp = "3bfab688-c217-4330-ac0d-b60495d6ad8e",
+                            TwoFactorEnabled = false,
+                            UserName = "editoruser"
+                        });
                 });
 
             modelBuilder.Entity("NewsPortal.Entities.Concrete.UserClaim", b =>
@@ -426,6 +480,18 @@ namespace NewsPortal.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = 1,
+                            RoleId = 1
+                        },
+                        new
+                        {
+                            UserId = 2,
+                            RoleId = 2
+                        });
                 });
 
             modelBuilder.Entity("NewsPortal.Entities.Concrete.UserToken", b =>

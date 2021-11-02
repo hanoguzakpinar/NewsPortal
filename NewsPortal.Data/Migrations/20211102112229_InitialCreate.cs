@@ -246,19 +246,42 @@ namespace NewsPortal.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "CreatedByName", "CreatedDate", "Description", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedDate", "Name", "Note" },
-                values: new object[] { 1, "Initial Create", new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(2404), "Spor Haberleri", true, false, "Initial Create", new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(2973), "Spor", "Spor Kategorisi" });
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { 1, "2f3b7956-5517-4e1b-a96c-b288ec3d7400", "Admin", "ADMIN" },
+                    { 2, "6883b848-62c4-4332-9929-ae07476a6c35", "Editor", "EDITOR" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Picture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { 1, 0, "0aff6f65-d7bb-4b98-8413-9c7045ec411d", "adminuser@gmail.com", true, false, null, "ADMINUSER@GMAIL.COM", "ADMINUSER", "AQAAAAEAACcQAAAAEO9JpeGgH2P7zDd+N7n2H7l8rgBq5DQS8qmpdrC/CYYDZKOIUpbM9n1ZVzqppfLJ0A==", "+905555555555", true, "defaultUser.png", "53eaa33e-dd8e-48c9-9c06-65c5d9d22684", false, "adminuser" },
+                    { 2, 0, "2d6f6ef3-f35f-41b8-bf41-05d2726eb469", "editoruser@gmail.com", true, false, null, "EDITORUSER@GMAIL.COM", "EDITORUSER", "AQAAAAEAACcQAAAAEHsa7iqa6ALG7WKuRC3SgF7khS3SMZmNu1/hJxcFmh1f2ee9pi5Xk1VezqGlfcEeiQ==", "+905555555555", true, "defaultUser.png", "3bfab688-c217-4330-ac0d-b60495d6ad8e", false, "editoruser" }
+                });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "CreatedByName", "CreatedDate", "Description", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedDate", "Name", "Note" },
-                values: new object[] { 2, "Initial Create", new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(3519), "Ekonomi Haberleri", true, false, "Initial Create", new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(3521), "Ekonomi", "Ekonomi Kategorisi" });
+                values: new object[,]
+                {
+                    { 1, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(1230), "Spor Haberleri", true, false, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(1857), "Spor", "Spor Kategorisi" },
+                    { 2, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2489), "Ekonomi Haberleri", true, false, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2491), "Ekonomi", "Ekonomi Kategorisi" },
+                    { 3, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2496), "Teknoloji Haberleri", true, false, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2497), "Teknoloji", "Teknoloji Kategorisi" }
+                });
 
             migrationBuilder.InsertData(
-                table: "Categories",
-                columns: new[] { "Id", "CreatedByName", "CreatedDate", "Description", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedDate", "Name", "Note" },
-                values: new object[] { 3, "Initial Create", new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(3525), "Teknoloji Haberleri", true, false, "Initial Create", new DateTime(2021, 10, 31, 18, 9, 0, 618, DateTimeKind.Local).AddTicks(3527), "Teknoloji", "Teknoloji Kategorisi" });
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { 1, 1 });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { 2, 2 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
