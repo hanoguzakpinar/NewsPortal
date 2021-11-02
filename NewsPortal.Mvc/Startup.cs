@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NewsPortal.Mvc.AutoMapper.Profiles;
 using NewsPortal.Services.AutoMapper.Profiles;
 using NewsPortal.Services.Extensions;
 
@@ -26,7 +27,7 @@ namespace NewsPortal.Mvc
             });
             //mvc ve razor runtime package dahil etme.
             services.AddSession();//session yapýsýný ekleme.
-            services.AddAutoMapper(typeof(CategoryProfile), typeof(ReportProfile));//automapperi dahil etme.
+            services.AddAutoMapper(typeof(CategoryProfile), typeof(ReportProfile),typeof(UserProfile));//automapperi dahil etme.
             services.LoadMyServices();
             services.ConfigureApplicationCookie(options =>
             {
