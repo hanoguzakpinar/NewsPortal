@@ -2,13 +2,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NewsPortal.Entities.Concrete;
 using NewsPortal.Entities.Dtos;
+using NewsPortal.Mvc.Areas.Admin.Models;
 using NewsPortal.Shared.Utilities.Extensions;
 using NewsPortal.Shared.Utilities.Results.ComplexTypes;
 
@@ -19,11 +22,13 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly IWebHostEnvironment _env;
+        private readonly IMapper _mapper;
 
-        public UserController(UserManager<User> userManager, IWebHostEnvironment env)
+        public UserController(UserManager<User> userManager, IWebHostEnvironment env, IMapper mapper)
         {
             _userManager = userManager;
             _env = env;
+            _mapper = mapper;
         }
 
         public async Task<IActionResult> Index()
@@ -40,6 +45,51 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
         public IActionResult Add()
         {
             return PartialView("_UserAddPartial");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Add(UserAddDto userAddDto)
+        {
+            if (ModelState.IsValid)
+            {
+                userAddDto.Picture = await ImageUpload(userAddDto);
+                var user = _mapper.Map<User>(userAddDto);
+
+                var result = await _userManager.CreateAsync(user, userAddDto.Password);//identity result döner.
+                if (result.Succeeded)//başarılı
+                {
+                    var userAddAjaxModel = JsonSerializer.Serialize(new UserAddAjaxViewModel
+                    {
+                        UserDto = new UserDto
+                        {
+                            ResultStatus = ResultStatus.Success,
+                            Message = $"{user.UserName} adlı kullanıcı başarıyla eklenmiştir.",
+                            User = user
+                        },
+                        UserAddPartial = await this.RenderViewToStringAsync("_UserAddPartial", userAddDto)
+                    });
+                    return Json(userAddAjaxModel);
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+
+                    var userAddAjaxErrorModel = JsonSerializer.Serialize(new UserAddAjaxViewModel
+                    {
+                        UserAddDto = userAddDto,
+                        UserAddPartial = await this.RenderViewToStringAsync("_UserAddPartial", userAddDto)
+                    });
+                    return Json(userAddAjaxErrorModel);
+                }
+            }
+            var userAddAjaxModelStateErrorModel = JsonSerializer.Serialize(new UserAddAjaxViewModel
+            {
+                UserAddDto = userAddDto,
+                UserAddPartial = await this.RenderViewToStringAsync("_UserAddPartial", userAddDto)
+            });
+            return Json(userAddAjaxModelStateErrorModel);
         }
 
         public async Task<string> ImageUpload(UserAddDto userAddDto)
