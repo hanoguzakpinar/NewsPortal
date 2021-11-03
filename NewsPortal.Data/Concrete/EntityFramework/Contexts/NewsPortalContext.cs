@@ -16,10 +16,14 @@ namespace NewsPortal.Data.Concrete.EntityFramework.Contexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(
+        //        connectionString: @"Server=LAZRAEL\SQLEXPRESS;Database=NewsPortal;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
+        //}
+        public NewsPortalContext(DbContextOptions<NewsPortalContext> options) : base(options)
         {
-            optionsBuilder.UseSqlServer(
-                connectionString: @"Server=LAZRAEL\SQLEXPRESS;Database=NewsPortal;Trusted_Connection=True;Connect Timeout=30;MultipleActiveResultSets=True;");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using NewsPortal.Data.Abstract;
 using NewsPortal.Data.Concrete;
@@ -15,9 +16,11 @@ namespace NewsPortal.Services.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection)
+        public static IServiceCollection LoadMyServices(this IServiceCollection serviceCollection, string connectionString)
         {
-            serviceCollection.AddDbContext<NewsPortalContext>();
+            serviceCollection.AddDbContext<NewsPortalContext>(options =>
+                options.UseSqlServer(connectionString));
+
             serviceCollection.AddIdentity<User, Role>(options =>
             {
                 //Password Options
