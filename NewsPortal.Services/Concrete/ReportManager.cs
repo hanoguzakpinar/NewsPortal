@@ -8,6 +8,7 @@ using NewsPortal.Data.Abstract;
 using NewsPortal.Entities.Concrete;
 using NewsPortal.Entities.Dtos;
 using NewsPortal.Services.Abstract;
+using NewsPortal.Services.Utilites;
 using NewsPortal.Shared.Utilities.Results.Abstract;
 using NewsPortal.Shared.Utilities.Results.ComplexTypes;
 using NewsPortal.Shared.Utilities.Results.Concrete;
@@ -37,7 +38,7 @@ namespace NewsPortal.Services.Concrete
                 });
             }
 
-            return new DataResult<ReportDto>(ResultStatus.Error, "Böyle bir haber bulunamadı.", null);
+            return new DataResult<ReportDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: false), null);
         }
 
         public async Task<IDataResult<ReportListDto>> GetAll()
@@ -52,7 +53,7 @@ namespace NewsPortal.Services.Concrete
                 });
             }
 
-            return new DataResult<ReportListDto>(ResultStatus.Error, "Haberler bulunamadı.", null);
+            return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: true), null);
         }
 
         public async Task<IDataResult<ReportListDto>> GetAllNonDeleted()
@@ -67,7 +68,7 @@ namespace NewsPortal.Services.Concrete
                 });
             }
 
-            return new DataResult<ReportListDto>(ResultStatus.Error, "Haberler bulunamadı.", null);
+            return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: true), null);
         }
 
         public async Task<IDataResult<ReportListDto>> GetAllNonDeletedAndActive()
@@ -82,7 +83,7 @@ namespace NewsPortal.Services.Concrete
                 });
             }
 
-            return new DataResult<ReportListDto>(ResultStatus.Error, "Haberler bulunamadı.", null);
+            return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: true), null);
         }
 
         public async Task<IDataResult<ReportListDto>> GetAllByCategory(int categoryId)
@@ -99,9 +100,9 @@ namespace NewsPortal.Services.Concrete
                         ResultStatus = ResultStatus.Success
                     });
                 }
-                return new DataResult<ReportListDto>(ResultStatus.Error, "Haberler bulunamadı.", null);
+                return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: true), null);
             }
-            return new DataResult<ReportListDto>(ResultStatus.Error, "Kategori bulunamadı.", null);
+            return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Category.NotFound(isPlural: false), null);
         }
 
         public async Task<IResult> Add(ReportAddDto reportAddDto, string createdByName)
@@ -114,8 +115,7 @@ namespace NewsPortal.Services.Concrete
             await _unitOfWork.Reports.AddAsync(report);
             await _unitOfWork.SaveAsync();
 
-            return new Result(ResultStatus.Success,
-                $"{reportAddDto.Title} başlıklı haber eklenmiştir.");
+            return new Result(ResultStatus.Success, Messages.Report.Add(reportAddDto.Title));
         }
 
         public async Task<IResult> Update(ReportUpdateDto reportUpdateDto, string modifiedByName)
@@ -126,8 +126,7 @@ namespace NewsPortal.Services.Concrete
             await _unitOfWork.Reports.UpdateAsync(report);
             await _unitOfWork.SaveAsync();
 
-            return new Result(ResultStatus.Success,
-                $"{reportUpdateDto.Title} başlıklı haber güncellenmiştir.");
+            return new Result(ResultStatus.Success, Messages.Report.Update(reportUpdateDto.Title));
         }
 
         public async Task<IResult> Delete(int reportId, string modifiedByName)
@@ -143,11 +142,10 @@ namespace NewsPortal.Services.Concrete
                 await _unitOfWork.Reports.UpdateAsync(report);
                 await _unitOfWork.SaveAsync();
 
-                return new Result(ResultStatus.Success,
-                    $"{report.Title} başlıklı haber silinmiştir.");
+                return new Result(ResultStatus.Success, Messages.Report.Delete(report.Title));
             }
             return new Result(ResultStatus.Success,
-                "Böyle bir haber bulunamadı.");
+                Messages.Report.NotFound(isPlural: false));
         }
 
         public async Task<IResult> HardDelete(int reportId)
@@ -160,11 +158,10 @@ namespace NewsPortal.Services.Concrete
                 await _unitOfWork.Reports.DeleteAsync(report);
                 await _unitOfWork.SaveAsync();
 
-                return new Result(ResultStatus.Success,
-                    $"{report.Title} başlıklı haber veritabanından silinmiştir.");
+                return new Result(ResultStatus.Success, Messages.Report.HardDelete(report.Title));
             }
             return new Result(ResultStatus.Success,
-                "Böyle bir haber bulunamadı.");
+                Messages.Report.NotFound(isPlural: false));
         }
     }
 }
