@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace NewsPortal.Entities.Dtos
 {
-    public class UploadedImageDto
+    public class ImageDeletedDto
     {
         public string FullName { get; set; }
-        public string OldName { get; set; }
         public string Extension { get; set; }
         public string Path { get; set; }
-        public string FolderName { get; set; }
         public long Size { get; set; }
     }
 }

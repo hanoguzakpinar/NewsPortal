@@ -231,7 +231,11 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 {
                     var uploadedImageDtoResult = await _imageHelper.UploadUserImage(userUpdateDto.UserName, userUpdateDto.PictureFile);
                     userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
-                    isNewPictureUploaded = true;
+
+                    if (oldUserPicture != "userImages/defaultUser.jpg")
+                    {
+                        isNewPictureUploaded = true;
+                    }
                 }
 
                 var updatedUser = _mapper.Map<UserUpdateDto, User>(userUpdateDto, oldUser);
@@ -240,7 +244,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 {
                     if (isNewPictureUploaded)
                     {
-                        ImageDelete(oldUserPicture);
+                        _imageHelper.Delete(oldUserPicture);
                     }
 
                     var userUpdateViewModel = JsonSerializer.Serialize(new UserUpdateAjaxViewModel
@@ -289,23 +293,6 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin,Editor")]
-        public bool ImageDelete(string pictureName)
-        {
-            //string wwwroot = _env.WebRootPath;
-            //var fileToDelete = Path.Combine($"{wwwroot}/img", pictureName);
-            //if (System.IO.File.Exists(fileToDelete))
-            //{
-            //    System.IO.File.Delete(fileToDelete);
-            //    return true;
-            //}
-            //else
-            //{
-            //    return false;
-            //}
-            return true;
-        }
-
         [Authorize]
         [HttpGet]
         public async Task<ViewResult> ChangeDetails()
@@ -329,7 +316,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                     var uploadedImageDtoResult = await _imageHelper.UploadUserImage(userUpdateDto.UserName, userUpdateDto.PictureFile);
                     userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
 
-                    if (oldUserPicture != "defaultUser.jpg")
+                    if (oldUserPicture != "userImages/defaultUser.jpg")
                     {
                         isNewPictureUploaded = true;
                     }
@@ -341,7 +328,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 {
                     if (isNewPictureUploaded)
                     {
-                        ImageDelete(oldUserPicture);
+                        _imageHelper.Delete(oldUserPicture);
                     }
 
                     TempData.Add("SuccessMessage",
