@@ -188,5 +188,31 @@ namespace NewsPortal.Services.Concrete
             }
             return new Result(ResultStatus.Error, Messages.Category.NotFound(isPlural: false));
         }
+
+        public async Task<IDataResult<int>> Count()
+        {
+            var categoriesCount = await _unitOfWork.Categories.CountAsync();
+            if (categoriesCount > -1)
+            {
+                return new DataResult<int>(ResultStatus.Success, categoriesCount);
+            }
+            else
+            {
+                return new DataResult<int>(ResultStatus.Error, $"Hata oluştu.", -1);
+            }
+        }
+
+        public async Task<IDataResult<int>> CountByIsDeleted()
+        {
+            var categoriesCount = await _unitOfWork.Categories.CountAsync(c => !c.IsDeleted);
+            if (categoriesCount > -1)
+            {
+                return new DataResult<int>(ResultStatus.Success, categoriesCount);
+            }
+            else
+            {
+                return new DataResult<int>(ResultStatus.Error, $"Hata oluştu.", -1);
+            }
+        }
     }
 }

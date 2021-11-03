@@ -19,5 +19,7 @@ namespace NewsPortal.Services.Abstract
         Task<IResult> Update(ReportUpdateDto reportUpdateDto, string modifiedByName);
         Task<IResult> Delete(int reportId, string modifiedByName);
         Task<IResult> HardDelete(int reportId);
+        Task<IDataResult<int>> Count();
+        Task<IDataResult<int>> CountByIsDeleted();
     }
 }
