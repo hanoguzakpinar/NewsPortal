@@ -69,9 +69,9 @@
                             <td>@report.ModifiedDate.ToShortDateString()</td>
                             <td>@report.ModifiedByName</td>
                             <td>
-                                <button class="btn btn-primary btn-sm btn-update" data-id="@report.Id">
+                                <a class="btn btn-primary btn-sm btn-update" data-id="@report.Id" asp-area="Admin" asp-controller="Report" asp-action="Update" asp-route-reportId="@report.Id">
                                     <span class="fas fa-edit"></span>
-                                </button>
+                                </a>
                                 <button class="btn btn-danger btn-sm btn-delete" data-id="@report.Id">
                                     <span class="fas fa-minus-circle"></span>
                                 </button>

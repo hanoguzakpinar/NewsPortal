@@ -13,6 +13,7 @@ namespace NewsPortal.Mvc.AutoMapper.Profiles
         public ViewModelsProfile()
         {
             CreateMap<ReportAddViewModel, ReportAddDto>();
+            CreateMap<ReportUpdateDto, ReportUpdateViewModel>().ReverseMap();//reversemap ile tersinede map eklenebilir.
         }
     }
 }

@@ -43,7 +43,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
         [HttpGet]
         public async Task<IActionResult> Add()
         {
-            var result = await _categoryService.GetAllNonDeletedAsync();
+            var result = await _categoryService.GetAllNonDeletedAndActiveAsync();
             if (result.ResultStatus == ResultStatus.Success)
             {
                 return View(new ReportAddViewModel
@@ -78,6 +78,23 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             }
 
             return View(reportAddViewModel);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Update(int reportId)
+        {
+            var reportResult = await _reportService.GetReportUpdateDtoAsync(reportId);
+            var categoriesResult = await _categoryService.GetAllNonDeletedAndActiveAsync();
+            if (reportResult.ResultStatus == ResultStatus.Success && categoriesResult.ResultStatus == ResultStatus.Success)
+            {
+                var reportUpdateViewModel = Mapper.Map<ReportUpdateViewModel>(reportResult.Data);
+                reportUpdateViewModel.Categories = categoriesResult.Data.Categories;
+                return View(reportUpdateViewModel);
+            }
+            else
+            {
+                return NotFound();
+            }
         }
     }
 }
