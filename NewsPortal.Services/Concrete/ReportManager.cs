@@ -41,6 +41,22 @@ namespace NewsPortal.Services.Concrete
             return new DataResult<ReportDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: false), null);
         }
 
+        public async Task<IDataResult<ReportUpdateDto>> GetReportUpdateDtoAsync(int reportId)
+        {
+            var result = await _unitOfWork.Reports.AnyAsync(c => c.Id == reportId);
+            if (result)
+            {
+                var report = await _unitOfWork.Reports.GetAsync(c => c.Id == reportId);
+                var reportUpdateDto = _mapper.Map<ReportUpdateDto>(report);
+
+                return new DataResult<ReportUpdateDto>(ResultStatus.Success, reportUpdateDto);
+            }
+            else
+            {
+                return new DataResult<ReportUpdateDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: false), null);
+            }
+        }
+
         public async Task<IDataResult<ReportListDto>> GetAllAsync()
         {
             var reports = await _unitOfWork.Reports.GetAllAsync(null, r => r.User, r => r.Category);

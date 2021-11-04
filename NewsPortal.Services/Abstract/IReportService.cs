@@ -11,6 +11,7 @@ namespace NewsPortal.Services.Abstract
     public interface IReportService
     {
         Task<IDataResult<ReportDto>> GetAsync(int reportId);
+        Task<IDataResult<ReportUpdateDto>> GetReportUpdateDtoAsync(int reportId);
         Task<IDataResult<ReportListDto>> GetAllAsync();
         Task<IDataResult<ReportListDto>> GetAllNonDeletedAsync();
         Task<IDataResult<ReportListDto>> GetAllNonDeletedAndActiveAsync();

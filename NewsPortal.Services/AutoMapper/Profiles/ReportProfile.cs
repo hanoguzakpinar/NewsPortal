@@ -16,6 +16,7 @@ namespace NewsPortal.Services.AutoMapper.Profiles
             CreateMap<ReportAddDto, Report>().ForMember(dest => dest.CreatedDate, opt => opt.MapFrom(x => DateTime.Now));
             CreateMap<ReportUpdateDto, Report>().ForMember(dest => dest.ModifiedDate,
                 opt => opt.MapFrom(x => DateTime.Now));
+            CreateMap<Report, ReportUpdateDto>();
         }
     }
 }
