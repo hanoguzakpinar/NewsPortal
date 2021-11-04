@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NewsPortal.Data.Abstract;
+using NewsPortal.Mvc.Areas.Admin.Models;
 using NewsPortal.Services.Abstract;
 using NewsPortal.Shared.Utilities.Results.ComplexTypes;
 
@@ -12,10 +14,12 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
     public class ReportController : Controller
     {
         private readonly IReportService _reportService;
+        private readonly ICategoryService _categoryService;
 
-        public ReportController(IReportService reportService)
+        public ReportController(IReportService reportService, ICategoryService categoryService)
         {
             _reportService = reportService;
+            _categoryService = categoryService;
         }
 
         [HttpGet]
@@ -31,9 +35,18 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
-            return View();
+            var result = await _categoryService.GetAllNonDeletedAsync();
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                return View(new ReportAddViewModel
+                {
+                    Categories = result.Data.Categories
+                });
+            }
+
+            return NotFound();
         }
     }
 }
