@@ -1,10 +1,13 @@
 ﻿$(document).ready(function () {
+
     /* DataTables start here. */
+
     $('#categoriesTable').DataTable({
         dom:
             "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+        "order": [[6, "desc"]],
         buttons: [
             {
                 text: 'Ekle',
@@ -35,20 +38,20 @@
                                 $.each(categoryListDto.Categories.$values,
                                     function (index, category) {
                                         tableBody += `
-                                                <tr>
+                                                <tr name=${category.Id}>
                                     <td>${category.Id}</td>
                                     <td>${category.Name}</td>
                                     <td>${category.Description}</td>
-                                    <td>${convertFirstLetterToUpperCase(category.IsActive.toString())}</td>
-                                    <td>${convertFirstLetterToUpperCase(category.IsDeleted.toString())}</td>
+                                    <td>${category.IsActive ? "Evet" : "Hayır"}</td>
+                                    <td>${category.IsDeleted ? "Evet" : "Hayır"}</td>
                                     <td>${category.Note}</td>
                                     <td>${convertToShortDate(category.CreatedDate)}</td>
                                     <td>${category.CreatedByName}</td>
                                     <td>${convertToShortDate(category.ModifiedDate)}</td>
                                     <td>${category.ModifiedByName}</td>
                                     <td>
-                                    <button class="btn btn-primary btn-sm btn-update" data-id="${category.Id}"><span class="fas fa-edit"></span></button>
-                                    <button class="btn btn-danger btn-sm btn-delete" data-id="${category.Id}"><span class="fas fa-minus-circle"></span></button>
+                                <button class="btn btn-primary btn-sm btn-update" data-id="${category.Id}"><span class="fas fa-edit"></span></button>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="${category.Id}"><span class="fas fa-minus-circle"></span></button>
                                     </td>
                                             </tr>`;
                                     });
@@ -101,8 +104,11 @@
             }
         }
     });
+
     /* DataTables end here */
+
     /* Ajax GET / Getting the _CategoryAddPartial as Modal Form starts from here. */
+
     $(function () {
         const url = '/Admin/Category/Add/';
         const placeHolderDiv = $('#modalPlaceHolder');
@@ -112,8 +118,11 @@
                 placeHolderDiv.find(".modal").modal('show');
             });
         });
+
         /* Ajax GET / Getting the _CategoryAddPartial as Modal Form ends here. */
+
         /* Ajax POST / Posting the FormData as CategoryAddDto starts from here. */
+
         placeHolderDiv.on('click',
             '#btnSave',
             function (event) {
@@ -131,20 +140,20 @@
                     if (isValid) {
                         placeHolderDiv.find('.modal').modal('hide');
                         const newTableRow = `
-                                <tr>
+                                <tr name="${categoryAddAjaxModel.CategoryDto.Category.Id}">
                                                     <td>${categoryAddAjaxModel.CategoryDto.Category.Id}</td>
                                                     <td>${categoryAddAjaxModel.CategoryDto.Category.Name}</td>
                                                     <td>${categoryAddAjaxModel.CategoryDto.Category.Description}</td>
-                                                    <td>${convertFirstLetterToUpperCase(categoryAddAjaxModel.CategoryDto.Category.IsActive.toString())}</td>
-                                                    <td>${convertFirstLetterToUpperCase(categoryAddAjaxModel.CategoryDto.Category.IsDeleted.toString())}</td>
+                                                    <td>${categoryAddAjaxModel.CategoryDto.Category.IsActive ? "Evet" : "Hayır"}</td>
+                                                    <td>${categoryAddAjaxModel.CategoryDto.Category.IsDeleted ? "Evet" : "Hayır"}</td>
                                                     <td>${categoryAddAjaxModel.CategoryDto.Category.Note}</td>
                                                     <td>${convertToShortDate(categoryAddAjaxModel.CategoryDto.Category.CreatedDate)}</td>
                                                     <td>${categoryAddAjaxModel.CategoryDto.Category.CreatedByName}</td>
                                                     <td>${convertToShortDate(categoryAddAjaxModel.CategoryDto.Category.ModifiedDate)}</td>
                                                     <td>${categoryAddAjaxModel.CategoryDto.Category.ModifiedByName}</td>
                                                     <td>
-                                                    <button class="btn btn-primary btn-sm btn-update" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-edit"></span></button>
-                                                    <button class="btn btn-danger btn-sm btn-delete" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-minus-circle"></span></button>
+                                                        <button class="btn btn-primary btn-sm btn-update" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-edit"></span></button>
+                                                        <button class="btn btn-danger btn-sm btn-delete" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-minus-circle"></span></button>
                                                     </td>
                                                 </tr>`;
                         const newTableRowObject = $(newTableRow);
@@ -163,8 +172,11 @@
                 });
             });
     });
+
     /* Ajax POST / Posting the FormData as CategoryAddDto ends here. */
+
     /* Ajax POST / Deleting a Category starts from here */
+
     $(document).on('click',
         '.btn-delete',
         function (event) {
@@ -202,18 +214,21 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Başarısız İşlem!',
-                                    text: `${categoryDto.Message}`
+                                    text: `${categoryDto.Message}`,
                                 });
                             }
                         },
                         error: function (err) {
                             console.log(err);
-                            toastr.error(`${err.responseText}`, "Hata!");
+                            toastr.error(`${err.responseText}`, "Hata!")
                         }
                     });
                 }
             });
         });
+
+    /* Ajax GET / Getting the _CategoryUpdatePartial as Modal Form starts from here. */
+
     $(function () {
         const url = '/Admin/Category/Update/';
         const placeHolderDiv = $('#modalPlaceHolder');
@@ -229,6 +244,7 @@
                     toastr.error("Bir hata oluştu.");
                 });
             });
+
         /* Ajax POST / Updating a Category starts from here */
 
         placeHolderDiv.on('click',
@@ -251,11 +267,12 @@
                                 <tr name="${categoryUpdateAjaxModel.CategoryDto.Category.Id}">
                                                     <td>${categoryUpdateAjaxModel.CategoryDto.Category.Id}</td>
                                                     <td>${categoryUpdateAjaxModel.CategoryDto.Category.Name}</td>
-                                                    <td>${categoryUpdateAjaxModel.CategoryDto.Category.Description}</td>
-                                                    <td>${convertFirstLetterToUpperCase(categoryUpdateAjaxModel
-                            .CategoryDto.Category.IsActive.toString())}</td>
-                                                    <td>${convertFirstLetterToUpperCase(categoryUpdateAjaxModel
-                                .CategoryDto.Category.IsDeleted.toString())}</td>
+                                                    <td>${categoryUpdateAjaxModel.CategoryDto.Category
+                                .Description}</td>
+                                                    <td>${categoryUpdateAjaxModel
+                                .CategoryDto.Category.IsActive ? "Evet" : "Hayır"}</td>
+                                                    <td>${categoryUpdateAjaxModel
+                                .CategoryDto.Category.IsDeleted ? "Evet" : "Hayır"}</td>
                                                     <td>${categoryUpdateAjaxModel.CategoryDto.Category.Note}</td>
                                                     <td>${convertToShortDate(categoryUpdateAjaxModel.CategoryDto
                                     .Category.CreatedDate)}</td>
@@ -289,5 +306,6 @@
                     console.log(response);
                 });
             });
+
     });
 });
