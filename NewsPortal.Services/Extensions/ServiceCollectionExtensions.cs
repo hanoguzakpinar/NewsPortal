@@ -37,6 +37,7 @@ namespace NewsPortal.Services.Extensions
             serviceCollection.AddScoped<IUnitOfWork, UnitOfWork>();
             serviceCollection.AddScoped<ICategoryService, CategoryManager>();
             serviceCollection.AddScoped<IReportService, ReportManager>();
+            serviceCollection.AddScoped<ICommentService, CommentManager>();
 
             return serviceCollection;
         }

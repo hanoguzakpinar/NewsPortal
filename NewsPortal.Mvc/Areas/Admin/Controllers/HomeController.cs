@@ -33,11 +33,11 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var categoriesCountResult = await _categoryService.CountByIsDeleted();
-            var reportsCountResult = await _reportService.CountByIsDeleted();
-            var commentsCountResult = await _commentService.CountByIsDeleted();
+            var categoriesCountResult = await _categoryService.CountByNonDeletedAsync();
+            var reportsCountResult = await _reportService.CountByNonDeletedAsync();
+            var commentsCountResult = await _commentService.CountByNonDeletedAsync();
             var usersCount = await _userManager.Users.CountAsync();
-            var reportsResult = await _reportService.GetAll();
+            var reportsResult = await _reportService.GetAllAsync();
 
             if (categoriesCountResult.ResultStatus == ResultStatus.Success && reportsCountResult.ResultStatus == ResultStatus.Success && commentsCountResult.ResultStatus == ResultStatus.Success && usersCount > -1 && reportsResult.ResultStatus == ResultStatus.Success)
             {

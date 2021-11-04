@@ -10,16 +10,16 @@ namespace NewsPortal.Services.Abstract
 {
     public interface IReportService
     {
-        Task<IDataResult<ReportDto>> Get(int reportId);
-        Task<IDataResult<ReportListDto>> GetAll();
-        Task<IDataResult<ReportListDto>> GetAllNonDeleted();
-        Task<IDataResult<ReportListDto>> GetAllNonDeletedAndActive();
-        Task<IDataResult<ReportListDto>> GetAllByCategory(int categoryId);
-        Task<IResult> Add(ReportAddDto reportAddDto, string createdByName);
-        Task<IResult> Update(ReportUpdateDto reportUpdateDto, string modifiedByName);
-        Task<IResult> Delete(int reportId, string modifiedByName);
-        Task<IResult> HardDelete(int reportId);
-        Task<IDataResult<int>> Count();
-        Task<IDataResult<int>> CountByIsDeleted();
+        Task<IDataResult<ReportDto>> GetAsync(int reportId);
+        Task<IDataResult<ReportListDto>> GetAllAsync();
+        Task<IDataResult<ReportListDto>> GetAllNonDeletedAsync();
+        Task<IDataResult<ReportListDto>> GetAllNonDeletedAndActiveAsync();
+        Task<IDataResult<ReportListDto>> GetAllByCategoryAsync(int categoryId);
+        Task<IResult> AddAsync(ReportAddDto reportAddDto, string createdByName);
+        Task<IResult> UpdateAsync(ReportUpdateDto reportUpdateDto, string modifiedByName);
+        Task<IResult> DeleteAsync(int reportId, string modifiedByName);
+        Task<IResult> HardDeleteAsync(int reportId);
+        Task<IDataResult<int>> CountAsync();
+        Task<IDataResult<int>> CountByNonDeletedAsync();
     }
 }

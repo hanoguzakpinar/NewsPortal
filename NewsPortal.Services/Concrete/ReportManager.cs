@@ -26,7 +26,7 @@ namespace NewsPortal.Services.Concrete
             _mapper = mapper;
         }
 
-        public async Task<IDataResult<ReportDto>> Get(int reportId)
+        public async Task<IDataResult<ReportDto>> GetAsync(int reportId)
         {
             var report = await _unitOfWork.Reports.GetAsync(r => r.Id == reportId, r => r.User, r => r.Category);
             if (report is not null)
@@ -41,7 +41,7 @@ namespace NewsPortal.Services.Concrete
             return new DataResult<ReportDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: false), null);
         }
 
-        public async Task<IDataResult<ReportListDto>> GetAll()
+        public async Task<IDataResult<ReportListDto>> GetAllAsync()
         {
             var reports = await _unitOfWork.Reports.GetAllAsync(null, r => r.User, r => r.Category);
             if (reports.Count > -1)
@@ -56,7 +56,7 @@ namespace NewsPortal.Services.Concrete
             return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: true), null);
         }
 
-        public async Task<IDataResult<ReportListDto>> GetAllNonDeleted()
+        public async Task<IDataResult<ReportListDto>> GetAllNonDeletedAsync()
         {
             var reports = await _unitOfWork.Reports.GetAllAsync(r => !r.IsDeleted, r => r.User, r => r.Category);
             if (reports.Count > -1)
@@ -71,7 +71,7 @@ namespace NewsPortal.Services.Concrete
             return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: true), null);
         }
 
-        public async Task<IDataResult<ReportListDto>> GetAllNonDeletedAndActive()
+        public async Task<IDataResult<ReportListDto>> GetAllNonDeletedAndActiveAsync()
         {
             var reports = await _unitOfWork.Reports.GetAllAsync(r => !r.IsDeleted && r.IsActive, r => r.User, r => r.Category);
             if (reports.Count > -1)
@@ -86,7 +86,7 @@ namespace NewsPortal.Services.Concrete
             return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: true), null);
         }
 
-        public async Task<IDataResult<ReportListDto>> GetAllByCategory(int categoryId)
+        public async Task<IDataResult<ReportListDto>> GetAllByCategoryAsync(int categoryId)
         {
             var category = await _unitOfWork.Categories.AnyAsync(c => c.Id == categoryId);
             if (category)
@@ -105,7 +105,7 @@ namespace NewsPortal.Services.Concrete
             return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Category.NotFound(isPlural: false), null);
         }
 
-        public async Task<IResult> Add(ReportAddDto reportAddDto, string createdByName)
+        public async Task<IResult> AddAsync(ReportAddDto reportAddDto, string createdByName)
         {
             var report = _mapper.Map<Report>(reportAddDto);
             report.CreatedByName = createdByName;
@@ -118,7 +118,7 @@ namespace NewsPortal.Services.Concrete
             return new Result(ResultStatus.Success, Messages.Report.Add(reportAddDto.Title));
         }
 
-        public async Task<IResult> Update(ReportUpdateDto reportUpdateDto, string modifiedByName)
+        public async Task<IResult> UpdateAsync(ReportUpdateDto reportUpdateDto, string modifiedByName)
         {
             var report = _mapper.Map<Report>(reportUpdateDto);
             report.ModifiedByName = modifiedByName;
@@ -129,7 +129,7 @@ namespace NewsPortal.Services.Concrete
             return new Result(ResultStatus.Success, Messages.Report.Update(reportUpdateDto.Title));
         }
 
-        public async Task<IResult> Delete(int reportId, string modifiedByName)
+        public async Task<IResult> DeleteAsync(int reportId, string modifiedByName)
         {
             var status = await _unitOfWork.Reports.AnyAsync(r => r.Id == reportId);
             if (status)
@@ -148,7 +148,7 @@ namespace NewsPortal.Services.Concrete
                 Messages.Report.NotFound(isPlural: false));
         }
 
-        public async Task<IResult> HardDelete(int reportId)
+        public async Task<IResult> HardDeleteAsync(int reportId)
         {
             var status = await _unitOfWork.Reports.AnyAsync(r => r.Id == reportId);
             if (status)
@@ -164,7 +164,7 @@ namespace NewsPortal.Services.Concrete
                 Messages.Report.NotFound(isPlural: false));
         }
 
-        public async Task<IDataResult<int>> Count()
+        public async Task<IDataResult<int>> CountAsync()
         {
             var reportsCount = await _unitOfWork.Reports.CountAsync();
             if (reportsCount > -1)
@@ -176,7 +176,7 @@ namespace NewsPortal.Services.Concrete
                 return new DataResult<int>(ResultStatus.Error, $"Hata oluştu.", -1);
             }
         }
-        public async Task<IDataResult<int>> CountByIsDeleted()
+        public async Task<IDataResult<int>> CountByNonDeletedAsync()
         {
             var reportsCount = await _unitOfWork.Reports.CountAsync(c => !c.IsDeleted);
             if (reportsCount > -1)
