@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NewsPortal.Services</name>
+    </assembly>
+    <members>
+        <member name="M:NewsPortal.Services.Abstract.ICategoryService.GetCategoryUpdateDtoAsync(System.Int32)">
+            <summary>
+            Verilen id parametresine ait kategorinin CategoryUpdateDto temsilini geriye döner.
+            </summary>
+            <param name="categoryId">0'dan büyük integer bir Id değeri.</param>
+            <returns>Asenkron bir operasyon ile Task olarak DataResult döndürür.</returns>
+        </member>
+        <member name="M:NewsPortal.Services.Abstract.ICategoryService.AddAsync(NewsPortal.Entities.Dtos.CategoryAddDto,System.String)">
+            <summary>
+            Parametreleri alarak yeni bir Category ekler.
+            </summary>
+            <param name="categoryAddDto"></param>
+            <param name="createdByName">string tipinde kullanıcı adı</param>
+            <returns>Asenkron Task olarak DataResult geri döndürür.</returns>
+        </member>
+    </members>
+</doc>
