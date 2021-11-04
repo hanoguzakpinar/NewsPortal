@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using NewsPortal.Entities.ComplexTypes;
 using NewsPortal.Entities.Dtos;
 using NewsPortal.Mvc.Helpers.Abstract;
 using NewsPortal.Shared.Utilities.Extensions;
@@ -18,7 +19,9 @@ namespace NewsPortal.Mvc.Helpers.Concrete
     {
         private readonly IWebHostEnvironment _env;
         private readonly string _wwwroot;
-        private readonly string imgFolder = "img";
+        private const string imgFolder = "img";
+        private const string userImagesFolder = "userImages";
+        private const string postImagesFolder = "postImages";
 
         public ImageHelper(IWebHostEnvironment env)
         {
@@ -26,8 +29,10 @@ namespace NewsPortal.Mvc.Helpers.Concrete
             _wwwroot = _env.WebRootPath;
         }
 
-        public async Task<IDataResult<ImageUploadedDto>> UploadUserImage(string userName, IFormFile pictureFile, string folderName = "userImages")
+        public async Task<IDataResult<ImageUploadedDto>> Upload(string name, IFormFile pictureFile, PictureType pictureType, string folderName = null)
         {
+            folderName ??= pictureType == PictureType.User ? userImagesFolder : postImagesFolder;
+
             if (!Directory.Exists($"{_wwwroot}/{imgFolder}/{folderName}"))
             {
                 Directory.CreateDirectory($"{_wwwroot}/{imgFolder}/{folderName}");
@@ -35,23 +40,25 @@ namespace NewsPortal.Mvc.Helpers.Concrete
             string oldFileName = Path.GetFileNameWithoutExtension(pictureFile.FileName);
             string fileExtension = Path.GetExtension(pictureFile.FileName);
             DateTime dateTime = DateTime.Now;
-            string newFileName = $"{userName}_{dateTime.FullDateAndTimeStringWithUnderscore()}{fileExtension}";
+            string newFileName = $"{name}_{dateTime.FullDateAndTimeStringWithUnderscore()}{fileExtension}";
             var path = Path.Combine($"{_wwwroot}/{imgFolder}/{folderName}", newFileName);
             await using (var stream = new FileStream(path, FileMode.Create))
             {
                 await pictureFile.CopyToAsync(stream);
             }
 
-            return new DataResult<ImageUploadedDto>(ResultStatus.Success,
-                $"{userName} adlı kullanıcının resmi başarıyla yüklenmiştir.", new ImageUploadedDto
-                {
-                    FullName = $"{folderName}/{newFileName}",
-                    OldName = oldFileName,
-                    Extension = fileExtension,
-                    FolderName = folderName,
-                    Path = path,
-                    Size = pictureFile.Length
-                });
+            string message = pictureType == PictureType.User
+                ? $"{name} adlı kullanıcının resmi başarıyla yüklenmiştir."
+                : $"{name} adlı haberin resmi başarıyla yüklenmiştir.";
+            return new DataResult<ImageUploadedDto>(ResultStatus.Success, message, new ImageUploadedDto
+            {
+                FullName = $"{folderName}/{newFileName}",
+                OldName = oldFileName,
+                Extension = fileExtension,
+                FolderName = folderName,
+                Path = path,
+                Size = pictureFile.Length
+            });
         }
 
         public IDataResult<ImageDeletedDto> Delete(string pictureName)
@@ -72,7 +79,7 @@ namespace NewsPortal.Mvc.Helpers.Concrete
             }
             else
             {
-                return new DataResult<ImageDeletedDto>(ResultStatus.Error,"Resim bulunamadı.", null);
+                return new DataResult<ImageDeletedDto>(ResultStatus.Error, "Resim bulunamadı.", null);
             }
         }
     }
