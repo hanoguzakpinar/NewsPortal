@@ -64,7 +64,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 var imageResult = await ImageHelper.Upload(reportAddViewModel.Title, reportAddViewModel.ThumbnailFile, PictureType.Post);
                 reportAddDto.Thumbnail = imageResult.Data.FullName;
 
-                var result = await _reportService.AddAsync(reportAddDto, LoggedInUser.UserName);
+                var result = await _reportService.AddAsync(reportAddDto, LoggedInUser.UserName, LoggedInUser.Id);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
                     TempData.Add("SuccessMessage", result.Message);
@@ -73,10 +73,11 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 else
                 {
                     ModelState.AddModelError("", result.Message);
-                    return View(reportAddViewModel);
                 }
             }
 
+            var categories = await _categoryService.GetAllNonDeletedAndActiveAsync();
+            reportAddViewModel.Categories = categories.Data.Categories;
             return View(reportAddViewModel);
         }
 
@@ -95,6 +96,46 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+        }
+        [HttpPost]
+        public async Task<IActionResult> Update(ReportUpdateViewModel reportUpdateViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isNewThumbnailUploaded = false;
+                var oldThumbnail = reportUpdateViewModel.Thumbnail;
+                if (reportUpdateViewModel.ThumbnailFile != null)
+                {
+                    var uploadedImageResult = await ImageHelper.Upload(reportUpdateViewModel.Title,
+                        reportUpdateViewModel.ThumbnailFile, PictureType.Post);
+                    reportUpdateViewModel.Thumbnail = uploadedImageResult.ResultStatus == ResultStatus.Success
+                        ? uploadedImageResult.Data.FullName
+                        : "postImages/defaultThumbnail.jpg";
+                    if (oldThumbnail != "postImages/defaultThumbnail.jpg")
+                    {
+                        isNewThumbnailUploaded = true;
+                    }
+                }
+                var reportUpdateDto = Mapper.Map<ReportUpdateDto>(reportUpdateViewModel);
+                var result = await _reportService.UpdateAsync(reportUpdateDto, LoggedInUser.UserName);
+                if (result.ResultStatus == ResultStatus.Success)
+                {
+                    if (isNewThumbnailUploaded)
+                    {
+                        ImageHelper.Delete(oldThumbnail);
+                    }
+                    TempData.Add("SuccessMessage", result.Message);
+                    return RedirectToAction("Index", "Report");
+                }
+                else
+                {
+                    ModelState.AddModelError("", result.Message);
+                }
+            }
+
+            var categories = await _categoryService.GetAllNonDeletedAndActiveAsync();
+            reportUpdateViewModel.Categories = categories.Data.Categories;
+            return View(reportUpdateViewModel);
         }
     }
 }

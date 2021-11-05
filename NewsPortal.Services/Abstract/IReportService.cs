@@ -16,7 +16,7 @@ namespace NewsPortal.Services.Abstract
         Task<IDataResult<ReportListDto>> GetAllNonDeletedAsync();
         Task<IDataResult<ReportListDto>> GetAllNonDeletedAndActiveAsync();
         Task<IDataResult<ReportListDto>> GetAllByCategoryAsync(int categoryId);
-        Task<IResult> AddAsync(ReportAddDto reportAddDto, string createdByName);
+        Task<IResult> AddAsync(ReportAddDto reportAddDto, string createdByName, int userId);
         Task<IResult> UpdateAsync(ReportUpdateDto reportUpdateDto, string modifiedByName);
         Task<IResult> DeleteAsync(int reportId, string modifiedByName);
         Task<IResult> HardDeleteAsync(int reportId);

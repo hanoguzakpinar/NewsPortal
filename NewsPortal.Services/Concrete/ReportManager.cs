@@ -121,12 +121,12 @@ namespace NewsPortal.Services.Concrete
             return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Category.NotFound(isPlural: false), null);
         }
 
-        public async Task<IResult> AddAsync(ReportAddDto reportAddDto, string createdByName)
+        public async Task<IResult> AddAsync(ReportAddDto reportAddDto, string createdByName, int userId)
         {
             var report = _mapper.Map<Report>(reportAddDto);
             report.CreatedByName = createdByName;
             report.ModifiedByName = createdByName;
-            report.UserId = 1;
+            report.UserId = userId;
 
             await _unitOfWork.Reports.AddAsync(report);
             await _unitOfWork.SaveAsync();
@@ -136,7 +136,9 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IResult> UpdateAsync(ReportUpdateDto reportUpdateDto, string modifiedByName)
         {
-            var report = _mapper.Map<Report>(reportUpdateDto);
+            var oldReport = await _unitOfWork.Reports.GetAsync(r => r.Id == reportUpdateDto.Id);
+
+            var report = _mapper.Map<ReportUpdateDto, Report>(reportUpdateDto, oldReport);
             report.ModifiedByName = modifiedByName;
 
             await _unitOfWork.Reports.UpdateAsync(report);
