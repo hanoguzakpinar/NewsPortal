@@ -30,7 +30,7 @@ namespace NewsPortal.Mvc
             {
                 opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
                 opt.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
-            });
+            }).AddNToastNotifyToastr();
             //mvc ve razor runtime package dahil etme.
             services.AddSession();//session yapýsýný ekleme.
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ReportProfile), typeof(UserProfile), typeof(ViewModelsProfile));//automapperi dahil etme.
@@ -75,6 +75,8 @@ namespace NewsPortal.Mvc
             app.UseAuthentication();//kimlik kontrolü
 
             app.UseAuthorization();//yetki kontrolü
+
+            app.UseNToastNotify(); // toastr ekleme
 
             app.UseEndpoints(endpoints =>
             {

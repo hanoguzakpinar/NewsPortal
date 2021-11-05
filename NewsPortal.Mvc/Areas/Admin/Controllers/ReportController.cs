@@ -15,6 +15,7 @@ using NewsPortal.Mvc.Areas.Admin.Models;
 using NewsPortal.Mvc.Helpers.Abstract;
 using NewsPortal.Services.Abstract;
 using NewsPortal.Shared.Utilities.Results.ComplexTypes;
+using NToastNotify;
 
 namespace NewsPortal.Mvc.Areas.Admin.Controllers
 {
@@ -23,11 +24,13 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
     {
         private readonly IReportService _reportService;
         private readonly ICategoryService _categoryService;
+        private readonly IToastNotification _toastNotification;
 
-        public ReportController(IReportService reportService, ICategoryService categoryService, UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper) : base(userManager, mapper, imageHelper)
+        public ReportController(IReportService reportService, ICategoryService categoryService, UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper, IToastNotification toastNotification) : base(userManager, mapper, imageHelper)
         {
             _reportService = reportService;
             _categoryService = categoryService;
+            _toastNotification = toastNotification;
         }
 
         [HttpGet]
@@ -69,7 +72,10 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 var result = await _reportService.AddAsync(reportAddDto, LoggedInUser.UserName, LoggedInUser.Id);
                 if (result.ResultStatus == ResultStatus.Success)
                 {
-                    TempData.Add("SuccessMessage", result.Message);
+                    _toastNotification.AddSuccessToastMessage(result.Message, new ToastrOptions
+                    {
+                        Title = "Başarılı İşlem!"
+                    });
                     return RedirectToAction("Index", "Report");
                 }
                 else
@@ -126,7 +132,8 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                     {
                         ImageHelper.Delete(oldThumbnail);
                     }
-                    TempData.Add("SuccessMessage", result.Message);
+
+                    _toastNotification.AddSuccessToastMessage(result.Message);
                     return RedirectToAction("Index", "Report");
                 }
                 else

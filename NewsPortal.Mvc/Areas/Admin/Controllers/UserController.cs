@@ -19,6 +19,7 @@ using NewsPortal.Mvc.Areas.Admin.Models;
 using NewsPortal.Mvc.Helpers.Abstract;
 using NewsPortal.Shared.Utilities.Extensions;
 using NewsPortal.Shared.Utilities.Results.ComplexTypes;
+using NToastNotify;
 
 namespace NewsPortal.Mvc.Areas.Admin.Controllers
 {
@@ -29,13 +30,15 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
         private readonly IMapper _mapper;
         private readonly SignInManager<User> _signInManager;
         private readonly IImageHelper _imageHelper;
+        private readonly IToastNotification _toastNotification;
 
-        public UserController(UserManager<User> userManager, IMapper mapper, SignInManager<User> signInManager, IImageHelper imageHelper)
+        public UserController(UserManager<User> userManager, IMapper mapper, SignInManager<User> signInManager, IImageHelper imageHelper, IToastNotification toastNotification)
         {
             _userManager = userManager;
             _mapper = mapper;
             _signInManager = signInManager;
             _imageHelper = imageHelper;
+            _toastNotification = toastNotification;
         }
 
         [Authorize(Roles = "Admin")]
@@ -332,8 +335,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                         _imageHelper.Delete(oldUserPicture);
                     }
 
-                    TempData.Add("SuccessMessage",
-                        $"{updatedUser.UserName} adlı kullanıcı başarıyla güncellenmiştir.");
+                    _toastNotification.AddSuccessToastMessage("Bilgileriniz güncellenmiştir.");
                     return View(userUpdateDto);
                 }
                 else
@@ -383,7 +385,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                             passwordChangeDto.NewPassword, true, false);
                         //4. parametre yanlış girişte hesap kilitlensin mi? 3.parametre beni hatırla kısmı.
 
-                        TempData.Add("SuccessMessage", "Şifreniz başarıyla güncellenmiştir.");
+                        _toastNotification.AddSuccessToastMessage("Şifreniz başarıyla güncellenmiştir.");
                         return View();
                     }
                     else
