@@ -113,10 +113,10 @@
             event.preventDefault();
             const id = $(this).attr('data-id');
             const tableRow = $(`[name="${id}"]`);
-            const userName = tableRow.find('td:eq(1)').text();
+            const reportTitle = tableRow.find('td:eq(2)').text();
             Swal.fire({
                 title: 'Silmek istediğinize emin misiniz?',
-                text: `${userName} adlı kullanıcı silinicektir!`,
+                text: `${reportTitle} adlı haber silinicektir!`,
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -128,14 +128,14 @@
                     $.ajax({
                         type: 'POST',
                         dataType: 'json',
-                        data: { userId: id },
-                        url: '/Admin/User/Delete/',
+                        data: { reportId: id },
+                        url: '/Admin/Report/Delete/',
                         success: function (data) {
-                            const userDto = jQuery.parseJSON(data);
-                            if (userDto.ResultStatus === 0) {
+                            const reportResult = jQuery.parseJSON(data);
+                            if (reportResult.ResultStatus === 0) {
                                 Swal.fire(
                                     'Silindi!',
-                                    `${userDto.User.UserName} adlı kullanıcı başarıyla silinmiştir.`,
+                                    `${reportResult.Message}`,
                                     'success'
                                 );
 
@@ -144,7 +144,7 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Başarısız İşlem!',
-                                    text: `${userDto.Message}`,
+                                    text: `${reportResult.Message}`,
                                 });
                             }
                         },

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace NewsPortal.Data.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -250,8 +250,8 @@ namespace NewsPortal.Data.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
                 values: new object[,]
                 {
-                    { 1, "2f3b7956-5517-4e1b-a96c-b288ec3d7400", "Admin", "ADMIN" },
-                    { 2, "6883b848-62c4-4332-9929-ae07476a6c35", "Editor", "EDITOR" }
+                    { 1, "b7c0a348-1b0b-497c-90f0-1bd021a764ee", "Admin", "ADMIN" },
+                    { 2, "e2cd9e1a-6878-4500-a692-8f855e64e235", "Editor", "EDITOR" }
                 });
 
             migrationBuilder.InsertData(
@@ -259,8 +259,8 @@ namespace NewsPortal.Data.Migrations
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "Picture", "SecurityStamp", "TwoFactorEnabled", "UserName" },
                 values: new object[,]
                 {
-                    { 1, 0, "0aff6f65-d7bb-4b98-8413-9c7045ec411d", "adminuser@gmail.com", true, false, null, "ADMINUSER@GMAIL.COM", "ADMINUSER", "AQAAAAEAACcQAAAAEO9JpeGgH2P7zDd+N7n2H7l8rgBq5DQS8qmpdrC/CYYDZKOIUpbM9n1ZVzqppfLJ0A==", "+905555555555", true, "defaultUser.png", "53eaa33e-dd8e-48c9-9c06-65c5d9d22684", false, "adminuser" },
-                    { 2, 0, "2d6f6ef3-f35f-41b8-bf41-05d2726eb469", "editoruser@gmail.com", true, false, null, "EDITORUSER@GMAIL.COM", "EDITORUSER", "AQAAAAEAACcQAAAAEHsa7iqa6ALG7WKuRC3SgF7khS3SMZmNu1/hJxcFmh1f2ee9pi5Xk1VezqGlfcEeiQ==", "+905555555555", true, "defaultUser.png", "3bfab688-c217-4330-ac0d-b60495d6ad8e", false, "editoruser" }
+                    { 1, 0, "6bad3cde-4494-4aa4-9fc7-b40d1fdff468", "adminuser@gmail.com", true, false, null, "ADMINUSER@GMAIL.COM", "ADMINUSER", "AQAAAAEAACcQAAAAEIxQS2pWaogOIMJH3q1q/YOTvZ3N306d74X/L7/oQRLrjsr4PoBBFddpA+YYXJQR/w==", "+905555555555", true, "defaultUser.png", "96e94901-963c-4410-a68e-80513a164946", false, "adminuser" },
+                    { 2, 0, "013c4146-96e7-4021-b8e0-84e53b0cbddb", "editoruser@gmail.com", true, false, null, "EDITORUSER@GMAIL.COM", "EDITORUSER", "AQAAAAEAACcQAAAAECAe5fjPic3ryf/c6kqz2AwX8QtvRnxmIp5xuNKShzBS7AlDnojn/PTl99TW7is0DQ==", "+905555555555", true, "defaultUser.png", "a5cd911a-bcb3-412e-91dd-e3042ed3ba8a", false, "editoruser" }
                 });
 
             migrationBuilder.InsertData(
@@ -268,9 +268,9 @@ namespace NewsPortal.Data.Migrations
                 columns: new[] { "Id", "CreatedByName", "CreatedDate", "Description", "IsActive", "IsDeleted", "ModifiedByName", "ModifiedDate", "Name", "Note" },
                 values: new object[,]
                 {
-                    { 1, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(1230), "Spor Haberleri", true, false, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(1857), "Spor", "Spor Kategorisi" },
-                    { 2, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2489), "Ekonomi Haberleri", true, false, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2491), "Ekonomi", "Ekonomi Kategorisi" },
-                    { 3, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2496), "Teknoloji Haberleri", true, false, "Initial Create", new DateTime(2021, 11, 2, 14, 22, 29, 261, DateTimeKind.Local).AddTicks(2497), "Teknoloji", "Teknoloji Kategorisi" }
+                    { 1, "Initial Create", new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(6946), "Spor Haberleri", true, false, "Initial Create", new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(7507), "Spor", "Spor Kategorisi" },
+                    { 2, "Initial Create", new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(8047), "Ekonomi Haberleri", true, false, "Initial Create", new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(8048), "Ekonomi", "Ekonomi Kategorisi" },
+                    { 3, "Initial Create", new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(8053), "Teknoloji Haberleri", true, false, "Initial Create", new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(8054), "Teknoloji", "Teknoloji Kategorisi" }
                 });
 
             migrationBuilder.InsertData(

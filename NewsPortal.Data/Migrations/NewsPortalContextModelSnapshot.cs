@@ -71,12 +71,12 @@ namespace NewsPortal.Data.Migrations
                         {
                             Id = 1,
                             CreatedByName = "Initial Create",
-                            CreatedDate = new DateTime(2021, 11, 3, 17, 53, 27, 629, DateTimeKind.Local).AddTicks(2584),
+                            CreatedDate = new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(6946),
                             Description = "Spor Haberleri",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Initial Create",
-                            ModifiedDate = new DateTime(2021, 11, 3, 17, 53, 27, 629, DateTimeKind.Local).AddTicks(4222),
+                            ModifiedDate = new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(7507),
                             Name = "Spor",
                             Note = "Spor Kategorisi"
                         },
@@ -84,12 +84,12 @@ namespace NewsPortal.Data.Migrations
                         {
                             Id = 2,
                             CreatedByName = "Initial Create",
-                            CreatedDate = new DateTime(2021, 11, 3, 17, 53, 27, 629, DateTimeKind.Local).AddTicks(4878),
+                            CreatedDate = new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(8047),
                             Description = "Ekonomi Haberleri",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Initial Create",
-                            ModifiedDate = new DateTime(2021, 11, 3, 17, 53, 27, 629, DateTimeKind.Local).AddTicks(4880),
+                            ModifiedDate = new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(8048),
                             Name = "Ekonomi",
                             Note = "Ekonomi Kategorisi"
                         },
@@ -97,12 +97,12 @@ namespace NewsPortal.Data.Migrations
                         {
                             Id = 3,
                             CreatedByName = "Initial Create",
-                            CreatedDate = new DateTime(2021, 11, 3, 17, 53, 27, 629, DateTimeKind.Local).AddTicks(4885),
+                            CreatedDate = new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(8053),
                             Description = "Teknoloji Haberleri",
                             IsActive = true,
                             IsDeleted = false,
                             ModifiedByName = "Initial Create",
-                            ModifiedDate = new DateTime(2021, 11, 3, 17, 53, 27, 629, DateTimeKind.Local).AddTicks(4887),
+                            ModifiedDate = new DateTime(2021, 11, 5, 13, 16, 6, 279, DateTimeKind.Local).AddTicks(8054),
                             Name = "Teknoloji",
                             Note = "Teknoloji Kategorisi"
                         });
@@ -275,14 +275,14 @@ namespace NewsPortal.Data.Migrations
                         new
                         {
                             Id = 1,
-                            ConcurrencyStamp = "2519c220-9b86-4df2-9c09-2d1dbd20dd07",
+                            ConcurrencyStamp = "b7c0a348-1b0b-497c-90f0-1bd021a764ee",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
                             Id = 2,
-                            ConcurrencyStamp = "bca5c539-cd7c-4186-b09e-c20314e88f66",
+                            ConcurrencyStamp = "e2cd9e1a-6878-4500-a692-8f855e64e235",
                             Name = "Editor",
                             NormalizedName = "EDITOR"
                         });
@@ -387,17 +387,17 @@ namespace NewsPortal.Data.Migrations
                         {
                             Id = 1,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "e87e0534-9625-4f80-a5f4-5364d8e05608",
+                            ConcurrencyStamp = "6bad3cde-4494-4aa4-9fc7-b40d1fdff468",
                             Email = "adminuser@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMINUSER@GMAIL.COM",
                             NormalizedUserName = "ADMINUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAEPvIfY224zYPxIvfiPqFIlQ+o4VB1wC8oyh57z+qF3+zoLMHITdlIGprVx2sdqRJOw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIxQS2pWaogOIMJH3q1q/YOTvZ3N306d74X/L7/oQRLrjsr4PoBBFddpA+YYXJQR/w==",
                             PhoneNumber = "+905555555555",
                             PhoneNumberConfirmed = true,
                             Picture = "defaultUser.png",
-                            SecurityStamp = "3fe87030-80bb-4207-b73b-7084748b5ba7",
+                            SecurityStamp = "96e94901-963c-4410-a68e-80513a164946",
                             TwoFactorEnabled = false,
                             UserName = "adminuser"
                         },
@@ -405,17 +405,17 @@ namespace NewsPortal.Data.Migrations
                         {
                             Id = 2,
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ce5cd8c7-4493-410c-af4e-b2a957b7b672",
+                            ConcurrencyStamp = "013c4146-96e7-4021-b8e0-84e53b0cbddb",
                             Email = "editoruser@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "EDITORUSER@GMAIL.COM",
                             NormalizedUserName = "EDITORUSER",
-                            PasswordHash = "AQAAAAEAACcQAAAAENqbzBQJJRQ7luyAOb5zXuKDJtMblhbodXfBjhS9bYp9faQt0Vjem+VT6SMGC2R57w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECAe5fjPic3ryf/c6kqz2AwX8QtvRnxmIp5xuNKShzBS7AlDnojn/PTl99TW7is0DQ==",
                             PhoneNumber = "+905555555555",
                             PhoneNumberConfirmed = true,
                             Picture = "defaultUser.png",
-                            SecurityStamp = "bb701500-a277-4609-875c-18f4571aa884",
+                            SecurityStamp = "a5cd911a-bcb3-412e-91dd-e3042ed3ba8a",
                             TwoFactorEnabled = false,
                             UserName = "editoruser"
                         });

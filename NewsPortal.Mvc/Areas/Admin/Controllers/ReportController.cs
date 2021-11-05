@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -136,6 +137,14 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             var categories = await _categoryService.GetAllNonDeletedAndActiveAsync();
             reportUpdateViewModel.Categories = categories.Data.Categories;
             return View(reportUpdateViewModel);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> Delete(int reportId)
+        {
+            var result = await _reportService.DeleteAsync(reportId, LoggedInUser.UserName);
+            var articleResult = JsonSerializer.Serialize(result);
+            return Json(articleResult);
         }
     }
 }
