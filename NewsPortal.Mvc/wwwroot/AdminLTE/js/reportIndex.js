@@ -26,44 +26,54 @@
                 action: function (e, dt, node, config) {
                     $.ajax({
                         type: 'GET',
-                        url: '/Admin/User/GetAllUsers/',
+                        url: '/Admin/Report/GetAllReports/',
                         contentType: "application/json",
                         beforeSend: function () {
                             $('#reportsTable').hide();
                             $('.spinner-border').show();
                         },
                         success: function (data) {
-                            const userListDto = jQuery.parseJSON(data);
+                            const reportResult = jQuery.parseJSON(data);
                             dataTable.clear();
-                            console.log(userListDto);
-                            if (userListDto.ResultStatus === 0) {
-                                $.each(userListDto.Users.$values,
-                                    function (index, user) {
+                            console.log(reportResult);
+                            if (reportResult.Data.ResultStatus === 0) {
+                                $.each(reportResult.Data.Reports.$values,
+                                    function (index, report) {
+                                        const newReport = getJsonNetObject(report, reportResult.Data.Reports.$values);
+                                        console.log(newReport);
                                         const newTableRow = dataTable.row.add([
-                                            user.Id,
-                                            user.UserName,
-                                            user.Email,
-                                            user.PhoneNumber,
-                                            `<img src="/img/${user.Picture}" alt="${user.UserName}" class="my-image-table" />`,
+                                            newReport.Id,
+                                            newReport.Category.Name,
+                                            newReport.Title,
+                                            `<img src="/img/${newReport.Thumbnail}" alt="${newReport.Title}" class="my-image-table" />`,
+                                            `${convertToShortDate(newReport.Date)}`,
+                                            newReport.ViewsCount,
+                                            newReport.CommentCount,
+                                            `${newReport.IsActive ? "Evet" : "Hayır"}`,
+                                            `${newReport.IsDeleted ? "Evet" : "Hayır"}`,
+                                            `${convertToShortDate(newReport.CreatedDate)}`,
+                                            newReport.CreatedByName,
+                                            `${convertToShortDate(newReport.ModifiedDate)}`,
+                                            newReport.ModifiedByName,
                                             `
-                                <button class="btn btn-primary btn-sm btn-update" data-id="${user.Id}"><span class="fas fa-edit"></span></button>
-                                <button class="btn btn-danger btn-sm btn-delete" data-id="${user.Id}"><span class="fas fa-minus-circle"></span></button>
+                                <button class="btn btn-primary btn-sm btn-update" data-id="${newReport.Id}"><span class="fas fa-edit"></span></button>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="${newReport.Id}"><span class="fas fa-minus-circle"></span></button>
                                             `
                                         ]).node();
                                         const jqueryTableRow = $(newTableRow);
-                                        jqueryTableRow.attr('name', `${user.Id}`);
+                                        jqueryTableRow.attr('name', `${newReport.Id}`);
                                     });
                                 dataTable.draw();
                                 $('.spinner-border').hide();
-                                $('#usersTable').fadeIn(1400);
+                                $('#reportsTable').fadeIn(1400);
                             } else {
-                                toastr.error(`${userListDto.Message}`, 'İşlem Başarısız!');
+                                toastr.error(`${reportResult.Data.Message}`, 'İşlem Başarısız!');
                             }
                         },
                         error: function (err) {
                             console.log(err);
                             $('.spinner-border').hide();
-                            $('#usersTable').fadeIn(1000);
+                            $('#reportsTable').fadeIn(1000);
                             toastr.error(`${err.responseText}`, 'Hata!');
                         }
                     });

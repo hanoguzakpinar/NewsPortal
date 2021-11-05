@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
@@ -143,8 +144,19 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
         public async Task<JsonResult> Delete(int reportId)
         {
             var result = await _reportService.DeleteAsync(reportId, LoggedInUser.UserName);
-            var articleResult = JsonSerializer.Serialize(result);
-            return Json(articleResult);
+            var reportResult = JsonSerializer.Serialize(result);
+            return Json(reportResult);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetAllReports()
+        {
+            var reports = await _reportService.GetAllNonDeletedAndActiveAsync();
+            var reportResult = JsonSerializer.Serialize(reports, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(reportResult);
         }
     }
 }
