@@ -37,13 +37,24 @@
                             dataTable.clear();
                             console.log(reportResult);
                             if (reportResult.Data.ResultStatus === 0) {
+                                let categoriesArray = [];
                                 $.each(reportResult.Data.Reports.$values,
                                     function (index, report) {
                                         const newReport = getJsonNetObject(report, reportResult.Data.Reports.$values);
+                                        let newCategory = getJsonNetObject(newReport.Category, newReport);
+                                        if (newCategory !== null) {
+                                            categoriesArray.push(newCategory);
+                                        }
+                                        if (newCategory === null) {
+                                            newCategory = categoriesArray.find(category => {
+                                                return category.$id === newReport.Category.$ref;
+                                            })
+                                        }
                                         console.log(newReport);
+                                        console.log(newCategory);
                                         const newTableRow = dataTable.row.add([
                                             newReport.Id,
-                                            newReport.Category.Name,
+                                            newCategory.Name,
                                             newReport.Title,
                                             `<img src="/img/${newReport.Thumbnail}" alt="${newReport.Title}" class="my-image-table" />`,
                                             `${convertToShortDate(newReport.Date)}`,
