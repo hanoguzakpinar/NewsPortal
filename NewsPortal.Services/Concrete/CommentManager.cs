@@ -54,7 +54,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CommentListDto>> GetAllAsync()
         {
-            var comments = await UnitOfWork.Comments.GetAllAsync();
+            var comments = await UnitOfWork.Comments.GetAllAsync(null, c => c.Report);
             if (comments.Count > -1)
             {
                 return new DataResult<CommentListDto>(ResultStatus.Success, new CommentListDto
@@ -70,7 +70,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CommentListDto>> GetAllByDeletedAsync()
         {
-            var comments = await UnitOfWork.Comments.GetAllAsync(c => c.IsDeleted);
+            var comments = await UnitOfWork.Comments.GetAllAsync(c => c.IsDeleted, c => c.Report);
             if (comments.Count > -1)
             {
                 return new DataResult<CommentListDto>(ResultStatus.Success, new CommentListDto
@@ -86,7 +86,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CommentListDto>> GetAllByNonDeletedAsync()
         {
-            var comments = await UnitOfWork.Comments.GetAllAsync(c => !c.IsDeleted);
+            var comments = await UnitOfWork.Comments.GetAllAsync(c => !c.IsDeleted, c => c.Report);
             if (comments.Count > -1)
             {
                 return new DataResult<CommentListDto>(ResultStatus.Success, new CommentListDto
@@ -102,7 +102,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CommentListDto>> GetAllByNonDeletedAndActiveAsync()
         {
-            var comments = await UnitOfWork.Comments.GetAllAsync(c => !c.IsDeleted && c.IsActive);
+            var comments = await UnitOfWork.Comments.GetAllAsync(c => !c.IsDeleted && c.IsActive, c => c.Report);
             if (comments.Count > -1)
             {
                 return new DataResult<CommentListDto>(ResultStatus.Success, new CommentListDto
@@ -133,6 +133,8 @@ namespace NewsPortal.Services.Concrete
             var comment = Mapper.Map<CommentUpdateDto, Comment>(commentUpdateDto, oldComment);
             comment.ModifiedByName = modifiedByName;
             var updatedComment = await UnitOfWork.Comments.UpdateAsync(comment);
+            updatedComment.Report =
+                await UnitOfWork.Reports.GetAsync(r => r.Id == updatedComment.ReportId);
             await UnitOfWork.SaveAsync();
             return new DataResult<CommentDto>(ResultStatus.Success, Messages.Comment.Update(comment.CreatedByName), new CommentDto
             {
