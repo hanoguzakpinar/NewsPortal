@@ -15,20 +15,15 @@ using NewsPortal.Shared.Utilities.Results.Concrete;
 
 namespace NewsPortal.Services.Concrete
 {
-    public class CategoryManager : ICategoryService
+    public class CategoryManager : ManagerBase, ICategoryService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
-
-        public CategoryManager(IUnitOfWork unitOfWork, IMapper mapper)
+        public CategoryManager(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
 
         public async Task<IDataResult<CategoryDto>> GetAsync(int categoryId)
         {
-            var category = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId);
+            var category = await UnitOfWork.Categories.GetAsync(c => c.Id == categoryId);
             if (category is not null)
                 return new DataResult<CategoryDto>(ResultStatus.Success, new CategoryDto
                 {
@@ -47,11 +42,11 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CategoryUpdateDto>> GetCategoryUpdateDtoAsync(int categoryId)
         {
-            var result = await _unitOfWork.Categories.AnyAsync(c => c.Id == categoryId);
+            var result = await UnitOfWork.Categories.AnyAsync(c => c.Id == categoryId);
             if (result)
             {
-                var category = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId);
-                var categoryUpdateDto = _mapper.Map<CategoryUpdateDto>(category);
+                var category = await UnitOfWork.Categories.GetAsync(c => c.Id == categoryId);
+                var categoryUpdateDto = Mapper.Map<CategoryUpdateDto>(category);
 
                 return new DataResult<CategoryUpdateDto>(ResultStatus.Success, categoryUpdateDto);
             }
@@ -63,7 +58,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CategoryListDto>> GetAllAsync()
         {
-            var categories = await _unitOfWork.Categories.GetAllAsync(null);
+            var categories = await UnitOfWork.Categories.GetAllAsync(null);
             if (categories.Count > -1)
                 return new DataResult<CategoryListDto>(ResultStatus.Success, new CategoryListDto
                 {
@@ -82,7 +77,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CategoryListDto>> GetAllNonDeletedAsync()
         {
-            var categories = await _unitOfWork.Categories.GetAllAsync(c => !c.IsDeleted);
+            var categories = await UnitOfWork.Categories.GetAllAsync(c => !c.IsDeleted);
             if (categories.Count > -1)
                 return new DataResult<CategoryListDto>(ResultStatus.Success, new CategoryListDto
                 {
@@ -101,7 +96,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CategoryListDto>> GetAllNonDeletedAndActiveAsync()
         {
-            var categories = await _unitOfWork.Categories.GetAllAsync(c => !c.IsDeleted && c.IsActive);
+            var categories = await UnitOfWork.Categories.GetAllAsync(c => !c.IsDeleted && c.IsActive);
             if (categories.Count > -1)
                 return new DataResult<CategoryListDto>(ResultStatus.Success, new CategoryListDto
                 {
@@ -115,11 +110,11 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CategoryDto>> AddAsync(CategoryAddDto categoryAddDto, string createdByName)
         {
-            var category = _mapper.Map<Category>(categoryAddDto);
+            var category = Mapper.Map<Category>(categoryAddDto);
             category.CreatedByName = createdByName;
             category.ModifiedByName = createdByName;
-            var added = await _unitOfWork.Categories.AddAsync(category);
-            await _unitOfWork.SaveAsync();
+            var added = await UnitOfWork.Categories.AddAsync(category);
+            await UnitOfWork.SaveAsync();
             return new DataResult<CategoryDto>(ResultStatus.Success, Messages.Category.Add(categoryAddDto.Name), new CategoryDto
             {
                 Category = added,
@@ -130,12 +125,12 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CategoryDto>> UpdateAsync(CategoryUpdateDto categoryUpdateDto, string modifiedByName)
         {
-            var oldCategory = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryUpdateDto.Id);
-            var category = _mapper.Map<CategoryUpdateDto, Category>(categoryUpdateDto, oldCategory);
+            var oldCategory = await UnitOfWork.Categories.GetAsync(c => c.Id == categoryUpdateDto.Id);
+            var category = Mapper.Map<CategoryUpdateDto, Category>(categoryUpdateDto, oldCategory);
             category.ModifiedByName = modifiedByName;
 
-            var updated = await _unitOfWork.Categories.UpdateAsync(category);
-            await _unitOfWork.SaveAsync();
+            var updated = await UnitOfWork.Categories.UpdateAsync(category);
+            await UnitOfWork.SaveAsync();
 
             return new DataResult<CategoryDto>(ResultStatus.Success,
                 Messages.Category.Update(categoryUpdateDto.Name), new CategoryDto
@@ -148,15 +143,15 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<CategoryDto>> DeleteAsync(int categoryId, string modifiedByName)
         {
-            var category = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId);
+            var category = await UnitOfWork.Categories.GetAsync(c => c.Id == categoryId);
             if (category is not null)
             {
                 category.IsDeleted = true;
                 category.ModifiedByName = modifiedByName;
                 category.ModifiedDate = DateTime.Now; ;
 
-                var deleted = await _unitOfWork.Categories.UpdateAsync(category);
-                await _unitOfWork.SaveAsync();
+                var deleted = await UnitOfWork.Categories.UpdateAsync(category);
+                await UnitOfWork.SaveAsync();
 
                 return new DataResult<CategoryDto>(ResultStatus.Success,
                     Messages.Category.Delete(deleted.Name), new CategoryDto
@@ -177,11 +172,11 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IResult> HardDeleteAsync(int categoryId)
         {
-            var category = await _unitOfWork.Categories.GetAsync(c => c.Id == categoryId);
+            var category = await UnitOfWork.Categories.GetAsync(c => c.Id == categoryId);
             if (category is not null)
             {
-                await _unitOfWork.Categories.DeleteAsync(category);
-                await _unitOfWork.SaveAsync();
+                await UnitOfWork.Categories.DeleteAsync(category);
+                await UnitOfWork.SaveAsync();
 
                 return new Result(ResultStatus.Success,
                     Messages.Category.HardDelete(category.Name));
@@ -191,7 +186,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<int>> CountAsync()
         {
-            var categoriesCount = await _unitOfWork.Categories.CountAsync();
+            var categoriesCount = await UnitOfWork.Categories.CountAsync();
             if (categoriesCount > -1)
             {
                 return new DataResult<int>(ResultStatus.Success, categoriesCount);
@@ -204,7 +199,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<int>> CountByNonDeletedAsync()
         {
-            var categoriesCount = await _unitOfWork.Categories.CountAsync(c => !c.IsDeleted);
+            var categoriesCount = await UnitOfWork.Categories.CountAsync(c => !c.IsDeleted);
             if (categoriesCount > -1)
             {
                 return new DataResult<int>(ResultStatus.Success, categoriesCount);

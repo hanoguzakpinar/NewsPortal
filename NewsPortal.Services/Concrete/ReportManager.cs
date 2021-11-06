@@ -15,20 +15,15 @@ using NewsPortal.Shared.Utilities.Results.Concrete;
 
 namespace NewsPortal.Services.Concrete
 {
-    public class ReportManager : IReportService
+    public class ReportManager : ManagerBase, IReportService
     {
-        private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
-
-        public ReportManager(IUnitOfWork unitOfWork, IMapper mapper)
+        public ReportManager(IUnitOfWork unitOfWork, IMapper mapper) : base(unitOfWork, mapper)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
         }
 
         public async Task<IDataResult<ReportDto>> GetAsync(int reportId)
         {
-            var report = await _unitOfWork.Reports.GetAsync(r => r.Id == reportId, r => r.User, r => r.Category);
+            var report = await UnitOfWork.Reports.GetAsync(r => r.Id == reportId, r => r.User, r => r.Category);
             if (report is not null)
             {
                 return new DataResult<ReportDto>(ResultStatus.Success, new ReportDto
@@ -43,11 +38,11 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<ReportUpdateDto>> GetReportUpdateDtoAsync(int reportId)
         {
-            var result = await _unitOfWork.Reports.AnyAsync(c => c.Id == reportId);
+            var result = await UnitOfWork.Reports.AnyAsync(c => c.Id == reportId);
             if (result)
             {
-                var report = await _unitOfWork.Reports.GetAsync(c => c.Id == reportId);
-                var reportUpdateDto = _mapper.Map<ReportUpdateDto>(report);
+                var report = await UnitOfWork.Reports.GetAsync(c => c.Id == reportId);
+                var reportUpdateDto = Mapper.Map<ReportUpdateDto>(report);
 
                 return new DataResult<ReportUpdateDto>(ResultStatus.Success, reportUpdateDto);
             }
@@ -59,7 +54,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<ReportListDto>> GetAllAsync()
         {
-            var reports = await _unitOfWork.Reports.GetAllAsync(null, r => r.User, r => r.Category);
+            var reports = await UnitOfWork.Reports.GetAllAsync(null, r => r.User, r => r.Category);
             if (reports.Count > -1)
             {
                 return new DataResult<ReportListDto>(ResultStatus.Success, new ReportListDto
@@ -74,7 +69,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<ReportListDto>> GetAllNonDeletedAsync()
         {
-            var reports = await _unitOfWork.Reports.GetAllAsync(r => !r.IsDeleted, r => r.User, r => r.Category);
+            var reports = await UnitOfWork.Reports.GetAllAsync(r => !r.IsDeleted, r => r.User, r => r.Category);
             if (reports.Count > -1)
             {
                 return new DataResult<ReportListDto>(ResultStatus.Success, new ReportListDto
@@ -89,7 +84,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<ReportListDto>> GetAllNonDeletedAndActiveAsync()
         {
-            var reports = await _unitOfWork.Reports.GetAllAsync(r => !r.IsDeleted && r.IsActive, r => r.User, r => r.Category);
+            var reports = await UnitOfWork.Reports.GetAllAsync(r => !r.IsDeleted && r.IsActive, r => r.User, r => r.Category);
             if (reports.Count > -1)
             {
                 return new DataResult<ReportListDto>(ResultStatus.Success, new ReportListDto
@@ -104,10 +99,10 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<ReportListDto>> GetAllByCategoryAsync(int categoryId)
         {
-            var category = await _unitOfWork.Categories.AnyAsync(c => c.Id == categoryId);
+            var category = await UnitOfWork.Categories.AnyAsync(c => c.Id == categoryId);
             if (category)
             {
-                var reports = await _unitOfWork.Reports.GetAllAsync(r => r.CategoryId == categoryId && !r.IsDeleted && r.IsActive, r => r.User, r => r.Category);
+                var reports = await UnitOfWork.Reports.GetAllAsync(r => r.CategoryId == categoryId && !r.IsDeleted && r.IsActive, r => r.User, r => r.Category);
                 if (reports.Count > -1)
                 {
                     return new DataResult<ReportListDto>(ResultStatus.Success, new ReportListDto
@@ -123,42 +118,42 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IResult> AddAsync(ReportAddDto reportAddDto, string createdByName, int userId)
         {
-            var report = _mapper.Map<Report>(reportAddDto);
+            var report = Mapper.Map<Report>(reportAddDto);
             report.CreatedByName = createdByName;
             report.ModifiedByName = createdByName;
             report.UserId = userId;
 
-            await _unitOfWork.Reports.AddAsync(report);
-            await _unitOfWork.SaveAsync();
+            await UnitOfWork.Reports.AddAsync(report);
+            await UnitOfWork.SaveAsync();
 
             return new Result(ResultStatus.Success, Messages.Report.Add(reportAddDto.Title));
         }
 
         public async Task<IResult> UpdateAsync(ReportUpdateDto reportUpdateDto, string modifiedByName)
         {
-            var oldReport = await _unitOfWork.Reports.GetAsync(r => r.Id == reportUpdateDto.Id);
+            var oldReport = await UnitOfWork.Reports.GetAsync(r => r.Id == reportUpdateDto.Id);
 
-            var report = _mapper.Map<ReportUpdateDto, Report>(reportUpdateDto, oldReport);
+            var report = Mapper.Map<ReportUpdateDto, Report>(reportUpdateDto, oldReport);
             report.ModifiedByName = modifiedByName;
 
-            await _unitOfWork.Reports.UpdateAsync(report);
-            await _unitOfWork.SaveAsync();
+            await UnitOfWork.Reports.UpdateAsync(report);
+            await UnitOfWork.SaveAsync();
 
             return new Result(ResultStatus.Success, Messages.Report.Update(reportUpdateDto.Title));
         }
 
         public async Task<IResult> DeleteAsync(int reportId, string modifiedByName)
         {
-            var status = await _unitOfWork.Reports.AnyAsync(r => r.Id == reportId);
+            var status = await UnitOfWork.Reports.AnyAsync(r => r.Id == reportId);
             if (status)
             {
-                var report = await _unitOfWork.Reports.GetAsync(r => r.Id == reportId);
+                var report = await UnitOfWork.Reports.GetAsync(r => r.Id == reportId);
                 report.IsDeleted = true;
                 report.ModifiedByName = modifiedByName;
                 report.ModifiedDate = DateTime.Now;
 
-                await _unitOfWork.Reports.UpdateAsync(report);
-                await _unitOfWork.SaveAsync();
+                await UnitOfWork.Reports.UpdateAsync(report);
+                await UnitOfWork.SaveAsync();
 
                 return new Result(ResultStatus.Success, Messages.Report.Delete(report.Title));
             }
@@ -168,13 +163,13 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IResult> HardDeleteAsync(int reportId)
         {
-            var status = await _unitOfWork.Reports.AnyAsync(r => r.Id == reportId);
+            var status = await UnitOfWork.Reports.AnyAsync(r => r.Id == reportId);
             if (status)
             {
-                var report = await _unitOfWork.Reports.GetAsync(r => r.Id == reportId);
+                var report = await UnitOfWork.Reports.GetAsync(r => r.Id == reportId);
 
-                await _unitOfWork.Reports.DeleteAsync(report);
-                await _unitOfWork.SaveAsync();
+                await UnitOfWork.Reports.DeleteAsync(report);
+                await UnitOfWork.SaveAsync();
 
                 return new Result(ResultStatus.Success, Messages.Report.HardDelete(report.Title));
             }
@@ -184,7 +179,7 @@ namespace NewsPortal.Services.Concrete
 
         public async Task<IDataResult<int>> CountAsync()
         {
-            var reportsCount = await _unitOfWork.Reports.CountAsync();
+            var reportsCount = await UnitOfWork.Reports.CountAsync();
             if (reportsCount > -1)
             {
                 return new DataResult<int>(ResultStatus.Success, reportsCount);
@@ -196,7 +191,7 @@ namespace NewsPortal.Services.Concrete
         }
         public async Task<IDataResult<int>> CountByNonDeletedAsync()
         {
-            var reportsCount = await _unitOfWork.Reports.CountAsync(c => !c.IsDeleted);
+            var reportsCount = await UnitOfWork.Reports.CountAsync(c => !c.IsDeleted);
             if (reportsCount > -1)
             {
                 return new DataResult<int>(ResultStatus.Success, reportsCount);
