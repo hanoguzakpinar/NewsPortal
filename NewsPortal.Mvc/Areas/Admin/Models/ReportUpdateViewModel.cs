@@ -35,12 +35,12 @@ namespace NewsPortal.Mvc.Areas.Admin.Models
         [MaxLength(50, ErrorMessage = "{0} alanı {1} karakterden büyük olmamalıdır.")]
         [MinLength(0, ErrorMessage = "{0} alanı {1} karakterden küçük olmamalıdır.")]
         public string SeoAuthor { get; set; }
-        [DisplayName("Makale Açıklaması")]
+        [DisplayName("Haber Açıklaması")]
         [Required(ErrorMessage = "{0} alanı boş geçilmemelidir.")]
         [MaxLength(150, ErrorMessage = "{0} alanı {1} karakterden büyük olmamalıdır.")]
         [MinLength(0, ErrorMessage = "{0} alanı {1} karakterden küçük olmamalıdır.")]
         public string SeoDescription { get; set; }
-        [DisplayName("Makale Etiketleri")]
+        [DisplayName("Haber Etiketleri")]
         [Required(ErrorMessage = "{0} alanı boş geçilmemelidir.")]
         [MaxLength(70, ErrorMessage = "{0} alanı {1} karakterden büyük olmamalıdır.")]
         [MinLength(5, ErrorMessage = "{0} alanı {1} karakterden küçük olmamalıdır.")]

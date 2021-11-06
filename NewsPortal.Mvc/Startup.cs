@@ -33,7 +33,7 @@ namespace NewsPortal.Mvc
             }).AddNToastNotifyToastr();
             //mvc ve razor runtime package dahil etme.
             services.AddSession();//session yapýsýný ekleme.
-            services.AddAutoMapper(typeof(CategoryProfile), typeof(ReportProfile), typeof(UserProfile), typeof(ViewModelsProfile));//automapperi dahil etme.
+            services.AddAutoMapper(typeof(CategoryProfile), typeof(ReportProfile), typeof(UserProfile), typeof(ViewModelsProfile), typeof(CommentProfile));//automapperi dahil etme.
             services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
             services.AddScoped<IImageHelper, ImageHelper>();
 
