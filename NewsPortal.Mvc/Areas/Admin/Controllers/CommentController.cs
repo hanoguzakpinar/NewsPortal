@@ -42,6 +42,19 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             });
             return Json(commentsResult);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetDetail(int commentId)
+        {
+            var result = await _commentService.GetAsync(commentId);
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                return PartialView("_CommentDetailPartial", result.Data);
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
         [HttpPost]
         public async Task<IActionResult> Delete(int commentId)
         {
