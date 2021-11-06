@@ -49,77 +49,244 @@ namespace NewsPortal.Data.Concrete.EntityFramework.Mappings
 
             builder.ToTable("Reports");
 
-            //builder.HasData(
-            //    new Report
-            //    {
-            //        Id = 1,
-            //        CategoryId = 1,
-            //        Title = "GS 1 - 0 Lok. Moskova",
-            //        Content =
-            //            "Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.",
-            //        Thumbnail = "Default.jpg",
-            //        SeoDescription = "GS vs Moskova",
-            //        SeoTags = "GS Futbol Avrupa Rusya Türkiye",
-            //        SeoAuthor = "Oğuzhan Akpınar",
-            //        Date = DateTime.Now,
-            //        IsActive = true,
-            //        IsDeleted = false,
-            //        CreatedByName = "Initial Create",
-            //        CreatedDate = DateTime.Now,
-            //        ModifiedByName = "Initial Create",
-            //        ModifiedDate = DateTime.Now,
-            //        Note = "GS,Moskova futbol maçı yazısı",
-            //        UserId = 1,
-            //        ViewsCount = 100,
-            //        CommentCount = 1
-            //    },
-            //    new Report
-            //    {
-            //        Id = 2,
-            //        CategoryId = 2,
-            //        Title = "Kishu coin nedir? Kishu coin ne kadar, kaç TL?",
-            //        Content =
-            //            "Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı, sürekli 'buraya metin gelecek, buraya metin gelecek' yazmaya kıyasla daha dengeli bir harf dağılımı sağlayarak okunurluğu artırmasıdır. Şu anda birçok masaüstü yayıncılık paketi ve web sayfa düzenleyicisi, varsayılan mıgır metinler olarak Lorem Ipsum kullanmaktadır. Ayrıca arama motorlarında 'lorem ipsum' anahtar sözcükleri ile arama yapıldığında henüz tasarım aşamasında olan çok sayıda site listelenir. Yıllar içinde, bazen kazara, bazen bilinçli olarak (örneğin mizah katılarak), çeşitli sürümleri geliştirilmiştir.",
-            //        Thumbnail = "Default.jpg",
-            //        SeoDescription = "Kishu coin nedir? Kishu coin ne kadar, kaç TL?",
-            //        SeoTags = "Kishu Coin Crypto",
-            //        SeoAuthor = "Oğuzhan Akpınar",
-            //        Date = DateTime.Now,
-            //        IsActive = true,
-            //        IsDeleted = false,
-            //        CreatedByName = "Initial Create",
-            //        CreatedDate = DateTime.Now,
-            //        ModifiedByName = "Initial Create",
-            //        ModifiedDate = DateTime.Now,
-            //        Note = "Kishu coin nedir?",
-            //        UserId = 1,
-            //        ViewsCount = 295,
-            //        CommentCount = 1
-            //    },
-            //    new Report
-            //    {
-            //        Id = 3,
-            //        CategoryId = 3,
-            //        Title = "Arena of Valor: Yeni Çağ, Türkiye’ye geldi!",
-            //        Content =
-            //            "Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan de Finibus Bonorum et Malorum (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan Lorem ipsum dolor sit amet 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.",
-            //        Thumbnail = "Default.jpg",
-            //        SeoDescription = "Arena of Valor: Yeni Çağ, Türkiye’ye geldi!",
-            //        SeoTags = "Tencent Arena of Valor",
-            //        SeoAuthor = "Oğuzhan Akpınar",
-            //        Date = DateTime.Now,
-            //        IsActive = true,
-            //        IsDeleted = false,
-            //        CreatedByName = "Initial Create",
-            //        CreatedDate = DateTime.Now,
-            //        ModifiedByName = "Initial Create",
-            //        ModifiedDate = DateTime.Now,
-            //        Note = "Arena of Valor: Yeni Çağ, Türkiye’ye geldi!",
-            //        UserId = 1,
-            //        ViewsCount = 12,
-            //        CommentCount = 1
-            //    }
-            //);
+            builder.HasData(
+                new Report
+                {
+                    Id = 1,
+                    CategoryId = 1,
+                    Title = "SHIBA INU'ya zirveden giren yüzde 45 kaybetti",
+                    Content =
+                        "Lorem Ipsum, dizgi ve baskı endüstrisinde kullanılan mıgır metinlerdir. Lorem Ipsum, adı bilinmeyen bir matbaacının bir hurufat numune kitabı oluşturmak üzere bir yazı galerisini alarak karıştırdığı 1500'lerden beri endüstri standardı sahte metinler olarak kullanılmıştır. Beşyüz yıl boyunca varlığını sürdürmekle kalmamış, aynı zamanda pek değişmeden elektronik dizgiye de sıçramıştır. 1960'larda Lorem Ipsum pasajları da içeren Letraset yapraklarının yayınlanması ile ve yakın zamanda Aldus PageMaker gibi Lorem Ipsum sürümleri içeren masaüstü yayıncılık yazılımları ile popüler olmuştur.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription = "SHIBA INU'ya zirveden giren yüzde 45 kaybetti",
+                    SeoTags = "SHIBA INU",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "SHIBA INU'ya zirveden giren yüzde 45 kaybetti",
+                    UserId = 1,
+                    ViewsCount = 100,
+                    CommentCount = 1
+                },
+                new Report
+                {
+                    Id = 2,
+                    CategoryId = 2,
+                    Title =
+                        "Kalp krizini hangisi daha fazla tetikliyor? Hamburger mi yoksa stres mi?",
+                    Content =
+                        "Yinelenen bir sayfa içeriğinin okuyucunun dikkatini dağıttığı bilinen bir gerçektir. Lorem Ipsum kullanmanın amacı, sürekli 'buraya metin gelecek, buraya metin gelecek' yazmaya kıyasla daha dengeli bir harf dağılımı sağlayarak okunurluğu artırmasıdır. Şu anda birçok masaüstü yayıncılık paketi ve web sayfa düzenleyicisi, varsayılan mıgır metinler olarak Lorem Ipsum kullanmaktadır. Ayrıca arama motorlarında 'lorem ipsum' anahtar sözcükleri ile arama yapıldığında henüz tasarım aşamasında olan çok sayıda site listelenir. Yıllar içinde, bazen kazara, bazen bilinçli olarak (örneğin mizah katılarak), çeşitli sürümleri geliştirilmiştir.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription =
+                        "Kalp krizini hangisi daha fazla tetikliyor? Hamburger mi yoksa stres mi?",
+                    SeoTags = "Kalp Krizi Stres Hamburger",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note =
+                        "Kalp krizini hangisi daha fazla tetikliyor? Hamburger mi yoksa stres mi?",
+                    UserId = 1,
+                    ViewsCount = 295,
+                    CommentCount = 1
+                },
+                new Report
+                {
+                    Id = 3,
+                    CategoryId = 3,
+                    Title = "İran'dan şoke eden itiraf! \"Petrolü kaçak satıyoruz!\"",
+                    Content =
+                        "Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan de Finibus Bonorum et Malorum (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan Lorem ipsum dolor sit amet 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription = "İran'dan şoke eden itiraf! \"Petrolü kaçak satıyoruz!\"",
+                    SeoTags = "İran Kaçak Petrol",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "İran'dan şoke eden itiraf! \"Petrolü kaçak satıyoruz!\"",
+                    UserId = 1,
+                    ViewsCount = 120,
+                    CommentCount = 1
+                },
+                new Report
+                {
+                    Id = 4,
+                    CategoryId = 4,
+                    Title = "50 yıl sonra görüldü! O balık İzmit Körfezi'nde!",
+                    Content =
+                        "Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan de Finibus Bonorum et Malorum (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan Lorem ipsum dolor sit amet 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription = "50 yıl sonra görüldü! O balık İzmit Körfezi'nde!",
+                    SeoTags = "Balık İzmit Körfez",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "50 yıl sonra görüldü! O balık İzmit Körfezi'nde!",
+                    UserId = 1,
+                    ViewsCount = 100,
+                    CommentCount = 1
+                },
+                new Report
+                {
+                    Id = 5,
+                    CategoryId = 5,
+                    Title = "Cisco, AR destekli toplantı çözümü Webex Hologram'ı tanıttı",
+                    Content =
+                        "Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan de Finibus Bonorum et Malorum (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan Lorem ipsum dolor sit amet 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription = "Cisco, AR destekli toplantı çözümü Webex Hologram'ı tanıttı",
+                    SeoTags = "Cisco AR Hologram",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Cisco, AR destekli toplantı çözümü Webex Hologram'ı tanıttı",
+                    UserId = 1,
+                    ViewsCount = 222,
+                    CommentCount = 2
+                },
+                new Report
+                {
+                    Id = 6,
+                    CategoryId = 6,
+                    Title = "Saçma Magazin Haberi",
+                    Content =
+                        "Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan de Finibus Bonorum et Malorum (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan Lorem ipsum dolor sit amet 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription = "Saçma Magazin Haberi",
+                    SeoTags = "Magazin Saçma Haber",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Saçma Magazin Haberi",
+                    UserId = 1,
+                    ViewsCount = 15,
+                    CommentCount = 2
+                },
+                new Report
+                {
+                    Id = 7,
+                    CategoryId = 7,
+                    Title = "Galatasaray: 1 - Lokomotiv Moskova: 1",
+                    Content =
+                        "Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan de Finibus Bonorum et Malorum (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan Lorem ipsum dolor sit amet 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription = "Galatasaray: 1 - Lokomotiv Moskova: 1",
+                    SeoTags = "GS LM Uefa",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Galatasaray: 1 - Lokomotiv Moskova: 1",
+                    UserId = 1,
+                    ViewsCount = 255,
+                    CommentCount = 2
+                },
+                new Report
+                {
+                    Id = 8,
+                    CategoryId = 8,
+                    Title = "Anadolu Efes: 85 - Galatasaray Nef: 92",
+                    Content =
+                        "Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan de Finibus Bonorum et Malorum (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan Lorem ipsum dolor sit amet 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription = "Anadolu Efes: 85 - Galatasaray Nef: 92",
+                    SeoTags = "GS Efes Basketbol",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Anadolu Efes: 85 - Galatasaray Nef: 92",
+                    UserId = 1,
+                    ViewsCount = 200,
+                    CommentCount = 1
+                },
+                new Report
+                {
+                    Id = 9,
+                    CategoryId = 9,
+                    Title =
+                        "Mercedes'in Hamilton'ın motor cezası alma ihtimaliyle ilgili endişeleri azaldı",
+                    Content =
+                        "Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan de Finibus Bonorum et Malorum (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan Lorem ipsum dolor sit amet 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription =
+                        "Mercedes'in Hamilton'ın motor cezası alma ihtimaliyle ilgili endişeleri azaldı",
+                    SeoTags = "F1 Mercedes",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note =
+                        "Mercedes'in Hamilton'ın motor cezası alma ihtimaliyle ilgili endişeleri azaldı",
+                    UserId = 1,
+                    ViewsCount = 100,
+                    CommentCount = 1
+                },
+                new Report
+                {
+                    Id = 10,
+                    CategoryId = 10,
+                    Title = "Dota 2 The International 2021 Şampiyonu Team Spirit Oldu!",
+                    Content =
+                        "Yaygın inancın tersine, Lorem Ipsum rastgele sözcüklerden oluşmaz. Kökleri M.Ö. 45 tarihinden bu yana klasik Latin edebiyatına kadar uzanan 2000 yıllık bir geçmişi vardır. Virginia'daki Hampden-Sydney College'dan Latince profesörü Richard McClintock, bir Lorem Ipsum pasajında geçen ve anlaşılması en güç sözcüklerden biri olan 'consectetur' sözcüğünün klasik edebiyattaki örneklerini incelediğinde kesin bir kaynağa ulaşmıştır. Lorm Ipsum, Çiçero tarafından M.Ö. 45 tarihinde kaleme alınan de Finibus Bonorum et Malorum (İyi ve Kötünün Uç Sınırları) eserinin 1.10.32 ve 1.10.33 sayılı bölümlerinden gelmektedir. Bu kitap, ahlak kuramı üzerine bir tezdir ve Rönesans döneminde çok popüler olmuştur. Lorem Ipsum pasajının ilk satırı olan Lorem ipsum dolor sit amet 1.10.32 sayılı bölümdeki bir satırdan gelmektedir.",
+                    Thumbnail = "postImages/defaultThumbnail.jpg",
+                    SeoDescription = "Dota 2 The International 2021 Şampiyonu Team Spirit Oldu!",
+                    SeoTags = "Dota International Spirit",
+                    SeoAuthor = "Oğuzhan Akpınar",
+                    Date = DateTime.Now,
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "Initial Create",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "Initial Create",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Dota 2 The International 2021 Şampiyonu Team Spirit Oldu!",
+                    UserId = 1,
+                    ViewsCount = 50,
+                    CommentCount = 1
+                }
+            );
         }
     }
 }

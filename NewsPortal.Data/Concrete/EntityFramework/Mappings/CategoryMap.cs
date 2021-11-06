@@ -36,40 +36,134 @@ namespace NewsPortal.Data.Concrete.EntityFramework.Mappings
                 new Category
                 {
                     Id = 1,
-                    Name = "Spor",
-                    Description = "Spor Haberleri",
-                    IsActive = true,
-                    IsDeleted = false,
-                    CreatedByName = "Initial Create",
-                    CreatedDate = DateTime.Now,
-                    ModifiedByName = "Initial Create",
-                    ModifiedDate = DateTime.Now,
-                    Note = "Spor Kategorisi"
-                }, new Category
-                {
-                    Id = 2,
                     Name = "Ekonomi",
                     Description = "Ekonomi Haberleri",
                     IsActive = true,
                     IsDeleted = false,
-                    CreatedByName = "Initial Create",
+                    CreatedByName = "InitialCreate",
                     CreatedDate = DateTime.Now,
-                    ModifiedByName = "Initial Create",
+                    ModifiedByName = "InitialCreate",
                     ModifiedDate = DateTime.Now,
-                    Note = "Ekonomi Kategorisi"
-                }, new Category
+                    Note = "Ekonomi Kategorisi",
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "Sağlık",
+                    Description = "Sağlık Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Sağlık Kategorisi",
+                },
+                new Category
                 {
                     Id = 3,
+                    Name = "Dünya",
+                    Description = "Dünya Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Dünya Kategorisi",
+                },
+                new Category
+                {
+                    Id = 4,
+                    Name = "Gündem",
+                    Description = "Gündem Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Gündem Kategorisi",
+                },
+                new Category
+                {
+                    Id = 5,
                     Name = "Teknoloji",
                     Description = "Teknoloji Haberleri",
                     IsActive = true,
                     IsDeleted = false,
-                    CreatedByName = "Initial Create",
+                    CreatedByName = "InitialCreate",
                     CreatedDate = DateTime.Now,
-                    ModifiedByName = "Initial Create",
+                    ModifiedByName = "InitialCreate",
                     ModifiedDate = DateTime.Now,
-                    Note = "Teknoloji Kategorisi"
-                });
+                    Note = "Teknoloji Kategorisi",
+                },
+                new Category
+                {
+                    Id = 6,
+                    Name = "Magazin",
+                    Description = "Magazin Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Magazin Kategorisi",
+                },
+                new Category
+                {
+                    Id = 7,
+                    Name = "Futbol",
+                    Description = "Futbol Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Futbol Kategorisi",
+                },
+                new Category
+                {
+                    Id = 8,
+                    Name = "Basketbol",
+                    Description = "Basketbol Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Basketbol Kategorisi",
+                },
+                new Category
+                {
+                    Id = 9,
+                    Name = "Formula 1",
+                    Description = "Formula 1 Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Formula 1 Kategorisi",
+                },
+                new Category
+                {
+                    Id = 10,
+                    Name = "Espor",
+                    Description = "Espor Haberleri",
+                    IsActive = true,
+                    IsDeleted = false,
+                    CreatedByName = "InitialCreate",
+                    CreatedDate = DateTime.Now,
+                    ModifiedByName = "InitialCreate",
+                    ModifiedDate = DateTime.Now,
+                    Note = "Espor Kategorisi",
+                }
+            );
         }
     }
 }
