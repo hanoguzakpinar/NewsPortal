@@ -69,6 +69,10 @@ namespace NewsPortal.Services.Utilites
                 if (isPlural) return "Hiç bir yorum bulunamadı.";
                 return "Böyle bir yorum bulunamadı.";
             }
+            public static string Approve(int commentId)
+            {
+                return $"{commentId} no'lu yorumun başarıyla onaylanmıştır.";
+            }
 
             public static string Add(string createdByName)
             {

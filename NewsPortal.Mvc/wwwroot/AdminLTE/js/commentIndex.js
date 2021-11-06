@@ -269,6 +269,73 @@
 
     });
 
+    /* Ajax POST / Appr a Comment starts from here */
+
+    $(document).on('click',
+        '.btn-approve',
+        function (event) {
+            event.preventDefault();
+            const id = $(this).attr('data-id');
+            const tableRow = $(`[name="${id}"]`);
+            let commentText = tableRow.find('td:eq(2)').text();
+            commentText = commentText.length > 75 ? commentText.substring(0, 75) : commentText;
+            Swal.fire({
+                title: 'Onaylamak istediğinize emin misiniz?',
+                text: `${commentText} içerikli yorum onaylanacaktır!`,
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Evet, onaylamak istiyorum.',
+                cancelButtonText: 'Hayır, onaylamak istemiyorum.'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        data: { commentId: id },
+                        url: '/Admin/Comment/Approve/',
+                        success: function (data) {
+                            const commentResult = jQuery.parseJSON(data);
+                            console.log(commentResult);
+                            if (commentResult.Data) {
+                                dataTable.row(tableRow).data([
+                                    commentResult.Data.Comment.Id,
+                                    commentResult.Data.Comment.Report.Title,
+                                    commentResult.Data.Comment.Text.length > 75 ? commentResult.Data.Comment.Text.substring(0, 75) : commentResult.Data.Comment.Text,
+                                    `${commentResult.Data.Comment.IsActive ? "Evet" : "Hayır"}`,
+                                    `${commentResult.Data.Comment.IsDeleted ? "Evet" : "Hayır"}`,
+                                    `${convertToShortDate(commentResult.Data.Comment.CreatedDate)}`,
+                                    commentResult.Data.Comment.CreatedByName,
+                                    `${convertToShortDate(commentResult.Data.Comment.ModifiedDate)}`,
+                                    commentResult.Data.Comment.ModifiedByName,
+                                    getButtonsForDataTable(commentResult.Data.Comment)
+                                ]);
+                                tableRow.attr("name", `${id}`);
+                                dataTable.row(tableRow).invalidate();
+                                Swal.fire(
+                                    'Onaylandı!',
+                                    `${commentResult.Data.Comment.Id} no'lu yorum başarıyla onaylanmıştır.`,
+                                    'success'
+                                );
+
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Başarısız İşlem!',
+                                    text: `Beklenmedik bir hata ile karşılaşıldı.`,
+                                });
+                            }
+                        },
+                        error: function (err) {
+                            console.log(err);
+                            toastr.error(`${err.responseText}`, "Hata!");
+                        }
+                    });
+                }
+            });
+        });
+
     function getButtonsForDataTable(comment) {
         if (!comment.IsActive) {
             return `
