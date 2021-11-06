@@ -14,7 +14,6 @@ using NewsPortal.Shared.Utilities.Results.ComplexTypes;
 namespace NewsPortal.Mvc.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = "Admin,Editor")]
     public class HomeController : Controller
     {
         private readonly ICategoryService _categoryService;
@@ -30,6 +29,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             _userManager = userManager;
         }
 
+        [Authorize(Roles = "SuperAdmin,AdminArea.Home.Read")]
         public async Task<IActionResult> Index()
         {
             var categoriesCountResult = await _categoryService.CountByNonDeletedAsync();

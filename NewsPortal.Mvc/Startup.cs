@@ -39,8 +39,8 @@ namespace NewsPortal.Mvc
 
             services.ConfigureApplicationCookie(options =>
             {
-                options.LoginPath = new PathString("/Admin/User/Login");//giriþ sayfasýný belirtme.
-                options.LogoutPath = new PathString("/Admin/User/Logout");//çýkýþ sayfasýný belirtme.
+                options.LoginPath = new PathString("/Admin/Auth/Login");//giriþ sayfasýný belirtme.
+                options.LogoutPath = new PathString("/Admin/Auth/Logout");//çýkýþ sayfasýný belirtme.
                 options.Cookie = new CookieBuilder
                 {
                     Name = "NewsPortal",
@@ -53,7 +53,7 @@ namespace NewsPortal.Mvc
                 };
                 options.SlidingExpiration = true;//kullanýcý tekrar giriþ yaptýðýnda süresini uzatmak için.
                 options.ExpireTimeSpan = System.TimeSpan.FromDays(7);//giriþ yaptýktan sonra {7} gün boyunca tekrar giriþ yapmasýna gerek kalmaz.
-                options.AccessDeniedPath = new PathString("/Admin/User/AccessDenied");//Yetkisiz giriþ yapýldýðýnda nereye yönlendirilsin.
+                options.AccessDeniedPath = new PathString("/Admin/Auth/AccessDenied");//Yetkisiz giriþ yapýldýðýnda nereye yönlendirilsin.
             });
         }
 

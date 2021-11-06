@@ -5,6 +5,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NewsPortal.Data.Abstract;
@@ -33,6 +34,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             _toastNotification = toastNotification;
         }
 
+        [Authorize(Roles = "SuperAdmin,Report.Read")]
         [HttpGet]
         public async Task<IActionResult> Index()
         {
@@ -45,6 +47,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             return NotFound();
         }
 
+        [Authorize(Roles = "SuperAdmin,Report.Create")]
         [HttpGet]
         public async Task<IActionResult> Add()
         {
@@ -60,6 +63,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             return NotFound();
         }
 
+        [Authorize(Roles = "SuperAdmin,Report.Create")]
         [HttpPost]
         public async Task<IActionResult> Add(ReportAddViewModel reportAddViewModel)
         {
@@ -89,6 +93,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             return View(reportAddViewModel);
         }
 
+        [Authorize(Roles = "SuperAdmin,Report.Update")]
         [HttpGet]
         public async Task<IActionResult> Update(int reportId)
         {
@@ -105,6 +110,8 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 return NotFound();
             }
         }
+
+        [Authorize(Roles = "SuperAdmin,Report.Update")]
         [HttpPost]
         public async Task<IActionResult> Update(ReportUpdateViewModel reportUpdateViewModel)
         {
@@ -147,6 +154,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             return View(reportUpdateViewModel);
         }
 
+        [Authorize(Roles = "SuperAdmin,Report.Delete")]
         [HttpPost]
         public async Task<JsonResult> Delete(int reportId)
         {
@@ -155,6 +163,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             return Json(reportResult);
         }
 
+        [Authorize(Roles = "SuperAdmin,Report.Read")]
         [HttpGet]
         public async Task<JsonResult> GetAllReports()
         {
