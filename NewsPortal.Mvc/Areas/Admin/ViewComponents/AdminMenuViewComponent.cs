@@ -19,11 +19,20 @@ namespace NewsPortal.Mvc.Areas.Admin.ViewComponents
             _userManager = userManager;
         }
 
-        public ViewViewComponentResult Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             //HttpContext.User ile login olmuş kullanıcıya ulaşabiliyoruz.
-            var user = _userManager.GetUserAsync(HttpContext.User).Result;
-            var roles = _userManager.GetRolesAsync(user).Result;
+            var user = await _userManager.GetUserAsync(HttpContext.User);
+            var roles = await _userManager.GetRolesAsync(user);
+            if (user == null)
+            {
+                return Content("Kullanıcı bulunamadı.");
+            }
+            if (roles == null)
+            {
+                return Content("Roller bulunamadı.");
+            }
+
             return View(new UserWithRolesViewModel
             {
                 User = user,

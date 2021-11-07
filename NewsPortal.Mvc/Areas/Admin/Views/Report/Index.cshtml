@@ -86,6 +86,13 @@
 @section Scripts
 {
     <script src="~/AdminLTE/js/reportIndex.js" type="application/ecmascript"></script>
+    <script>
+        $(document).ready(function() {
+            $('#btnAdd').click(function() {
+                window.location.href = '@Url.Action("Add","Report")';
+            });
+        });
+    </script>
 }
 @section Styles
 {
