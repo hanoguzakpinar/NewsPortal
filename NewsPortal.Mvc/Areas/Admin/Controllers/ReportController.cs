@@ -174,5 +174,43 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             });
             return Json(reportResult);
         }
+
+        [Authorize(Roles = "SuperAdmin,Report.Read")]
+        [HttpGet]
+        public async Task<IActionResult> DeletedReports()
+        {
+            var result = await _reportService.GetAllByDeletedAsync();
+            return View(result.Data);
+
+        }
+        [Authorize(Roles = "SuperAdmin,Report.Read")]
+        [HttpGet]
+        public async Task<JsonResult> GetAllDeletedReports()
+        {
+            var result = await _reportService.GetAllByDeletedAsync();
+            var reports = JsonSerializer.Serialize(result, new JsonSerializerOptions
+            {
+                ReferenceHandler = ReferenceHandler.Preserve
+            });
+            return Json(reports);
+        }
+        [Authorize(Roles = "SuperAdmin,Report.Update")]
+        [HttpPost]
+        public async Task<JsonResult> UndoDelete(int reportId)
+        {
+            var result = await _reportService.UndoDeleteAsync(reportId, LoggedInUser.UserName);
+            var undoDeleteReportResult = JsonSerializer.Serialize(result);
+            return Json(undoDeleteReportResult);
+        }
+        [Authorize(Roles = "SuperAdmin,Report.Delete")]
+        [HttpPost]
+        public async Task<JsonResult> HardDelete(int reportId)
+        {
+            var result = await _reportService.HardDeleteAsync(reportId);
+            var hardDeletedReportResult = JsonSerializer.Serialize(result);
+            return Json(hardDeletedReportResult);
+        }
+
+
     }
 }

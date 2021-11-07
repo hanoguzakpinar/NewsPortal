@@ -1,0 +1,90 @@
+﻿@model NewsPortal.Entities.Dtos.ReportListDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Silinmiş Haberler";
+}
+<ol class="breadcrumb mb-3 mt-2">
+    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
+    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Report" asp-action="DeletedReports">Silinmiş Haberler</a></li>
+</ol>
+<div class="card mb-4">
+    <div class="card-header">
+        <i class="fas fa-table mr-1"></i>
+        Silinmiş Haberler
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="deletedReportsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori</th>
+                        <th>Başlık</th>
+                        <th>Küçük Resim</th>
+                        <th>Tarih</th>
+                        <th>Okunma Sayısı</th>
+                        <th>Yorum Sayısı</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Oluşturan Kullanıcı Adı</th>
+                        <th>Son Düzenlenme Tarihi</th>
+                        <th>Son Düzenleyen Kullanıcı Adı</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>#</th>
+                        <th>Kategori</th>
+                        <th>Başlık</th>
+                        <th>Küçük Resim</th>
+                        <th>Tarih</th>
+                        <th>Okunma Sayısı</th>
+                        <th>Yorum Sayısı</th>
+                        <th>Aktif Mi?</th>
+                        <th>Silinmiş Mi?</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Oluşturan Kullanıcı Adı</th>
+                        <th>Son Düzenlenme Tarihi</th>
+                        <th>Son Düzenleyen Kullanıcı Adı</th>
+                        <th>İşlemler</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var report in Model.Reports)
+                    {
+                        <tr name="@report.Id">
+                            <td>@report.Id</td>
+                            <td>@report.Category.Name</td>
+                            <td>@report.Title</td>
+                            <td><img src="~/img/@report.Thumbnail" class="my-image-table" /></td>
+                            <td>@report.Date.ToShortDateString()</td>
+                            <td>@report.ViewsCount</td>
+                            <td>@report.CommentCount</td>
+                            <td>@(report.IsActive ? "Evet" : "Hayır")</td>
+                            <td>@(report.IsDeleted ? "Evet" : "Hayır")</td>
+                            <td>@report.CreatedDate.ToShortDateString()</td>
+                            <td>@report.CreatedByName</td>
+                            <td>@report.ModifiedDate.ToShortDateString()</td>
+                            <td>@report.ModifiedByName</td>
+                            <td>
+                                <a class="btn btn-warning btn-sm btn-undo" data-id="@report.Id"><span class="fas fa-undo"></span></a>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="@report.Id"><span class="fas fa-minus-circle"></span></button>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/AdminLTE/js/deletedReports.js" type="application/ecmascript"></script>
+}
+@section Styles
+{
+
+}
