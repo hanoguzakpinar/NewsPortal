@@ -25,7 +25,7 @@
                             dataTable.clear();
                             console.log(rolesResult);
                             if (rolesResult.Roles) {
-                                const articlesArray = [];
+                                const rolesArray = [];
                                 $.each(rolesResult.Roles,
                                     function (index, role) {
                                         const newTableRow = dataTable.row.add([
