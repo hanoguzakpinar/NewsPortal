@@ -20,6 +20,7 @@ namespace NewsPortal.Services.Abstract
         Task<IDataResult<CategoryListDto>> GetAllAsync();
         Task<IDataResult<CategoryListDto>> GetAllNonDeletedAsync();
         Task<IDataResult<CategoryListDto>> GetAllNonDeletedAndActiveAsync();
+        Task<IDataResult<CategoryListDto>> GetAllByDeletedAsync();
         /// <summary>
         /// Parametreleri alarak yeni bir Category ekler.
         /// </summary>
@@ -29,6 +30,7 @@ namespace NewsPortal.Services.Abstract
         Task<IDataResult<CategoryDto>> AddAsync(CategoryAddDto categoryAddDto, string createdByName);
         Task<IDataResult<CategoryDto>> UpdateAsync(CategoryUpdateDto categoryUpdateDto, string modifiedByName);
         Task<IDataResult<CategoryDto>> DeleteAsync(int categoryId, string modifiedByName);
+        Task<IDataResult<CategoryDto>> UndoDeleteAsync(int categoryId, string modifiedByName);
         Task<IResult> HardDeleteAsync(int categoryId);
         Task<IDataResult<int>> CountAsync();
         Task<IDataResult<int>> CountByNonDeletedAsync();

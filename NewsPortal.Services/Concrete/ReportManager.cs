@@ -116,6 +116,21 @@ namespace NewsPortal.Services.Concrete
             return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Category.NotFound(isPlural: false), null);
         }
 
+        public async Task<IDataResult<ReportListDto>> GetAllByDeletedAsync()
+        {
+            var reports = await UnitOfWork.Reports.GetAllAsync(r => r.IsDeleted, r => r.User, r => r.Category);
+            if (reports.Count > -1)
+            {
+                return new DataResult<ReportListDto>(ResultStatus.Success, new ReportListDto
+                {
+                    Reports = reports,
+                    ResultStatus = ResultStatus.Success
+                });
+            }
+
+            return new DataResult<ReportListDto>(ResultStatus.Error, Messages.Report.NotFound(isPlural: true), null);
+        }
+
         public async Task<IResult> AddAsync(ReportAddDto reportAddDto, string createdByName, int userId)
         {
             var report = Mapper.Map<Report>(reportAddDto);
@@ -149,6 +164,7 @@ namespace NewsPortal.Services.Concrete
             {
                 var report = await UnitOfWork.Reports.GetAsync(r => r.Id == reportId);
                 report.IsDeleted = true;
+                report.IsActive = false;
                 report.ModifiedByName = modifiedByName;
                 report.ModifiedDate = DateTime.Now;
 
@@ -156,6 +172,26 @@ namespace NewsPortal.Services.Concrete
                 await UnitOfWork.SaveAsync();
 
                 return new Result(ResultStatus.Success, Messages.Report.Delete(report.Title));
+            }
+            return new Result(ResultStatus.Success,
+                Messages.Report.NotFound(isPlural: false));
+        }
+
+        public async Task<IResult> UndoDeleteAsync(int reportId, string modifiedByName)
+        {
+            var status = await UnitOfWork.Reports.AnyAsync(r => r.Id == reportId);
+            if (status)
+            {
+                var report = await UnitOfWork.Reports.GetAsync(r => r.Id == reportId);
+                report.IsDeleted = false;
+                report.IsActive = true;
+                report.ModifiedByName = modifiedByName;
+                report.ModifiedDate = DateTime.Now;
+
+                await UnitOfWork.Reports.UpdateAsync(report);
+                await UnitOfWork.SaveAsync();
+
+                return new Result(ResultStatus.Success, Messages.Report.UndoDelete(report.Title));
             }
             return new Result(ResultStatus.Success,
                 Messages.Report.NotFound(isPlural: false));

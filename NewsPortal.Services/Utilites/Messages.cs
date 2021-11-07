@@ -34,6 +34,10 @@ namespace NewsPortal.Services.Utilites
             {
                 return $"{categoryName} adlı kategori başarıyla veritabanından silinmiştir.";
             }
+            public static string UndoDelete(string categoryName)
+            {
+                return $"{categoryName} adlı kategori başarıyla geri getirilmiştir.";
+            }
         }
 
         public static class Report
@@ -59,6 +63,11 @@ namespace NewsPortal.Services.Utilites
             public static string HardDelete(string reportTitle)
             {
                 return $"{reportTitle} başlıklı haber başarıyla veritabanından silinmiştir.";
+            }
+
+            public static string UndoDelete(string reportTitle)
+            {
+                return $"{reportTitle} adlı haber başarıyla geri getirilmiştir.";
             }
         }
 
@@ -90,6 +99,10 @@ namespace NewsPortal.Services.Utilites
             public static string HardDelete(string createdByName)
             {
                 return $"{createdByName} tarafından eklenen yorum başarıyla veritabanından silinmiştir.";
+            }
+            public static string UndoDelete(string createdByName)
+            {
+                return $"{createdByName} tarafından eklenen yorum başarıyla geri getirilmiştir.";
             }
         }
     }

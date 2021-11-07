@@ -16,9 +16,11 @@ namespace NewsPortal.Services.Abstract
         Task<IDataResult<ReportListDto>> GetAllNonDeletedAsync();
         Task<IDataResult<ReportListDto>> GetAllNonDeletedAndActiveAsync();
         Task<IDataResult<ReportListDto>> GetAllByCategoryAsync(int categoryId);
+        Task<IDataResult<ReportListDto>> GetAllByDeletedAsync();
         Task<IResult> AddAsync(ReportAddDto reportAddDto, string createdByName, int userId);
         Task<IResult> UpdateAsync(ReportUpdateDto reportUpdateDto, string modifiedByName);
         Task<IResult> DeleteAsync(int reportId, string modifiedByName);
+        Task<IResult> UndoDeleteAsync(int reportId, string modifiedByName);
         Task<IResult> HardDeleteAsync(int reportId);
         Task<IDataResult<int>> CountAsync();
         Task<IDataResult<int>> CountByNonDeletedAsync();
