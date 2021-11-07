@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NewsPortal.Mvc.AutoMapper.Profiles;
+using NewsPortal.Mvc.Filters;
 using NewsPortal.Mvc.Helpers.Abstract;
 using NewsPortal.Mvc.Helpers.Concrete;
 using NewsPortal.Services.AutoMapper.Profiles;
@@ -29,6 +30,7 @@ namespace NewsPortal.Mvc
             services.AddControllersWithViews(options =>
             {
                 options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(value => "Bu alan boþ geçilmemelidir.");
+                options.Filters.Add<MvcExceptionFilter>();//Filtreyi dahil etme
             }).AddRazorRuntimeCompilation().AddJsonOptions(opt =>
             {
                 opt.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
