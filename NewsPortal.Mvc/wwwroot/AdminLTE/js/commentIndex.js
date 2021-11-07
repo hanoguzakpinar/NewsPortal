@@ -137,7 +137,7 @@
                             if (commentResult.Data) {
                                 Swal.fire(
                                     'Silindi!',
-                                    `${commentResult.Message}`,
+                                    `Yorum silinmiştir.`,
                                     'success'
                                 );
 
@@ -146,7 +146,7 @@
                                 Swal.fire({
                                     icon: 'error',
                                     title: 'Başarısız İşlem!',
-                                    text: `${commentResult.Message}`,
+                                    text: `Silme işlemi gerçekleştirilemedi.`,
                                 });
                             }
                         },
