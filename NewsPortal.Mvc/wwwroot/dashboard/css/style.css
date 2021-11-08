@@ -310,18 +310,18 @@ code {
   text-decoration: none; }
 
 .sidebar {
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  padding: 20px;
-  padding-left: 0;
-  padding-right: 0;
-  z-index: 1000;
-  overflow-x: hidden;
-  overflow-y: auto;
-  /* Scrollable contents if viewport is shorter than content. */
-  background: #7376df; }
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+    padding-left: 0;
+    padding-right: 0;
+    z-index: 1000;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /* Scrollable contents if viewport is shorter than content. */
+    background: #7376df; }
   .sidebar a {
     color: #ffffff;
     text-transform: uppercase;

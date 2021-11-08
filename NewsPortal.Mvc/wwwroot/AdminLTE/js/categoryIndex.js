@@ -49,8 +49,8 @@
                                             convertToShortDate(category.ModifiedDate),
                                             category.ModifiedByName,
                                             `
-                                <button class="btn btn-primary btn-sm btn-update" data-id="${category.Id}"><span class="fas fa-edit"></span></button>
-                                <button class="btn btn-danger btn-sm btn-delete" data-id="${category.Id}"><span class="fas fa-minus-circle"></span></button>
+                                <button class="btn btn-primary btn-sm btn-update" data-id="${category.Id}"><span class="fa fa-edit"></span></button>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="${category.Id}"><span class="fa fa-minus-circle"></span></button>
                                             `
                                         ]).node();
                                         const jqueryTableRow = $(newTableRow);
@@ -152,8 +152,8 @@
                             convertToShortDate(categoryAddAjaxModel.CategoryDto.Category.ModifiedDate),
                             categoryAddAjaxModel.CategoryDto.Category.ModifiedByName,
                             `
-                                <button class="btn btn-primary btn-sm btn-update" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-edit"></span></button>
-                                <button class="btn btn-danger btn-sm btn-delete" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fas fa-minus-circle"></span></button>
+                                <button class="btn btn-primary btn-sm btn-update" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fa fa-edit"></span></button>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="${categoryAddAjaxModel.CategoryDto.Category.Id}"><span class="fa fa-minus-circle"></span></button>
                                             `
                         ]).node();
                         const jqueryTableRow = $(newTableRow);
@@ -276,9 +276,9 @@
                             categoryUpdateAjaxModel.CategoryDto.Category.ModifiedByName,
                             `
                                 <button class="btn btn-primary btn-sm btn-update" data-id="${categoryUpdateAjaxModel
-                                .CategoryDto.Category.Id}"><span class="fas fa-edit"></span></button>
+                                .CategoryDto.Category.Id}"><span class="fa fa-edit"></span></button>
                                 <button class="btn btn-danger btn-sm btn-delete" data-id="${categoryUpdateAjaxModel
-                                .CategoryDto.Category.Id}"><span class="fas fa-minus-circle"></span></button>
+                                .CategoryDto.Category.Id}"><span class="fa fa-minus-circle"></span></button>
                                             `
                         ]);
                         tableRow.attr("name", `${id}`);

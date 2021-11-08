@@ -1,16 +1,12 @@
 ﻿@model NewsPortal.Mvc.Areas.Admin.Models.ReportAddViewModel
 @{
-    Layout = "_Layout";
+    Layout = "_newLayout";
     ViewBag.Title = "Haber Ekle";
+    ViewBag.Dashboard = "Haber Ekle";
 }
-<ol class="breadcrumb mb-3 mt-2">
-    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
-    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Report" asp-action="Index">Haberler</a></li>
-    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Report" asp-action="Add">Ekle</a></li>
-</ol>
 
 <form asp-controller="Report" asp-action="Add" method="post" enctype="multipart/form-data">
-    <div class="row mt-2">
+    <div class="row mt-1">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">

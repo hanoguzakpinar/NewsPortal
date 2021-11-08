@@ -55,8 +55,8 @@
                                             newReport.Title,
                                             `<img src="/img/${newReport.Thumbnail}" alt="${newReport.Title}" class="my-image-table" />`,
                                             `${convertToShortDate(newReport.Date)}`,
-                                            newReport.ViewsCount,
-                                            newReport.CommentCount,
+                                            //newReport.ViewsCount,
+                                            //newReport.CommentCount,
                                             `${newReport.IsActive ? "Evet" : "Hayır"}`,
                                             `${newReport.IsDeleted ? "Evet" : "Hayır"}`,
                                             `${convertToShortDate(newReport.CreatedDate)}`,
@@ -64,8 +64,8 @@
                                             `${convertToShortDate(newReport.ModifiedDate)}`,
                                             newReport.ModifiedByName,
                                             `
-                                <a class="btn btn-primary btn-sm btn-update" href="/Admin/Report/Update?reportId=${newReport.Id}"><span class="fas fa-edit"></span></a>
-                                <button class="btn btn-danger btn-sm btn-delete" data-id="${newReport.Id}"><span class="fas fa-minus-circle"></span></button>
+                                <a class="btn btn-primary btn-sm btn-update" href="/Admin/Report/Update?reportId=${newReport.Id}"><span class="fa fa-edit"></span></a>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="${newReport.Id}"><span class="fa fa-minus-circle"></span></button>
                                             `
                                         ]).node();
                                         const jqueryTableRow = $(newTableRow);

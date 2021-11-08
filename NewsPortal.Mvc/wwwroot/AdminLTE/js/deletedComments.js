@@ -49,8 +49,8 @@
                                             `${convertToShortDate(newComment.ModifiedDate)}`,
                                             newComment.ModifiedByName,
                                             `
-                                <button class="btn btn-warning btn-sm btn-undo" data-id="${newComment.Id}"><span class="fas fa-undo"></span></button>
-                                <button class="btn btn-danger btn-sm btn-delete" data-id="${newComment.Id}"><span class="fas fa-minus-circle"></span></button>
+                                <button class="btn btn-warning btn-sm btn-undo" data-id="${newComment.Id}"><span class="fa fa-undo"></span></button>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="${newComment.Id}"><span class="fa fa-minus-circle"></span></button>
                                             `
                                         ]).node();
                                         const jqueryTableRow = $(newTableRow);

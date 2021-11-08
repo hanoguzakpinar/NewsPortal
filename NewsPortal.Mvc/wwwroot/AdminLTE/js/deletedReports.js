@@ -53,8 +53,8 @@
                                             `${convertToShortDate(newReport.ModifiedDate)}`,
                                             newReport.ModifiedByName,
                                             `
-                                <button class="btn btn-primary btn-sm btn-undo" data-id="${newReport.Id}"><span class="fas fa-undo"></span></button>
-                                <button class="btn btn-danger btn-sm btn-delete" data-id="${newReport.Id}"><span class="fas fa-minus-circle"></span></button>
+                                <button class="btn btn-primary btn-sm btn-undo" data-id="${newReport.Id}"><span class="fa fa-undo"></span></button>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="${newReport.Id}"><span class="fa fa-minus-circle"></span></button>
                                             `
                                         ]).node();
                                         const jqueryTableRow = $(newTableRow);

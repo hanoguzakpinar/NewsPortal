@@ -327,18 +327,18 @@
         if (!comment.IsActive) {
             return `
                                 <button class="btn btn-warning btn-sm btn-approve" data-id="${comment.Id
-                }"><span class="fas fa-thumbs-up"></span></button>
+                }"><span class="fa fa-thumbs-up"></span></button>
                                 <button class="btn btn-info btn-sm btn-detail" data-id="${comment.Id
-                }"><span class="fas fa-newspaper"></span></button>
+                }"><span class="fa fa-newspaper"></span></button>
                                 <button class="btn btn-primary btn-sm mt-1 btn-update" data-id="${comment.Id
-                }"><span class="fas fa-edit"></span></button>
+                }"><span class="fa fa-edit"></span></button>
                                 <button class="btn btn-danger btn-sm mt-1 btn-delete" data-id="${comment.Id
-                }"><span class="fas fa-minus-circle"></span></button>
+                }"><span class="fa fa-minus-circle"></span></button>
                                             `;
         }
-        return `<button class="btn btn-info btn-sm btn-detail" data-id="${comment.Id}"><span class="fas fa-newspaper"></span></button>
-                                <button class="btn btn-primary btn-sm mt-1 btn-update" data-id="${comment.Id}"><span class="fas fa-edit"></span></button>
-                                <button class="btn btn-danger btn-sm mt-1 btn-delete" data-id="${comment.Id}"><span class="fas fa-minus-circle"></span></button>`
+        return `<button class="btn btn-info btn-sm btn-detail" data-id="${comment.Id}"><span class="fa fa-comment"></span></button>
+                                <button class="btn btn-primary btn-sm mt-1 btn-update" data-id="${comment.Id}"><span class="fa fa-edit"></span></button>
+                                <button class="btn btn-danger btn-sm mt-1 btn-delete" data-id="${comment.Id}"><span class="fa fa-minus-circle"></span></button>`
 
 
     }

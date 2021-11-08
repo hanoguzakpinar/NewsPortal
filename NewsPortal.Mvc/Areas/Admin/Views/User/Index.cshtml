@@ -1,21 +1,26 @@
 ﻿@using NewsPortal.Shared.Utilities.Results.ComplexTypes
 @model NewsPortal.Entities.Dtos.UserListDto
 @{
-    Layout = "_Layout";
+    Layout = "_newLayout";
     ViewBag.Title = "Kullanıcılar";
+    ViewBag.Dashboard = "Kullanıcılar";
 }
-<ol class="breadcrumb mb-3 mt-2">
-    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
-    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="User" asp-action="Index">Kullanıcılar</a></li>
-</ol>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index"><em class="fa fa-home"></em></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Kullanıcılar</li>
+    </ol>
+</nav>
+
 @if (Model.ResultStatus == ResultStatus.Success)
 {
     <div id="modalPlaceHolder" aria-hidden="true"></div>
     <div class="card mb-4 mt-2">
-                            <div class="card-header">
-                                <i class="fas fa-table mr-1"></i>
+                            @*<div class="card-header">
+                                <i class="fa fa-table mr-1"></i>
                                 Kullanıcılar
-                            </div>
+                            </div>*@
         <div class="card-body">
             <div class="spinner-border" role="status" style="display: none;">
                 <span class="sr-only">Yükleniyor...</span>
@@ -35,7 +40,7 @@
                         <th>İşlemler</th>
                     </tr>
                     </thead>
-                    <tfoot>
+                    @*<tfoot>
                     <tr>
                         <th>ID</th>
                         <th>Kullanıcı Adı</th>
@@ -47,7 +52,7 @@
                         <th>Resim</th>
                         <th>İşlemler</th>
                     </tr>
-                    </tfoot>
+                    </tfoot>*@
                     <tbody>
                     @foreach (var user in Model.Users)
                     {
@@ -61,10 +66,10 @@
                             <td>@(user.About.Length>75 ? user.About.Substring(0,75):user.About)</td>
                             <td><img src="~/img/@user.Picture" alt="@user.UserName" class="my-image-table"/></td>
                             <td>
-                                <button class="btn btn-info btn-sm btn-detail" data-id="@user.Id"><span class="fas fa-newspaper"></span></button>
-                                <button class="btn btn-warning btn-sm btn-assign" data-id="@user.Id"><span class="fas fa-user-shield"></span></button>
-                                <button class="btn btn-primary btn-sm btn-update" data-id="@user.Id"><span class="fas fa-edit"></span></button>
-                                <button class="btn btn-danger btn-sm btn-delete" data-id="@user.Id"><span class="fas fa-minus-circle"></span></button>
+                                <button class="btn btn-info btn-sm btn-detail" data-id="@user.Id"><span class="fa fa-user-circle"></span></button>
+                                <button class="btn btn-warning btn-sm btn-assign" data-id="@user.Id"><span class="fa fa-shield"></span></button>
+                                <button class="btn btn-primary btn-sm btn-update" data-id="@user.Id"><span class="fa fa-edit"></span></button>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="@user.Id"><span class="fa fa-minus-circle"></span></button>
                             </td>
                         </tr>
                     }
@@ -78,7 +83,7 @@
 {
     <div class="alert alert-danger mt-3">
         @Model.Message <br/>
-        Dashboard sayfasına geri dönmek için lütfen <a class="alert-link" asp-area="Admin" asp-controller="Home" asp-action="Index">tıklayınız.</a>
+        Dashboard sayfaına geri dönmek için lütfen <a class="alert-link" asp-area="Admin" asp-controller="Home" asp-action="Index">tıklayınız.</a>
     </div>
 }
 @section Scripts

@@ -1,18 +1,19 @@
 ﻿@model NewsPortal.Entities.Dtos.CommentListDto
 @{
-    Layout = "_Layout";
+    Layout = "_newLayout";
     ViewBag.Title = "Silinmiş Yorumlar";
+    ViewBag.Dashboard = "Silinmiş Yorumlar";
 }
-<ol class="breadcrumb mb-3 mt-2">
-    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
-    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Comment" asp-action="DeletedComments">Silinmiş Yorumlar</a></li>
-</ol>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index"><em class="fa fa-home"></em></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Silinmiş Yorumlar</li>
+    </ol>
+</nav>
+
 <div id="modalPlaceHolder" aria-hidden="true"></div>
 <div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table mr-1"></i>
-        Silinmiş Yorumlar
-    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="deletedCommentsTable" width="100%" cellspacing="0">
@@ -30,7 +31,7 @@
                         <th>İşlemler</th>
                     </tr>
                 </thead>
-                <tfoot>
+                @*<tfoot>
                     <tr>
                         <th>#</th>
                         <th>Haber</th>
@@ -43,7 +44,7 @@
                         <th>Son Düzenleyen Kullanıcı Adı</th>
                         <th>İşlemler</th>
                     </tr>
-                </tfoot>
+                </tfoot>*@
                 <tbody>
                     @foreach (var comment in Model.Comments)
                     {
@@ -58,8 +59,8 @@
                             <td>@comment.ModifiedDate.ToShortDateString()</td>
                             <td>@comment.ModifiedByName</td>
                             <td>
-                                <button class="btn btn-warning btn-sm mt-1 btn-undo" data-id="@comment.Id"><span class="fas fa-undo"></span></button>
-                                <button class="btn btn-danger btn-sm mt-1 btn-delete" data-id="@comment.Id"><span class="fas fa-minus-circle"></span></button>
+                                <button class="btn btn-warning btn-sm mt-1 btn-undo" data-id="@comment.Id"><span class="fa fa-undo"></span></button>
+                                <button class="btn btn-danger btn-sm mt-1 btn-delete" data-id="@comment.Id"><span class="fa fa-minus-circle"></span></button>
                             </td>
                         </tr>
                     }

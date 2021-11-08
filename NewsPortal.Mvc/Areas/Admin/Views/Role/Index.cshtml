@@ -1,18 +1,23 @@
 ﻿@model NewsPortal.Entities.Dtos.RoleListDto
 @{
-    Layout = "_Layout";
+    Layout = "_newLayout";
     ViewBag.Title = "Roller";
+    ViewBag.Dashboard = "Roller";
 }
-<ol class="breadcrumb mb-3 mt-2">
-    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
-    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Role" asp-action="Index">Roller</a></li>
-</ol>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index"><em class="fa fa-home"></em></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Roller</li>
+    </ol>
+</nav>
+
 <div id="modalPlaceHolder" aria-hidden="true"></div>
 <div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table mr-1"></i>
+    @*<div class="card-header">
+        <i class="fa fa-table mr-1"></i>
         Roller
-    </div>
+    </div>*@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="rolesTable" width="100%" cellspacing="0">

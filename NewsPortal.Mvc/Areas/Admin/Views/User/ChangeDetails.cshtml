@@ -1,14 +1,15 @@
 ﻿@model NewsPortal.Entities.Dtos.UserUpdateDto
 @{
-    Layout = "_Layout";
+    Layout = "_newLayout";
     ViewBag.Title = "Profil Düzenle";
+    ViewBag.Dashboard = "Profil Düzenle";
 }
 <div class="row">
     <div class="col-lg-8 offset-lg-2">
         <div class="card mt-1 mb-1">
-            <div class="card-header">
-                <h4 class="text-center"><span class="fas fa-edit"></span> Profil Düzenle</h4>
-            </div>
+            @*<div class="card-header">
+                <h4 class="text-center"><span class="fa fa-edit"></span> Profil Düzenle</h4>
+            </div>*@
             <div class="card-body">
                 <form asp-controller="User" asp-action="ChangeDetails" enctype="multipart/form-data" method="post" id="form-user-update">
                     <div asp-validation-summary="All" class="text-danger" id="validation-summary"></div>
@@ -91,8 +92,8 @@
                             <span class="text-danger" asp-validation-for="PictureFile"></span>
                         </div>
                         <div class="form-group col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary btn-lg"><span class="fas fa-save"></span> Kaydet</button>
-                            <a class="btn btn-danger btn-lg" asp-area="Admin" asp-controller="Home" asp-action="Index"><span class="fas fa-times"></span> İptal</a>
+                            <button type="submit" class="btn btn-primary btn-lg"><span class="fa fa-save"></span> Kaydet</button>
+                            <a class="btn btn-danger btn-lg" asp-area="Admin" asp-controller="Home" asp-action="Index"><span class="fa fa-times"></span> İptal</a>
                         </div>
                     </div>
                     

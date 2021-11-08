@@ -1,17 +1,17 @@
 ﻿@model NewsPortal.Entities.Dtos.ReportListDto
 @{
-    Layout = "_Layout";
+    Layout = "_newLayout";
     ViewBag.Title = "Haberler";
+    ViewBag.Dashboard = "Haberler";
 }
-<ol class="breadcrumb mb-3 mt-2">
-    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
-    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Report" asp-action="Index">Haberler</a></li>
-</ol>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index"><em class="fa fa-home"></em></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Haberler</li>
+    </ol>
+</nav>
+
 <div class="card mb-4">
-    <div class="card-header">
-        <i class="fas fa-table mr-1"></i>
-        Haberler
-    </div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="reportsTable" width="100%" cellspacing="0">
@@ -22,8 +22,8 @@
                         <th>Başlık</th>
                         <th>Küçük Resim</th>
                         <th>Tarih</th>
-                        <th>Okunma Sayısı</th>
-                        <th>Yorum Sayısı</th>
+                        @*<th>Okunma Sayısı</th>
+                        <th>Yorum Sayısı</th>*@
                         <th>Aktif Mi?</th>
                         <th>Silinmiş Mi?</th>
                         <th>Oluşturulma Tarihi</th>
@@ -33,7 +33,7 @@
                         <th>İşlemler</th>
                     </tr>
                 </thead>
-                <tfoot>
+                @*<tfoot>
                     <tr>
                         <th>#</th>
                         <th>Kategori</th>
@@ -50,7 +50,7 @@
                         <th>Son Düzenleyen Kullanıcı Adı</th>
                         <th>İşlemler</th>
                     </tr>
-                </tfoot>
+                </tfoot>*@
                 <tbody>
                     @foreach (var report in Model.Reports)
                     {
@@ -60,8 +60,8 @@
                             <td>@report.Title</td>
                             <td><img src="~/img/@report.Thumbnail" class="my-image-table" /></td>
                             <td>@report.Date.ToShortDateString()</td>
-                            <td>@report.ViewsCount</td>
-                            <td>@report.CommentCount</td>
+                            @*<td>@report.ViewsCount</td>
+                            <td>@report.CommentCount</td>*@
                             <td>@(report.IsActive ? "Evet" : "Hayır")</td>
                             <td>@(report.IsDeleted ? "Evet" : "Hayır")</td>
                             <td>@report.CreatedDate.ToShortDateString()</td>
@@ -70,10 +70,10 @@
                             <td>@report.ModifiedByName</td>
                             <td>
                                 <a class="btn btn-primary btn-sm btn-update" data-id="@report.Id" asp-area="Admin" asp-controller="Report" asp-action="Update" asp-route-reportId="@report.Id">
-                                    <span class="fas fa-edit"></span>
+                                    <span class="fa fa-edit"></span>
                                 </a>
                                 <button class="btn btn-danger btn-sm btn-delete" data-id="@report.Id">
-                                    <span class="fas fa-minus-circle"></span>
+                                    <span class="fa fa-minus-circle"></span>
                                 </button>
                             </td>
                         </tr>
