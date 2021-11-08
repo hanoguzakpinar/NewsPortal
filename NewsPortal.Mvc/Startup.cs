@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NewsPortal.Entities.Concrete;
 using NewsPortal.Mvc.AutoMapper.Profiles;
 using NewsPortal.Mvc.Filters;
 using NewsPortal.Mvc.Helpers.Abstract;
@@ -27,6 +28,7 @@ namespace NewsPortal.Mvc
         public IConfiguration Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<WebsiteInfo>(Configuration.GetSection("WebsiteInfo"));
             services.AddControllersWithViews(options =>
             {
                 options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(value => "Bu alan boþ geçilmemelidir.");

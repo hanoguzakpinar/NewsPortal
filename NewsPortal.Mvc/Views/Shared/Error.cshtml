@@ -1,0 +1,20 @@
+﻿@using NewsPortal.Shared.Entities.Concrete
+@{
+    Layout = "_ErrorLayout";
+    ViewBag.Title = "Sunucu Hatası (500)"; // Veritabanı Hatası
+    MvcErrorModel errorModel = ViewData["MvcErrorModel"] as MvcErrorModel;
+}
+<div class="col-lg-12">
+    <div class="text-center mt-4">
+        <h1 class="display-1">500</h1>
+        <p class="lead">@errorModel.Message</p>
+        @if (errorModel.Detail != null)
+        {
+            <p class="lead">@errorModel.Detail</p>
+        }
+        <a asp-controller="Home" asp-action="Index" class="text-warning">
+            <i class="fas fa-arrow-left mr-1"></i>
+            Anasayfa'ya dönmek için tıklayınız.
+        </a>
+    </div>
+</div>
