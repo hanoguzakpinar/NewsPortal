@@ -1,21 +1,25 @@
 ﻿@using NewsPortal.Shared.Utilities.Results.ComplexTypes
 @model NewsPortal.Entities.Dtos.CategoryListDto
 @{
-    Layout = "_Layout";
+    Layout = "_newLayout";
     ViewBag.Title = "Kategoriler Index";
 }
-<ol class="breadcrumb mb-3 mt-2">
-    <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a></li>
-    <li class="breadcrumb-item active"><a asp-area="Admin" asp-controller="Category" asp-action="Index">Kategoriler</a></li>
-</ol>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-area="Admin" asp-controller="Home" asp-action="Index"><em class="fa fa-home"></em></a></li>
+        <li class="breadcrumb-item active" aria-current="page">Kategoriler</li>
+    </ol>
+</nav>
+
 @if (Model.ResultStatus == ResultStatus.Success)
 {
     <div id="modalPlaceHolder" aria-hidden="true"></div>
     <div class="card mb-4 mt-2">
-        <div class="card-header">
+        @*<div class="card-header">
             <i class="fas fa-table mr-1"></i>
             Kategoriler
-        </div>
+        </div>*@
         <div class="card-body">
             <div class="spinner-border" role="status" style="display: none;">
                 <span class="sr-only">Yükleniyor...</span>

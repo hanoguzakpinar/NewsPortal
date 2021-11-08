@@ -27,6 +27,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\dashboard\sass\.sass-cache\56c33979f3a47ec3045084cc9e7e0593da0c05b0\style.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\56c33979f3a47ec3045084cc9e7e0593da0c05b0\theme-nightfall.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\a45377d975965d6f7b00a2583096190bcd568907\style.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\a54d729c4cd4eadb887b2589595bf4a3f4989946\style.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\e79dd813f7089c7be7f1b42ed29427029811711e\style %28original%29.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\e79dd813f7089c7be7f1b42ed29427029811711e\style.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\e79dd813f7089c7be7f1b42ed29427029811711e\theme-1.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\e79dd813f7089c7be7f1b42ed29427029811711e\theme-aqua.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\e79dd813f7089c7be7f1b42ed29427029811711e\theme-nightfall.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\e79dd813f7089c7be7f1b42ed29427029811711e\theme-organic.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\e79dd813f7089c7be7f1b42ed29427029811711e\theme-ruby.scssc" />
+    <None Include="wwwroot\dashboard\sass\.sass-cache\e79dd813f7089c7be7f1b42ed29427029811711e\theme-teal.scssc" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="Areas\Admin\Views\Home\Index.cshtml">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>

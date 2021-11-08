@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    @*<link rel="icon" href="~/dashboard/">*@
+    <title>@ViewBag.Title - Admin Paneli | NewsPortal</title>
+    @await Html.PartialAsync("_newLayoutCssPartial")
+    @await RenderSectionAsync("Styles", false)
+</head>
+<body>
+    <div class="container-fluid" id="wrapper">
+        <div class="row">
+            @await Component.InvokeAsync("AdminMenu")
+            <main class="col-xs-12 col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto">
+                @await Component.InvokeAsync("UserMenu")
+                <section class="row">
+                    <div class="col-sm-12">
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert bg-success" role="alert">
+                                <em class="fa fa-check-circle mr-2"></em>
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
+                        @RenderBody()
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    @await Html.PartialAsync("_newLayoutJsPartial")
+    @await Html.PartialAsync("_LayoutJsPartial")
+    @await RenderSectionAsync("Scripts", false)
+
+</body>
+</html>
