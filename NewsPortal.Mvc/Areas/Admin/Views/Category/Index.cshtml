@@ -17,10 +17,6 @@
 {
     <div id="modalPlaceHolder" aria-hidden="true"></div>
     <div class="card mb-4 mt-2">
-        @*<div class="card-header">
-                <i class="fas fa-table mr-1"></i>
-                Kategoriler
-            </div>*@
         <div class="card-body">
             <div class="spinner-border" role="status" style="display: none;">
                 <span class="sr-only">Yükleniyor...</span>
@@ -42,21 +38,6 @@
                             <th>İşlemler</th>
                         </tr>
                     </thead>
-                    @*<tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Adı</th>
-                                <th>Açıklaması</th>
-                                <th>Aktif Mi?</th>
-                                <th>Silinmiş Mi?</th>
-                                <th>Not</th>
-                                <th>Oluşturulma Tarihi</th>
-                                <th>Oluşturan Kullanıcı Adı</th>
-                                <th>Son Düzenlenme Tarihi</th>
-                                <th>Son Düzenleyen Kullanıcı Adı</th>
-                                <th>İşlemler</th>
-                            </tr>
-                        </tfoot>*@
                     <tbody>
                         @foreach (var category in Model.Categories)
                         {

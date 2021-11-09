@@ -27,8 +27,8 @@
                         <th>Başlık</th>
                         <th>Küçük Resim</th>
                         <th>Tarih</th>
-                        <th>Okunma Sayısı</th>
-                        <th>Yorum Sayısı</th>
+                        @*<th>Okunma Sayısı</th>
+                        <th>Yorum Sayısı</th>*@
                         <th>Aktif Mi?</th>
                         <th>Silinmiş Mi?</th>
                         <th>Oluşturulma Tarihi</th>
@@ -65,8 +65,8 @@
                             <td>@report.Title</td>
                             <td><img src="~/img/@report.Thumbnail" class="my-image-table" /></td>
                             <td>@report.Date.ToShortDateString()</td>
-                            <td>@report.ViewsCount</td>
-                            <td>@report.CommentCount</td>
+                            @*<td>@report.ViewsCount</td>
+                            <td>@report.CommentCount</td>*@
                             <td>@(report.IsActive ? "Evet" : "Hayır")</td>
                             <td>@(report.IsDeleted ? "Evet" : "Hayır")</td>
                             <td>@report.CreatedDate.ToShortDateString()</td>
@@ -74,8 +74,8 @@
                             <td>@report.ModifiedDate.ToShortDateString()</td>
                             <td>@report.ModifiedByName</td>
                             <td>
-                                <a class="btn btn-warning btn-sm btn-undo" data-id="@report.Id"><span class="fas fa-undo"></span></a>
-                                <button class="btn btn-danger btn-sm btn-delete" data-id="@report.Id"><span class="fas fa-minus-circle"></span></button>
+                                <a class="btn btn-warning btn-sm btn-undo" data-id="@report.Id"><span class="fa fa-undo"></span></a>
+                                <button class="btn btn-danger btn-sm btn-delete" data-id="@report.Id"><span class="fa fa-minus-circle"></span></button>
                             </td>
                         </tr>
                     }

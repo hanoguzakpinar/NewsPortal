@@ -14,10 +14,6 @@
 
 <div id="modalPlaceHolder" aria-hidden="true"></div>
 <div class="card mb-4">
-    @*<div class="card-header">
-        <i class="fa fa-table mr-1"></i>
-        Roller
-    </div>*@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="rolesTable" width="100%" cellspacing="0">
@@ -27,12 +23,6 @@
                         <th>Rol Adı</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Rol Adı</th>
-                    </tr>
-                </tfoot>
                 <tbody>
                     @foreach (var role in Model.Roles)
                     {

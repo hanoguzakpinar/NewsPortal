@@ -46,8 +46,8 @@
                                             user.About.length > 75 ? user.About.substring(0, 75) : user.About,
                                             `<img src="/img/${user.Picture}" alt="${user.UserName}" class="my-image-table" />`,
                                             `
-                                <button class="btn btn-info btn-sm btn-detail" data-id="${user.Id}"><span class="fa fa-newspaper"></span></button>
-                                <button class="btn btn-warning btn-sm btn-assign" data-id="${user.Id}"><span class="fa fa-user-shield"></span></button>
+                                <button class="btn btn-info btn-sm btn-detail" data-id="${user.Id}"><span class="fa fa-user-circle"></span></button>
+                                <button class="btn btn-warning btn-sm btn-assign" data-id="${user.Id}"><span class="fa fa-shield"></span></button>
                                 <button class="btn btn-primary btn-sm btn-update" data-id="${user.Id}"><span class="fa fa-edit"></span></button>
                                 <button class="btn btn-danger btn-sm btn-delete" data-id="${user.Id}"><span class="fa fa-minus-circle"></span></button>
                                             `
@@ -155,8 +155,8 @@
                                 userAddAjaxModel.UserDto.User.About.length > 75 ? userAddAjaxModel.UserDto.User.About.substring(0, 75) : userAddAjaxModel.UserDto.User.About,
                                 `<img src="/img/${userAddAjaxModel.UserDto.User.Picture}" alt="${userAddAjaxModel.UserDto.User.UserName}" class="my-image-table" />`,
                                 `
-                                <button class="btn btn-info btn-sm btn-detail" data-id="${userAddAjaxModel.UserDto.User.Id}"><span class="fa fa-newspaper"></span></button>
-                                <button class="btn btn-warning btn-sm btn-assign" data-id="${userAddAjaxModel.UserDto.User.Id}"><span class="fa fa-user-shield"></span></button>
+                                <button class="btn btn-info btn-sm btn-detail" data-id="${userAddAjaxModel.UserDto.User.Id}"><span class="fa fa-user-circle"></span></button>
+                                <button class="btn btn-warning btn-sm btn-assign" data-id="${userAddAjaxModel.UserDto.User.Id}"><span class="fa fa-shield"></span></button>
                                 <button class="btn btn-primary btn-sm btn-update" data-id="${userAddAjaxModel.UserDto.User.Id}"><span class="fa fa-edit"></span></button>
                                 <button class="btn btn-danger btn-sm btn-delete" data-id="${userAddAjaxModel.UserDto.User.Id}"><span class="fa fa-minus-circle"></span></button>
                             `
@@ -290,8 +290,8 @@
                                 userUpdateAjaxModel.UserDto.User.About.length > 75 ? userUpdateAjaxModel.UserDto.User.About.substring(0, 75) : userUpdateAjaxModel.UserDto.User.About,
                                 `<img src="/img/${userUpdateAjaxModel.UserDto.User.Picture}" alt="${userUpdateAjaxModel.UserDto.User.UserName}" class="my-image-table" />`,
                                 `
-                                <button class="btn btn-info btn-sm btn-detail" data-id="${userUpdateAjaxModel.UserDto.User.Id}"><span class="fa fa-newspaper"></span></button>
-                                <button class="btn btn-warning btn-sm btn-assign" data-id="${userUpdateAjaxModel.UserDto.User.Id}"><span class="fa fa-user-shield"></span></button>
+                                <button class="btn btn-info btn-sm btn-detail" data-id="${userUpdateAjaxModel.UserDto.User.Id}"><span class="fa fa fa-user-circle"></span></button>
+                                <button class="btn btn-warning btn-sm btn-assign" data-id="${userUpdateAjaxModel.UserDto.User.Id}"><span class="fa fa-shield"></span></button>
                                 <button class="btn btn-primary btn-sm btn-update" data-id="${userUpdateAjaxModel.UserDto.User.Id}"><span class="fa fa-edit"></span></button>
                                 <button class="btn btn-danger btn-sm btn-delete" data-id="${userUpdateAjaxModel.UserDto.User.Id}"><span class="fa fa-minus-circle"></span></button>
                             `

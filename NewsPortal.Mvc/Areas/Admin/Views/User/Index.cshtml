@@ -17,10 +17,6 @@
 {
     <div id="modalPlaceHolder" aria-hidden="true"></div>
     <div class="card mb-4 mt-2">
-                            @*<div class="card-header">
-                                <i class="fa fa-table mr-1"></i>
-                                Kullanıcılar
-                            </div>*@
         <div class="card-body">
             <div class="spinner-border" role="status" style="display: none;">
                 <span class="sr-only">Yükleniyor...</span>
@@ -40,19 +36,6 @@
                         <th>İşlemler</th>
                     </tr>
                     </thead>
-                    @*<tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>Kullanıcı Adı</th>
-                        <th>E-Posta Adresi</th>
-                        <th>Adı</th>
-                        <th>Soyadı</th>
-                        <th>Telefon Numarası</th>
-                        <th>Hakkında</th>
-                        <th>Resim</th>
-                        <th>İşlemler</th>
-                    </tr>
-                    </tfoot>*@
                     <tbody>
                     @foreach (var user in Model.Users)
                     {
