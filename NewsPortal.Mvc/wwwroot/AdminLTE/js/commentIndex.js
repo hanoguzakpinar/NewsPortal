@@ -329,7 +329,7 @@
                                 <button class="btn btn-warning btn-sm btn-approve" data-id="${comment.Id
                 }"><span class="fa fa-thumbs-up"></span></button>
                                 <button class="btn btn-info btn-sm btn-detail" data-id="${comment.Id
-                }"><span class="fa fa-newspaper"></span></button>
+                }"><span class="fa fa-comment"></span></button>
                                 <button class="btn btn-primary btn-sm mt-1 btn-update" data-id="${comment.Id
                 }"><span class="fa fa-edit"></span></button>
                                 <button class="btn btn-danger btn-sm mt-1 btn-delete" data-id="${comment.Id
