@@ -1,0 +1,42 @@
+﻿@model NewsPortal.Mvc.Areas.Admin.Models.UserRegistrationModel
+@{
+    Layout = "_newUserLoginLayout";
+    ViewBag.Title = "Kayıt Ol";
+}
+
+<div class="card-block">
+    <h3 class="card-title text-center mt-1">Kayıt Ol</h3>
+    <div class="divider mt-0"></div>
+    <form asp-controller="Auth" asp-action="Register" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <fieldset>
+            <div class="form-group">
+                <input class="form-control" placeholder="İsim" type="text" autofocus="" asp-for="FirstName">
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="Soyisim" type="text" autofocus="" asp-for="LastName">
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="E-mail" type="email" autofocus="" asp-for="Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="Şifre" asp-for="Password" type="password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control" placeholder="Şifre Tekrar" asp-for="ConfirmPassword" type="password">
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                <button class="btn btn-primary" type="submit"><span class="fa fa-save"></span> Kayıt Ol</button>
+            </div>
+        </fieldset>
+    </form>
+    <div class="card-footer text-center">
+        <a class="btn btn-success btn-block text-white" asp-controller="Auth" asp-action="Login"><span class="fa fa-edit"></span> Giriş Yap</a>
+    </div>
+</div>

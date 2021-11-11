@@ -199,13 +199,20 @@ namespace NewsPortal.Data.Concrete.EntityFramework.Mappings
                     NormalizedName = "ADMINAREA.HOME.READ",
                     ConcurrencyStamp = Guid.NewGuid().ToString()
                 },
-            new Role
-            {
-                Id = 22,
-                Name = "SuperAdmin",
-                NormalizedName = "SUPERADMIN",
-                ConcurrencyStamp = Guid.NewGuid().ToString()
-            }
+                new Role
+                {
+                    Id = 22,
+                    Name = "SuperAdmin",
+                    NormalizedName = "SUPERADMIN",
+                    ConcurrencyStamp = Guid.NewGuid().ToString()
+                },
+                new Role
+                {
+                    Id = 23,
+                    Name = "Normal",
+                    NormalizedName = "NORMAL",
+                    ConcurrencyStamp = Guid.NewGuid().ToString()
+                }
             );
         }
     }

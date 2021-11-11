@@ -92,6 +92,11 @@ namespace NewsPortal.Mvc
                     areaName: "Admin",
                     pattern: "Admin/{controller=Home}/{action=Index}/{id?}"//id nullable
                 );
+                endpoints.MapAreaControllerRoute(
+                    name: "NormalUser",
+                    areaName: "NormalUser",
+                    pattern: "NormalUser/{controller=Home}/{action=Index}/{id?}"//id nullable
+                );
                 endpoints.MapDefaultControllerRoute();//varsayýlan olarak home-indexe yönlendirir.
             });
         }
