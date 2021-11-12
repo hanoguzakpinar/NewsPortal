@@ -27,7 +27,7 @@
                             <td>@report.Title</td>
                             <td><img src="~/img/@report.Thumbnail" class="my-image-table" /></td>
                             <td>@report.Date.ToShortDateString()</td>
-                            <td>@report.CreatedByName</td>
+                            <td>@report.User.FirstName @report.User.LastName</td>
                             <td>
                                 <a class="btn btn-primary btn-sm" data-id="@report.Id" asp-area="NormalUser" asp-controller="Home" asp-action="ReportDetail" asp-route-reportId="@report.Id">
                                     <span class="fa fa-edit"></span>

@@ -54,7 +54,7 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
                 if (userUpdateDto.PictureFile != null)
                 {
                     var uploadedImageDtoResult = await ImageHelper.Upload(userUpdateDto.UserName, userUpdateDto.PictureFile, PictureType.User);
-                    userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
+                    userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.jpg";
 
                     if (oldUserPicture != "userImages/defaultUser.jpg")
                     {

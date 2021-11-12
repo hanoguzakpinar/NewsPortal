@@ -84,7 +84,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var uploadedImageDtoResult = await ImageHelper.Upload(userAddDto.UserName, userAddDto.PictureFile, PictureType.User);
-                userAddDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
+                userAddDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.jpg";
 
                 var user = Mapper.Map<User>(userAddDto);
 
@@ -139,7 +139,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             var result = await UserManager.DeleteAsync(user);
             if (result.Succeeded)
             {
-                if (user.Picture != "userImages/defaultUser.png")
+                if (user.Picture != "userImages/defaultUser.jpg")
                     ImageHelper.Delete(user.Picture);
 
                 var deletedUser = JsonSerializer.Serialize(new UserDto
@@ -190,7 +190,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 if (userUpdateDto.PictureFile != null)
                 {
                     var uploadedImageDtoResult = await ImageHelper.Upload(userUpdateDto.UserName, userUpdateDto.PictureFile, PictureType.User);
-                    userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
+                    userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.jpg";
 
                     if (oldUserPicture != "userImages/defaultUser.jpg")
                     {
@@ -274,7 +274,7 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 if (userUpdateDto.PictureFile != null)
                 {
                     var uploadedImageDtoResult = await ImageHelper.Upload(userUpdateDto.UserName, userUpdateDto.PictureFile, PictureType.User);
-                    userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.png";
+                    userUpdateDto.Picture = uploadedImageDtoResult.ResultStatus == ResultStatus.Success ? uploadedImageDtoResult.Data.FullName : "userImages/defaultUser.jpg";
 
                     if (oldUserPicture != "userImages/defaultUser.jpg")
                     {
