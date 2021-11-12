@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using NewsPortal.Entities.ComplexTypes;
 using NewsPortal.Entities.Concrete;
 using NewsPortal.Entities.Dtos;
@@ -13,6 +14,7 @@ using NewsPortal.Mvc.Areas.Admin.Controllers;
 using NewsPortal.Mvc.Helpers.Abstract;
 using NewsPortal.Mvc.Helpers.Concrete;
 using NewsPortal.Services.Abstract;
+using NewsPortal.Services.Concrete;
 using NewsPortal.Shared.Utilities.Results.ComplexTypes;
 using NToastNotify;
 
@@ -152,6 +154,19 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
             if (result.ResultStatus == ResultStatus.Success)
             {
                 return View(result.Data);
+            }
+
+            return NotFound();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> ReportDetail(int reportId)
+        {
+            var report = await _reportService.GetAsync(reportId);
+            if (report.ResultStatus == ResultStatus.Success)
+            {
+                return View(report.Data);
             }
 
             return NotFound();

@@ -4,6 +4,7 @@
     ViewBag.Title = "Haberler";
     ViewBag.Dashboard = "Haberler";
 }
+
 <div class="card mb-4">
     <div class="card-body">
         <div class="table-responsive">
@@ -14,8 +15,8 @@
                         <th>Başlık</th>
                         <th>Küçük Resim</th>
                         <th>Tarih</th>
-                        <th>Oluşturulma Tarihi</th>
-                        <th>Oluşturan Kullanıcı Adı</th>
+                        <th>Editör</th>
+                        <th>Detay</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,8 +27,12 @@
                             <td>@report.Title</td>
                             <td><img src="~/img/@report.Thumbnail" class="my-image-table" /></td>
                             <td>@report.Date.ToShortDateString()</td>
-                            <td>@report.CreatedDate.ToShortDateString()</td>
                             <td>@report.CreatedByName</td>
+                            <td>
+                                <a class="btn btn-primary btn-sm" data-id="@report.Id" asp-area="NormalUser" asp-controller="Home" asp-action="ReportDetail" asp-route-reportId="@report.Id">
+                                    <span class="fa fa-edit"></span>
+                                </a>
+                            </td>
                         </tr>
                     }
                 </tbody>
