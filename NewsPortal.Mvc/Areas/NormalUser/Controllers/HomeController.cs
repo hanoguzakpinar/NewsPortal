@@ -12,6 +12,7 @@ using NewsPortal.Entities.Dtos;
 using NewsPortal.Mvc.Areas.Admin.Controllers;
 using NewsPortal.Mvc.Helpers.Abstract;
 using NewsPortal.Mvc.Helpers.Concrete;
+using NewsPortal.Services.Abstract;
 using NewsPortal.Shared.Utilities.Results.ComplexTypes;
 using NToastNotify;
 
@@ -22,10 +23,12 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
     {
         private readonly SignInManager<User> _signInManager;
         private readonly IToastNotification _toastNotification;
-        public HomeController(UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper, SignInManager<User> signInManager, IToastNotification toastNotification) : base(userManager, mapper, imageHelper)
+        private readonly IReportService _reportService;
+        public HomeController(UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper, SignInManager<User> signInManager, IToastNotification toastNotification, IReportService reportService) : base(userManager, mapper, imageHelper)
         {
             _signInManager = signInManager;
             _toastNotification = toastNotification;
+            _reportService = reportService;
         }
 
         [Authorize]
@@ -139,6 +142,19 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
             {
                 return View();
             }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<IActionResult> Reports()
+        {
+            var result = await _reportService.GetAllNonDeletedAsync();
+            if (result.ResultStatus == ResultStatus.Success)
+            {
+                return View(result.Data);
+            }
+
+            return NotFound();
         }
     }
 }

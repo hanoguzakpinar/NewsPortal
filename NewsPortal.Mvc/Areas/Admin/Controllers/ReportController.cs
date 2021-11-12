@@ -125,8 +125,8 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                         reportUpdateViewModel.ThumbnailFile, PictureType.Post);
                     reportUpdateViewModel.Thumbnail = uploadedImageResult.ResultStatus == ResultStatus.Success
                         ? uploadedImageResult.Data.FullName
-                        : "postImages/defaultThumbnail.jpg";
-                    if (oldThumbnail != "postImages/defaultThumbnail.jpg")
+                        : "postImages/defaultThumbnail.png";
+                    if (oldThumbnail != "postImages/defaultThumbnail.png")
                     {
                         isNewThumbnailUploaded = true;
                     }

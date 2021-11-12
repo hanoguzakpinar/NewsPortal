@@ -103,7 +103,9 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
                 return View(userModel);
             }
             var user = _mapper.Map<User>(userModel);
-            user.Picture = "~/img/userImages/defaultUser.png";
+            user.Picture = "userImages/defaultUser.png";
+            user.PhoneNumber = "00000000000";
+            user.About = "";
             var result = await _userManager.CreateAsync(user, userModel.Password);
             if (!result.Succeeded)
             {

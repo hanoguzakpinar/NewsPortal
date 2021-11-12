@@ -1,0 +1,41 @@
+﻿@model NewsPortal.Entities.Dtos.ReportListDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "Haberler";
+    ViewBag.Dashboard = "Haberler";
+}
+<div class="card mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="reportsTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Kategori</th>
+                        <th>Başlık</th>
+                        <th>Küçük Resim</th>
+                        <th>Tarih</th>
+                        <th>Oluşturulma Tarihi</th>
+                        <th>Oluşturan Kullanıcı Adı</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var report in Model.Reports)
+                    {
+                        <tr name="@report.Id">
+                            <td>@report.Category.Name</td>
+                            <td>@report.Title</td>
+                            <td><img src="~/img/@report.Thumbnail" class="my-image-table" /></td>
+                            <td>@report.Date.ToShortDateString()</td>
+                            <td>@report.CreatedDate.ToShortDateString()</td>
+                            <td>@report.CreatedByName</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script src="~/AdminLTE/js/reportUserIndex.js" type="application/ecmascript"></script>
+}
