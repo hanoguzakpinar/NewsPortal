@@ -1,0 +1,12 @@
+﻿@model NewsPortal.Mvc.Areas.Admin.Models.UserWithRolesViewModel
+
+<nav class="sidebar col-xs-12 col-sm-4 col-lg-3 col-xl-2">
+    <h1 class="site-title"><a asp-area="Admin" asp-controller="Home" asp-action="Index"><em class="fa fa-trademark"></em> NewsPortal</a></h1>
+
+    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle"><em class="fa fa-bars"></em></a>
+    <ul class="nav nav-pills flex-column sidebar-nav">
+        <li class="nav-item"><a class="nav-link" asp-area="NormalUser" asp-controller="Home" asp-action="Index"><em class="fa fa-user"></em> Profil</a></li>
+        <li class="nav-item"><a class="nav-link" asp-area="NormalUser" asp-controller="Home" asp-action="PasswordChange"><em class="fa fa-lock"></em> Şifre Değiştir</a></li>
+    </ul>
+    <a asp-area="Admin" asp-controller="Auth" asp-action="Logout" class="logout-button"><em class="fa fa-power-off"></em> Çıkış Yap</a>
+</nav>

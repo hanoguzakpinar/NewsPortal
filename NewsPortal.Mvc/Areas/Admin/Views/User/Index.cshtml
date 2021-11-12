@@ -45,8 +45,15 @@
                                 <td>@user.Email</td>
                                 <td>@user.FirstName</td>
                                 <td>@user.LastName</td>
-                                <td>@user.PhoneNumber</td>
-                                @if (user.About != null)
+                                @if (@user.PhoneNumber != null)
+                                {
+                                    <td>@user.PhoneNumber</td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                @if (@user.About != null)
                                 {
                                     <td>@(user.About.Length>75 ? user.About.Substring(0,75):user.About)</td>
                                 }

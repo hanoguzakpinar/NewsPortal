@@ -10,7 +10,7 @@ namespace NewsPortal.Mvc.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return RedirectToAction("Login", "Auth", new { Area = "Admin" });
         }
     }
 }
