@@ -37,6 +37,7 @@
     <!-- Placed at the end of the document so the pages load faster -->
     @await Html.PartialAsync("_newLayoutJsPartial")
     @await Html.PartialAsync("_LayoutJsPartial")
+    @await Component.InvokeAsync("NToastNotify")
     @await RenderSectionAsync("Scripts", false)
 
 </body>

@@ -24,12 +24,10 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
     public class HomeController : BaseController
     {
         private readonly SignInManager<User> _signInManager;
-        private readonly IToastNotification _toastNotification;
         private readonly IReportService _reportService;
-        public HomeController(UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper, SignInManager<User> signInManager, IToastNotification toastNotification, IReportService reportService) : base(userManager, mapper, imageHelper)
+        public HomeController(UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper, SignInManager<User> signInManager, IReportService reportService) : base(userManager, mapper, imageHelper)
         {
             _signInManager = signInManager;
-            _toastNotification = toastNotification;
             _reportService = reportService;
         }
 
@@ -71,7 +69,7 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
                         ImageHelper.Delete(oldUserPicture);
                     }
 
-                    _toastNotification.AddSuccessToastMessage("Bilgileriniz güncellenmiştir.");
+                    TempData["SuccessMessage"] = "Bilgileriniz güncellenmiştir.";
                     return View(userUpdateDto);
                 }
                 else
@@ -121,7 +119,7 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
                             passwordChangeDto.NewPassword, true, false);
                         //4. parametre yanlış girişte hesap kilitlensin mi? 3.parametre beni hatırla kısmı.
 
-                        _toastNotification.AddSuccessToastMessage("Şifreniz başarıyla güncellenmiştir.");
+                        TempData["SuccessMessage"] = "Şifreniz başarıyla güncellenmiştir.";
                         return View();
                     }
                     else

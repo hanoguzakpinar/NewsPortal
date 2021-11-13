@@ -18,15 +18,22 @@
                 @await Component.InvokeAsync("UserMenu2")
                 <section class="row">
                     <div class="col-sm-12">
+                        @if (TempData["SuccessMessage"] != null)
+                        {
+                            <div class="alert bg-success" role="alert">
+                                <em class="fa fa-check-circle mr-2"></em>
+                                @TempData["SuccessMessage"]
+                            </div>
+                        }
                         @RenderBody()
                     </div>
                 </section>
             </main>
         </div>
     </div>
-
     @await Html.PartialAsync("/Areas/Admin/Views/Shared/_newLayoutJsPartial.cshtml")
     @await Html.PartialAsync("/Areas/Admin/Views/Shared/_LayoutJsPartial.cshtml")
+    @await Component.InvokeAsync("NToastNotify")
     @await RenderSectionAsync("Scripts", false)
 </body>
 </html>

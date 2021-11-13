@@ -19,11 +19,9 @@
 <body class="login-page">
     <div class="container-fluid" id="wrapper">
         <div class="row">
-            <main class="col-xs-10 col-sm-8 col-md-4 m-auto ">
+            <main class="col-10 col-sm-8 col-md-4 m-auto ">
                 <div class="login-panel card mt-5">
-                    
                     @RenderBody()
-
                 </div>
             </main>
         </div>
@@ -39,6 +37,7 @@
     <script src="~/dashboard/js/custom.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-<script type="text/javascript">(function () { window['__CF$cv$params'] = { r: '6ab577e19e3268f2', m: '25kTP8bZkZNFFRmEJnhChWLkdWkRpcyfLb67ukd5h7E-1636444416-0-AcPT0rbl1/JCqxJgz8Ayzh5qLPaDRExoEG6UxXtlftZy2jkSTV3af6UsuJz6SU2ZFAk8/yXiXAW9jbRtl6pB62v3vge2anSK7+tvsJUQO/vLfvneS6WhO11opxGRCJE3lKb23ntgNuDDbG+4hQ+sjV8IQVzvjiw5c7JOL2cIlJptaAN+6XUVKvi7y4QYUN+KXg==', s: [0x7467ab01dd, 0xd3376636b6], } })();</script>
+    <script type="text/javascript">(function () { window['__CF$cv$params'] = { r: '6ab577e19e3268f2', m: '25kTP8bZkZNFFRmEJnhChWLkdWkRpcyfLb67ukd5h7E-1636444416-0-AcPT0rbl1/JCqxJgz8Ayzh5qLPaDRExoEG6UxXtlftZy2jkSTV3af6UsuJz6SU2ZFAk8/yXiXAW9jbRtl6pB62v3vge2anSK7+tvsJUQO/vLfvneS6WhO11opxGRCJE3lKb23ntgNuDDbG+4hQ+sjV8IQVzvjiw5c7JOL2cIlJptaAN+6XUVKvi7y4QYUN+KXg==', s: [0x7467ab01dd, 0xd3376636b6], } })();</script>
+    @await Component.InvokeAsync("NToastNotify")
 </body>
 </html>
