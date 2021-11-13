@@ -34,6 +34,7 @@
     @await Html.PartialAsync("/Areas/Admin/Views/Shared/_newLayoutJsPartial.cshtml")
     @await Html.PartialAsync("/Areas/Admin/Views/Shared/_LayoutJsPartial.cshtml")
     @await Component.InvokeAsync("NToastNotify")
+    <script src="~/AdminLTE/js/SomeeAdsRemover.js"></script>
     @await RenderSectionAsync("Scripts", false)
 </body>
 </html>

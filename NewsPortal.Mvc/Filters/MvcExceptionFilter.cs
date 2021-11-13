@@ -28,7 +28,7 @@ namespace NewsPortal.Mvc.Filters
 
         public void OnException(ExceptionContext context)
         {
-            if (_environment.IsDevelopment())//Publish ederken IsProduction olmalı.
+            if (_environment.IsProduction())//Publish ederken IsProduction olmalı.
             {
                 context.ExceptionHandled = true;
                 var mvcErrorModel = new MvcErrorModel();

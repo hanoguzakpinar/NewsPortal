@@ -41,7 +41,7 @@ namespace NewsPortal.Mvc
             //mvc ve razor runtime package dahil etme.
             services.AddSession();//session yapýsýný ekleme.
             services.AddAutoMapper(typeof(CategoryProfile), typeof(ReportProfile), typeof(UserProfile), typeof(ViewModelsProfile), typeof(CommentProfile));//automapperi dahil etme.
-            services.LoadMyServices(connectionString: Configuration.GetConnectionString("LocalDB"));
+            services.LoadMyServices(connectionString: Configuration.GetConnectionString("Somee"));
             services.AddScoped<IImageHelper, ImageHelper>();
 
             services.ConfigureApplicationCookie(options =>
