@@ -1,0 +1,31 @@
+﻿@model NewsPortal.Entities.Dtos.EmailSendDto
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "İletişim";
+    ViewBag.Dashboard = "İletişim";
+}
+
+<div class="row">
+    <div class="col-lg-6 offset-lg-3">
+        <div class="card mt-3">
+            <div class="card-body">
+                <form asp-controller="Home" asp-action="Contact" method="post">
+                    <div asp-validation-summary="All" class="text-danger" id="validation-summary"></div>
+                    <div class="form-group">
+                        <label asp-for="Subject"></label>
+                        <input type="text" class="form-control" asp-for="Subject" placeholder="Mesajın konusu" />
+                        <span class="text-danger" asp-validation-for="Subject"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Message"></label>
+                        <textarea type="text" class="form-control" asp-for="Message" placeholder="Mesajınız" rows="10"></textarea>
+                        <span class="text-danger" asp-validation-for="Message"></span>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"><span class="fa fa-save"></span> Gönder</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

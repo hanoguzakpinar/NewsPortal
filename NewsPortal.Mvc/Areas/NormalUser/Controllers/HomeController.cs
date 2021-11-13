@@ -25,10 +25,12 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
     {
         private readonly SignInManager<User> _signInManager;
         private readonly IReportService _reportService;
-        public HomeController(UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper, SignInManager<User> signInManager, IReportService reportService) : base(userManager, mapper, imageHelper)
+        private readonly IMailService _mailService;
+        public HomeController(UserManager<User> userManager, IMapper mapper, IImageHelper imageHelper, SignInManager<User> signInManager, IReportService reportService, IMailService mailService) : base(userManager, mapper, imageHelper)
         {
             _signInManager = signInManager;
             _reportService = reportService;
+            _mailService = mailService;
         }
 
         [Authorize]
@@ -168,6 +170,29 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
             }
 
             return NotFound();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult Contact()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Contact(EmailSendDto emailSendDto)
+        {
+            if (ModelState.IsValid)
+            {
+                emailSendDto.Name = LoggedInUser.FirstName + " " + LoggedInUser.LastName;
+                emailSendDto.Email = LoggedInUser.Email;
+                var result = _mailService.SendContactEmail(emailSendDto);
+                TempData["SuccessMessage"] = "Mesajınız başarılı bir şekilde gönderildi.";
+                return View();
+            }
+
+            return View(emailSendDto);
         }
     }
 }

@@ -29,6 +29,7 @@ namespace NewsPortal.Mvc
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<WebsiteInfo>(Configuration.GetSection("WebsiteInfo"));
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddControllersWithViews(options =>
             {
                 options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(value => "Bu alan boþ geçilmemelidir.");

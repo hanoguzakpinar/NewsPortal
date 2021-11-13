@@ -210,7 +210,5 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             var hardDeletedReportResult = JsonSerializer.Serialize(result);
             return Json(hardDeletedReportResult);
         }
-
-
     }
 }
