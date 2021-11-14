@@ -10,7 +10,7 @@
  ![Normal User](https://s9.gifyu.com/images/ezgif.com-gif-maker97d412b84253dc36.gif)
   
  **Admin**
-![Admin User](https://s8.gifyu.com/images/ezgif.com-gif-maker7ec9fdeb4a80b6bb.gif)
+ ![Admin User](https://s8.gifyu.com/images/ezgif.com-gif-maker8b4e53217e031a25.gif)
 
  **Editor**\
  Kullanıcılar ve Roller hariç Admin ile aynı yetkiye sahiptir.
