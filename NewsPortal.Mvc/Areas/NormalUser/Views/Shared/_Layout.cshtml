@@ -11,30 +11,28 @@
     @await RenderSectionAsync("Styles", false)
 </head>
 <body>
-    <div class="container-fluid" id="wrapper">
-        <div class="row">
-            @await Component.InvokeAsync("AdminMenu2")
-            <main class="col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto">
-                @await Component.InvokeAsync("UserMenu2")
-                <section class="row">
-                    <div class="col-sm-12">
-                        @if (TempData["SuccessMessage"] != null)
-                        {
-                            <div class="alert bg-success" role="alert">
-                                <em class="fa fa-check-circle mr-2"></em>
-                                @TempData["SuccessMessage"]
-                            </div>
-                        }
-                        @RenderBody()
-                    </div>
-                </section>
-            </main>
-        </div>
+<div class="container-fluid" id="wrapper">
+    <div class="row">
+        @await Component.InvokeAsync("AdminMenu2")
+        <main class="col-sm-8 col-lg-9 col-xl-10 pt-3 pl-4 ml-auto">
+            @await Component.InvokeAsync("UserMenu2")
+            <section class="row">
+                <div class="col-sm-12">
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert bg-success" role="alert">
+                            <em class="fa fa-check-circle mr-2"></em>
+                            @TempData["SuccessMessage"]
+                        </div>
+                    }
+                    @RenderBody()
+                </div>
+            </section>
+        </main>
     </div>
-    @await Html.PartialAsync("/Areas/Admin/Views/Shared/_newLayoutJsPartial.cshtml")
-    @await Html.PartialAsync("/Areas/Admin/Views/Shared/_LayoutJsPartial.cshtml")
-    @await Component.InvokeAsync("NToastNotify")
-    <script src="~/AdminLTE/js/SomeeAdsRemover.js"></script>
-    @await RenderSectionAsync("Scripts", false)
+</div>
+@await Html.PartialAsync("/Areas/Admin/Views/Shared/_newLayoutJsPartial.cshtml")
+@await Html.PartialAsync("/Areas/Admin/Views/Shared/_LayoutJsPartial.cshtml")
+@await RenderSectionAsync("Scripts", false)
 </body>
 </html>
