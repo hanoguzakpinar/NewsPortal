@@ -38,10 +38,9 @@ namespace NewsPortal.Mvc.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(userLoginDto.Email);
-                var roles = await _userManager.GetRolesAsync(user);
-
                 if (user is not null)
                 {
+                    var roles = await _userManager.GetRolesAsync(user);
                     var result = await _signInManager.PasswordSignInAsync(user,
                         userLoginDto.Password, userLoginDto.RememberMe, false);
 
