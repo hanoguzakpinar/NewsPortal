@@ -32,19 +32,19 @@
                     </tr>
                 </thead>
                 @*<tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Haber</th>
-                        <th>Yorum İçeriği</th>
-                        <th>Aktif Mi?</th>
-                        <th>Silinmiş Mi?</th>
-                        <th>Oluşturulma Tarihi</th>
-                        <th>Oluşturan Kullanıcı Adı</th>
-                        <th>Son Düzenlenme Tarihi</th>
-                        <th>Son Düzenleyen Kullanıcı Adı</th>
-                        <th>İşlemler</th>
-                    </tr>
-                </tfoot>*@
+                        <tr>
+                            <th>#</th>
+                            <th>Haber</th>
+                            <th>Yorum İçeriği</th>
+                            <th>Aktif Mi?</th>
+                            <th>Silinmiş Mi?</th>
+                            <th>Oluşturulma Tarihi</th>
+                            <th>Oluşturan Kullanıcı Adı</th>
+                            <th>Son Düzenlenme Tarihi</th>
+                            <th>Son Düzenleyen Kullanıcı Adı</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </tfoot>*@
                 <tbody>
                     @foreach (var comment in Model.Comments)
                     {
@@ -76,5 +76,11 @@
 }
 @section Styles
 {
-
+    <style>
+        .dataTables_filter {
+            width: 50%;
+            float: right;
+            text-align: right;
+        }
+    </style>
 }

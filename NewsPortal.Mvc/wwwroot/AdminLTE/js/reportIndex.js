@@ -99,7 +99,7 @@
             "sLengthMenu": "Sayfada _MENU_ kayıt göster",
             "sLoadingRecords": "Yükleniyor...",
             "sProcessing": "İşleniyor...",
-            "sSearch": "Ara:",
+            "sSearch": "Ara",
             "sZeroRecords": "Eşleşen kayıt bulunamadı",
             "oPaginate": {
                 "sFirst": "İlk",

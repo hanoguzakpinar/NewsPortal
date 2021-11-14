@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <p>@Model.Report.Content</p>
+                    <p>@Html.Raw(Model.Report.Content)</p>
                 </div>
             </div>
         </div>
@@ -19,8 +19,69 @@
         <div class="card">
             <div class="card-body">
                 <div class="form-group">
-                    <label class="font-weight-bold">Editör:</label> <label>@Model.Report.User.FirstName @Model.Report.User.LastName</label>
+                    <img src="~/img/@Model.Report.User.Picture" alt="profile photo" class="circle float-left profile-photo mr-2" width="50" height="auto">
                 </div>
+                <div class="form-group">
+                    @*<label class="font-weight-bold">Editör:</label>*@
+                    <label>@Model.Report.User.FirstName @Model.Report.User.LastName</label>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold">Sosyal:</label>
+                    @if (Model.Report.User.FacebookLink != null)
+                    {
+                        <!-- Facebook -->
+                        <a href="@Model.Report.User.FacebookLink">
+                            <i class="fa fa-facebook-f"></i>
+                        </a>
+                    }
+                    @if (Model.Report.User.TwitterLink != null)
+                    {
+                        <!-- Twitter -->
+                        <a href="@Model.Report.User.TwitterLink">
+                            <i class="fa fa-twitter"></i>
+                        </a>
+                    }
+                    @if (Model.Report.User.InstagramLink != null)
+                    {
+                        <!-- Instagram -->
+                        <a href="@Model.Report.User.InstagramLink">
+                            <i class="fa fa-instagram"></i>
+                        </a>
+                    }
+                    @if (Model.Report.User.LinkedInLink != null)
+                    {
+                        <!-- Linkedin -->
+                        <a href="@Model.Report.User.LinkedInLink">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                    }
+                    @if (Model.Report.User.GitHubLink != null)
+                    {
+                        <!-- Github -->
+                        <a href="@Model.Report.User.GitHubLink">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    }
+                    @if (Model.Report.User.WebsiteLink != null)
+                    {
+                        <!-- Website -->
+                        <a href="@Model.Report.User.WebsiteLink">
+                            <i class="fa fa-user-secret"></i>
+                        </a>
+                    }
+                </div>
+                <div class="form-group">
+                    @if (Model.Report.User.About != null)
+                    {
+                        <label class="font-weight-bold">Hakkında:</label>
+                        <label>@Model.Report.User.About</label>
+                    }
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-1">
+            <div class="card-body">
                 <div class="form-group">
                     <label class="font-weight-bold">Kategori:</label> <label>@Model.Report.Category.Name</label>
                 </div>
@@ -30,6 +91,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @section Scripts
 {

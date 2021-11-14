@@ -13,10 +13,6 @@
 </nav>
 
 <div class="card mb-4">
-    @*<div class="card-header">
-        <i class="fas fa-table mr-1"></i>
-        Silinmiş Haberler
-    </div>*@
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="deletedReportsTable" width="100%" cellspacing="0">
@@ -28,7 +24,7 @@
                         <th>Küçük Resim</th>
                         <th>Tarih</th>
                         @*<th>Okunma Sayısı</th>
-                        <th>Yorum Sayısı</th>*@
+                            <th>Yorum Sayısı</th>*@
                         <th>Aktif Mi?</th>
                         <th>Silinmiş Mi?</th>
                         <th>Oluşturulma Tarihi</th>
@@ -38,24 +34,6 @@
                         <th>İşlemler</th>
                     </tr>
                 </thead>
-                @*<tfoot>
-                    <tr>
-                        <th>#</th>
-                        <th>Kategori</th>
-                        <th>Başlık</th>
-                        <th>Küçük Resim</th>
-                        <th>Tarih</th>
-                        <th>Okunma Sayısı</th>
-                        <th>Yorum Sayısı</th>
-                        <th>Aktif Mi?</th>
-                        <th>Silinmiş Mi?</th>
-                        <th>Oluşturulma Tarihi</th>
-                        <th>Oluşturan Kullanıcı Adı</th>
-                        <th>Son Düzenlenme Tarihi</th>
-                        <th>Son Düzenleyen Kullanıcı Adı</th>
-                        <th>İşlemler</th>
-                    </tr>
-                </tfoot>*@
                 <tbody>
                     @foreach (var report in Model.Reports)
                     {
@@ -66,7 +44,7 @@
                             <td><img src="~/img/@report.Thumbnail" class="my-image-table" /></td>
                             <td>@report.Date.ToShortDateString()</td>
                             @*<td>@report.ViewsCount</td>
-                            <td>@report.CommentCount</td>*@
+                                <td>@report.CommentCount</td>*@
                             <td>@(report.IsActive ? "Evet" : "Hayır")</td>
                             <td>@(report.IsDeleted ? "Evet" : "Hayır")</td>
                             <td>@report.CreatedDate.ToShortDateString()</td>
@@ -91,5 +69,11 @@
 }
 @section Styles
 {
-
+    <style>
+        .dataTables_filter {
+            width: 50%;
+            float: right;
+            text-align: right;
+        }
+    </style>
 }
