@@ -16,3 +16,10 @@
 [7](https://stackoverflow.com/questions/38951554/using-net-core-how-can-i-show-the-html-content-coming-from-database-on-view)
 [8](https://www.udemy.com/course/net5aspnetcore5blog/)
 [9](https://www.udemy.com/course/net5aspnetcore5blog2/)
+[10](https://select2.org/)
+[11](https://jqueryui.com/)
+[12](https://sweetalert2.github.io/)
+[13](https://alex-d.github.io/Trumbowyg/)
+[14](https://nlog-project.org/)
+[15](https://support.microsoft.com/en-us/office/pop-imap-and-smtp-settings-for-outlook-com-d088b986-291d-42b8-9564-9c414e2aa040)
+
