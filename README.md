@@ -5,7 +5,15 @@
  **Kullanılan Teknolojiler/Diller/Vt:** .Net Core Mvc, .Net Core Identity, Entity Framework, C#, Linq, Fluent Api, AutoMapper, Unit of Work, Mssql, Ajax, NLog
  
  [Live](http://newsportals.somee.com/ "NewsPortal")
-
+ 
+ **Normal User**
+ ![Normal User](https://s9.gifyu.com/images/ezgif.com-gif-maker97d412b84253dc36.gif)
+ 
+ **Editor**
+ 
+ **Admin**
+![Normal User](https://s8.gifyu.com/images/ezgif.com-gif-maker-14b7260f425066b9a.gif)
+ 
 ### Kaynaklar
 [1](https://code-maze.com/user-registration-aspnet-core-identity/)
 [2](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/identity?view=aspnetcore-6.0&tabs=visual-studio)
