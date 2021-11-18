@@ -33,7 +33,7 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
             _mailService = mailService;
         }
 
-        [Authorize]
+        [Authorize(Roles = "Normal")]
         [HttpGet]
         public async Task<ViewResult> Index()
         {
@@ -42,7 +42,7 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
             return View(updateDto);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Normal")]
         [HttpPost]
         public async Task<ViewResult> Index(UserUpdateDto userUpdateDto)
         {
@@ -90,14 +90,14 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Normal")]
         [HttpGet]
         public ViewResult PasswordChange()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Normal")]
         [HttpPost]
         public async Task<ViewResult> PasswordChange(UserPasswordChangeDto passwordChangeDto)
         {
@@ -146,7 +146,7 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
             }
         }
 
-        [Authorize]
+        [Authorize(Roles = "Normal")]
         [HttpGet]
         public async Task<IActionResult> Reports()
         {
@@ -159,7 +159,7 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
             return NotFound();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Normal")]
         [HttpGet]
         public async Task<IActionResult> ReportDetail(int reportId)
         {
@@ -172,14 +172,14 @@ namespace NewsPortal.Mvc.Areas.NormalUser.Controllers
             return NotFound();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Normal")]
         [HttpGet]
         public IActionResult Contact()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Normal")]
         [HttpPost]
         public IActionResult Contact(EmailSendDto emailSendDto)
         {
